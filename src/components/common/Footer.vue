@@ -17,8 +17,8 @@
           <router-link to="/">首页</router-link>
           <router-link to="/features">功能</router-link>
           <router-link to="/download">下载</router-link>
-          <a href="https://github.com/aiyo407/seekphoto" target="_blank">GitHub</a>
-          <a href="https://github.com/aiyo407/seekphoto/issues" target="_blank">问题反馈</a>
+          <a href="https://github.com/aiyo407/seekphoto-site" target="_blank">GitHub</a>
+          <a href="https://github.com/aiyo407/seekphoto-site/issues" target="_blank">问题反馈</a>
         </div>
       </div>
 

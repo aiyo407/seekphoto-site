@@ -27,20 +27,21 @@
           </div>
           <div class="feature-visual">
             <div class="visual-card">
-              <div class="search-bar">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <div class="visual-search-box">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                   <circle cx="11" cy="11" r="8"/>
                   <line x1="21" y1="21" x2="16.65" y2="16.65"/>
                 </svg>
                 <span>海边的日落</span>
+                <button>搜索</button>
               </div>
-              <div class="search-results">
-                <div class="result-item" v-for="i in 4" :key="i">
-                  <div class="result-thumb" :style="{ background: getGradient(i) }"></div>
-                  <div class="result-info">
-                    <div class="result-name">photo_{{ i }}.jpg</div>
-                    <div class="result-score">{{ 97 - i * 3 }}% 匹配</div>
+              <div class="visual-results">
+                <div class="visual-result-card" v-for="i in 6" :key="i">
+                  <div class="visual-result-thumb" :style="{ background: getGradient(i) }">
+                    <span>{{ 97 - i * 3 }}%</span>
                   </div>
+                  <div class="visual-result-name">photo_00{{ i }}.jpg</div>
+                  <div class="visual-result-meta">2024.02.18</div>
                 </div>
               </div>
             </div>
@@ -68,17 +69,23 @@
             </ul>
           </div>
           <div class="feature-visual">
-            <div class="visual-card">
-              <div class="face-grid">
-                <div class="face-item" v-for="i in 6" :key="i">
-                  <div class="face-avatar" :style="{ background: getFaceGradient(i) }">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <div class="visual-card visual-sidebar">
+              <div class="visual-sidebar-header">
+                <span>全部人物</span>
+                <span class="visual-count">5 人</span>
+              </div>
+              <div class="person-list">
+                <div class="person-item" v-for="i in 5" :key="i" :class="{ selected: i === 1 }">
+                  <div class="person-avatar" :style="{ background: getFaceGradient(i) }">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
                       <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
                       <circle cx="12" cy="7" r="4"/>
                     </svg>
                   </div>
-                  <span class="face-name">人物 {{ i }}</span>
-                  <span class="face-count">{{ 22 - i * 3 }} 张</span>
+                  <div class="person-info">
+                    <span class="person-name">人物 {{ i }}</span>
+                    <span class="person-count">{{ 32 - i * 5 }} 张照片</span>
+                  </div>
                 </div>
               </div>
             </div>
@@ -106,16 +113,25 @@
             </ul>
           </div>
           <div class="feature-visual">
-            <div class="visual-card">
-              <div class="timeline-item" v-for="i in 3" :key="i">
-                <div class="timeline-date">
-                  <span class="date-year">2024</span>
-                  <span class="date-month">{{ ['一月', '二月', '三月'][i-1] }}</span>
+            <div class="visual-card visual-sidebar">
+              <div class="visual-sidebar-header">
+                <span>时间线</span>
+              </div>
+              <div class="timeline-list">
+                <div class="timeline-year" v-for="year in [2024, 2023]" :key="year">
+                  <div class="year-row">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+                      <path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"/>
+                    </svg>
+                    <span>{{ year }} 年</span>
+                  </div>
+                  <div class="month-list">
+                    <div class="month-item" v-for="month in ['1月', '2月', '3月']" :key="month">
+                      <span>{{ month }}</span>
+                      <span class="month-count">{{ Math.floor(Math.random() * 80 + 20) }} 张</span>
+                    </div>
+                  </div>
                 </div>
-                <div class="timeline-photos">
-                  <div class="photo-thumb" v-for="j in 4" :key="j" :style="{ background: getTimelineGradient(i, j) }"></div>
-                </div>
-                <div class="timeline-count">{{ 52 - i * 12 }} 张</div>
               </div>
             </div>
           </div>
@@ -199,15 +215,6 @@ const getFaceGradient = (i: number) => {
   return gradients[i - 1]
 }
 
-const getTimelineGradient = (i: number, j: number) => {
-  const base = [
-    ['#ff6b6b', '#ee5a24'],
-    ['#4ecdc4', '#44bd9e'],
-    ['#a29bfe', '#6c5ce7'],
-  ]
-  const [c1, c2] = base[i - 1]
-  return `linear-gradient(${135 + j * 15}deg, ${c1}, ${c2})`
-}
 </script>
 
 <style scoped>
@@ -309,131 +316,204 @@ const getTimelineGradient = (i: number, j: number) => {
   box-shadow: var(--shadow-lg);
 }
 
-.search-bar {
+.visual-search-box {
   display: flex;
   align-items: center;
-  gap: 12px;
-  padding: 14px 18px;
+  gap: 10px;
+  padding: 4px 4px 4px 14px;
   background: var(--bg);
   border: 1px solid var(--border);
-  border-radius: var(--radius);
-  margin-bottom: 20px;
+  border-radius: 999px;
+  margin-bottom: 16px;
   color: var(--text-secondary);
 }
 
-.search-bar span {
+.visual-search-box span {
+  flex: 1;
   color: var(--text-primary);
+  font-size: 14px;
 }
 
-.search-results {
-  display: flex;
-  flex-direction: column;
+.visual-search-box button {
+  padding: 8px 16px;
+  background: var(--primary);
+  color: #ffffff;
+  border: none;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.visual-results {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
   gap: 12px;
 }
 
-.result-item {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  padding: 12px;
+.visual-result-card {
   background: var(--bg);
   border-radius: var(--radius);
+  overflow: hidden;
+  transition: all 0.2s ease;
 }
 
-.result-thumb {
-  width: 44px;
-  height: 44px;
-  border-radius: var(--radius-sm);
+.visual-result-card:hover {
+  transform: translateY(-1px);
+  box-shadow: var(--shadow);
 }
 
-.result-info {
-  flex: 1;
+.visual-result-thumb {
+  position: relative;
+  aspect-ratio: 1;
+  background: var(--bg-tertiary);
 }
 
-.result-name {
+.visual-result-thumb span {
+  position: absolute;
+  bottom: 6px;
+  left: 6px;
+  padding: 2px 6px;
+  background: rgba(15, 23, 42, 0.75);
+  color: #ffffff;
+  font-size: 10px;
+  font-weight: 600;
+  border-radius: 999px;
+}
+
+.visual-result-name {
+  padding: 8px 8px 0;
+  font-size: 11px;
+  color: var(--text-primary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.visual-result-meta {
+  padding: 2px 8px 8px;
+  font-size: 10px;
+  color: var(--text-muted);
+}
+
+.visual-sidebar {
+  padding: 0;
+  overflow: hidden;
+}
+
+.visual-sidebar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 16px;
+  border-bottom: 1px solid var(--border);
   font-size: 14px;
-  margin-bottom: 2px;
+  font-weight: 500;
+  color: var(--text-primary);
 }
 
-.result-score {
-  font-size: 12px;
-  color: var(--primary);
+.visual-count {
+  font-size: 13px;
+  color: var(--text-secondary);
+  font-weight: 400;
 }
 
-.face-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 16px;
+.person-list {
+  padding: 8px;
 }
 
-.face-item {
-  text-align: center;
+.person-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: all 0.15s ease;
 }
 
-.face-avatar {
-  width: 60px;
-  height: 60px;
+.person-item:hover {
+  background: var(--bg);
+}
+
+.person-item.selected {
+  background: var(--primary-light);
+}
+
+.person-avatar {
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 0 auto 10px;
   color: white;
 }
 
-.face-name {
-  display: block;
-  font-size: 13px;
-  margin-bottom: 2px;
+.person-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
 }
 
-.face-count {
+.person-name {
+  font-size: 14px;
+  color: var(--text-primary);
+}
+
+.person-count {
   font-size: 12px;
   color: var(--text-secondary);
 }
 
-.timeline-item {
-  display: flex;
-  align-items: center;
-  gap: 20px;
-  padding: 16px 0;
+.timeline-list {
+  padding: 8px 0;
+}
+
+.timeline-year {
   border-bottom: 1px solid var(--border);
 }
 
-.timeline-item:last-child {
+.timeline-year:last-child {
   border-bottom: none;
 }
 
-.timeline-date {
+.year-row {
   display: flex;
-  flex-direction: column;
-  min-width: 70px;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 16px;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-primary);
 }
 
-.date-year {
-  font-size: 12px;
+.year-row svg {
   color: var(--text-secondary);
 }
 
-.date-month {
-  font-size: 16px;
-  font-weight: 600;
+.month-list {
+  background: var(--bg);
+  padding: 4px 0;
 }
 
-.timeline-photos {
+.month-item {
   display: flex;
-  gap: 8px;
-  flex: 1;
-}
-
-.photo-thumb {
-  width: 44px;
-  height: 44px;
-  border-radius: var(--radius-sm);
-}
-
-.timeline-count {
+  justify-content: space-between;
+  align-items: center;
+  padding: 9px 16px 9px 34px;
   font-size: 13px;
+  color: var(--text-primary);
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+
+.month-item:hover {
+  background: var(--bg-elevated);
+}
+
+.month-count {
+  font-size: 12px;
   color: var(--text-secondary);
 }
 
@@ -508,7 +588,7 @@ const getTimelineGradient = (i: number, j: number) => {
     grid-template-columns: 1fr;
   }
 
-  .face-grid {
+  .visual-results {
     grid-template-columns: repeat(2, 1fr);
   }
 }
