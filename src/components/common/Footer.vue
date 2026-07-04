@@ -4,11 +4,7 @@
       <div class="footer-content">
         <div class="footer-brand">
           <router-link to="/" class="logo">
-            <svg width="24" height="24" viewBox="0 0 32 32" fill="none">
-              <circle cx="16" cy="16" r="14" stroke="var(--primary)" stroke-width="2"/>
-              <circle cx="16" cy="16" r="6" fill="var(--primary)"/>
-            </svg>
-            <span>觅影 SeekPhoto</span>
+            <img :src="logo" alt="觅影 SeekPhoto" class="logo-img" />
           </router-link>
           <p>用一句话，找到那张照片</p>
         </div>
@@ -28,6 +24,10 @@
     </div>
   </footer>
 </template>
+
+<script setup lang="ts">
+import logo from '../../assets/logo.png'
+</script>
 
 <style scoped>
 .footer {
@@ -54,10 +54,13 @@
 .logo {
   display: flex;
   align-items: center;
-  gap: 10px;
-  font-size: 16px;
-  font-weight: 700;
-  color: var(--text-primary);
+}
+
+.logo-img {
+  height: 48px;
+  width: auto;
+  object-fit: contain;
+  display: block;
 }
 
 .footer-brand p {

@@ -3,11 +3,7 @@
     <div class="container">
       <div class="header-content">
         <router-link to="/" class="logo">
-          <svg width="28" height="28" viewBox="0 0 32 32" fill="none">
-            <circle cx="16" cy="16" r="14" stroke="var(--primary)" stroke-width="2"/>
-            <circle cx="16" cy="16" r="6" fill="var(--primary)"/>
-          </svg>
-          <span>觅影</span>
+          <img :src="logo" alt="觅影" class="logo-img" />
         </router-link>
 
         <nav class="nav">
@@ -28,6 +24,7 @@
 
 <script setup lang="ts">
 import { ref, onMounted, onUnmounted } from 'vue'
+import logo from '../../assets/logo.png'
 
 const isScrolled = ref(false)
 
@@ -72,14 +69,13 @@ onUnmounted(() => {
 .logo {
   display: flex;
   align-items: center;
-  gap: 10px;
-  font-size: 18px;
-  font-weight: 700;
-  color: var(--text-primary);
 }
 
-.logo:hover {
-  color: var(--primary);
+.logo-img {
+  height: 38px;
+  width: auto;
+  object-fit: contain;
+  display: block;
 }
 
 .nav {
