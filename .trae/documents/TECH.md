@@ -38,7 +38,7 @@ flowchart TB
 - **构建工具**：Vite 6.0.5 + `@vitejs/plugin-vue`
 - **样式方案**：原生 CSS + CSS Variables，无 UI 组件库
 - **图标方案**：内联 SVG，不依赖图标库
-- **动画方案**：CSS Keyframes + Vue 过渡，无动画库
+- **动画方案**：CSS Keyframes，无动画库
 - **部署方式**：GitHub Pages，基础路径 `/seekphoto-site/`
 - **CI/CD**：GitHub Actions 自动构建并部署
 
@@ -63,13 +63,14 @@ website/
 │   │       ├── Footer.vue      # 页脚组件
 │   │       └── Header.vue      # 顶部导航栏
 │   ├── styles/
-│   │   └── main.css            # 通用样式、按钮、滚动动画
+│   │   └── main.css            # 通用样式、按钮、区块标题
 │   ├── views/
 │   │   ├── Download.vue        # 下载页
 │   │   ├── Features.vue        # 功能详情页
 │   │   └── Home.vue            # 首页
-│   ├── App.vue                 # 根组件
-│   └── main.ts                 # 应用入口 + 路由配置
+│   ├── App.vue                 # 根组件 + CSS Variables
+│   ├── main.ts                 # 应用入口 + 路由配置
+│   └── vite-env.d.ts           # Vite 客户端类型声明
 ├── index.html                  # HTML 模板
 ├── package.json                # 项目依赖
 ├── tsconfig.json               # TypeScript 配置
@@ -82,18 +83,20 @@ website/
 - 固定顶部导航栏
 - Logo + 导航链接（首页/功能/下载）
 - GitHub 图标外链
-- 滚动超过 50px 时切换为半透明毛玻璃背景
+- 滚动时显示底部边框和淡阴影
+- 浅色半透明毛玻璃背景
 
 ### 5.2 Footer.vue
-- 四栏布局：品牌介绍、快速链接、资源、技术栈
-- 版权信息
+- 品牌信息 + 快速链接
+- 单行版权信息
+- 更简洁的两栏布局
 
 ### 5.3 Home.vue
-- **Hero 区域**：全屏高度、网格背景、光晕、标题动画
+- **Hero 区域**：居中大标题、徽章、副标题、两个 CTA 按钮
 - **核心特性**：3 列卡片，数据硬编码在 `features` 数组
 - **搜索演示**：5 个关键词循环打字机效果 + 6 个结果卡片
-- **隐私承诺**：单卡片 + 3 个标签
-- **下载 CTA**：Windows 下载入口
+- **隐私承诺**：三列居中图标 + 标题 + 描述
+- **下载 CTA**：渐变卡片 + 白色按钮
 
 ### 5.4 Features.vue
 - 页面标题区
@@ -116,23 +119,29 @@ website/
 
 | 变量名 | 值 | 用途 |
 |--------|-----|------|
-| `--primary` | `#00d9ff` | 主强调色 |
-| `--primary-dark` | `#00b8d9` | 悬停强调色 |
-| `--bg-dark` | `#0f1419` | 页面背景 |
-| `--bg-darker` | `#0a0e13` | 深色区块背景 |
-| `--bg-card` | `#1a1f2e` | 卡片背景 |
-| `--text-primary` | `#ffffff` | 主文字 |
-| `--text-secondary` | `#8b95a5` | 次要文字 |
-| `--border` | `#2a3040` | 边框 |
+| `--primary` | `#4f46e5` | 主强调色 |
+| `--primary-dark` | `#4338ca` | 悬停强调色 |
+| `--primary-light` | `#eef2ff` | 标签/图标背景 |
+| `--bg` | `#fafafa` | 页面背景 |
+| `--bg-elevated` | `#ffffff` | 卡片背景 |
+| `--text-primary` | `#0f172a` | 主文字 |
+| `--text-secondary` | `#64748b` | 次要文字 |
+| `--text-muted` | `#94a3b8` | 弱化文字 |
+| `--border` | `#e2e8f0` | 边框 |
+| `--shadow` | `0 1px 3px rgba(...)` | 轻阴影 |
+| `--shadow-lg` | `0 10px 40px rgba(...)` | 卡片悬浮阴影 |
+| `--radius` | `12px` | 默认圆角 |
+| `--radius-lg` | `16px` | 大圆角 |
+| `--radius-xl` | `24px` | 超大圆角 |
 
 ### 6.2 通用类
 
 在 `main.css` 中定义：
 - `.container`：最大宽度 1200px，水平内边距 24px
-- `.btn`：按钮基础样式
-- `.btn-primary` / `.btn-secondary`：两种按钮变体
+- `.btn` / `.btn-primary` / `.btn-secondary` / `.btn-large`：按钮变体
+- `.section-header` / `.section-label` / `.section-title` / `.section-desc`：区块标题组合
 - `.card`：通用卡片样式
-- `.reveal` / `.reveal.visible`：滚动显隐（当前未启用）
+- `.page-hero`：页面顶部标题区
 
 ## 7. 性能优化
 

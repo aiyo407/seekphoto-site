@@ -2,31 +2,26 @@
   <footer class="footer">
     <div class="container">
       <div class="footer-content">
-        <div class="footer-section">
-          <h3>觅影 SeekPhoto</h3>
+        <div class="footer-brand">
+          <router-link to="/" class="logo">
+            <svg width="24" height="24" viewBox="0 0 32 32" fill="none">
+              <circle cx="16" cy="16" r="14" stroke="var(--primary)" stroke-width="2"/>
+              <circle cx="16" cy="16" r="6" fill="var(--primary)"/>
+            </svg>
+            <span>觅影 SeekPhoto</span>
+          </router-link>
           <p>用一句话，找到那张照片</p>
         </div>
-        
-        <div class="footer-section">
-          <h4>快速链接</h4>
+
+        <div class="footer-links">
           <router-link to="/">首页</router-link>
           <router-link to="/features">功能</router-link>
           <router-link to="/download">下载</router-link>
-        </div>
-        
-        <div class="footer-section">
-          <h4>资源</h4>
           <a href="https://github.com/aiyo407/seekphoto" target="_blank">GitHub</a>
           <a href="https://github.com/aiyo407/seekphoto/issues" target="_blank">问题反馈</a>
         </div>
-        
-        <div class="footer-section">
-          <h4>技术栈</h4>
-          <p>Tauri 2 + Vue 3 + Rust</p>
-          <p>Chinese-CLIP + LanceDB</p>
-        </div>
       </div>
-      
+
       <div class="footer-bottom">
         <p>&copy; 2026 SeekPhoto. 基于 MIT 协议开源。</p>
       </div>
@@ -36,66 +31,75 @@
 
 <style scoped>
 .footer {
-  background: var(--bg-darker);
+  background: var(--bg-elevated);
   border-top: 1px solid var(--border);
-  padding: 60px 0 30px;
-  margin-top: 80px;
+  padding: 48px 0 32px;
 }
 
 .footer-content {
-  display: grid;
-  grid-template-columns: 2fr 1fr 1fr 1fr;
-  gap: 40px;
-  margin-bottom: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 24px;
+  margin-bottom: 32px;
 }
 
-.footer-section h3 {
-  font-size: 20px;
-  margin-bottom: 12px;
+.footer-brand {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 16px;
+  font-weight: 700;
   color: var(--text-primary);
 }
 
-.footer-section h4 {
-  font-size: 14px;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  margin-bottom: 16px;
+.footer-brand p {
   color: var(--text-secondary);
-}
-
-.footer-section p {
-  color: var(--text-secondary);
-  margin-bottom: 8px;
   font-size: 14px;
 }
 
-.footer-section a {
-  display: block;
-  color: var(--text-secondary);
-  margin-bottom: 8px;
-  font-size: 14px;
-  transition: color 0.3s;
+.footer-links {
+  display: flex;
+  gap: 28px;
+  flex-wrap: wrap;
 }
 
-.footer-section a:hover {
+.footer-links a {
+  color: var(--text-secondary);
+  font-size: 14px;
+  transition: color 0.2s ease;
+}
+
+.footer-links a:hover {
   color: var(--primary);
 }
 
 .footer-bottom {
   text-align: center;
-  padding-top: 30px;
+  padding-top: 24px;
   border-top: 1px solid var(--border);
 }
 
 .footer-bottom p {
-  color: var(--text-secondary);
-  font-size: 14px;
+  color: var(--text-muted);
+  font-size: 13px;
 }
 
 @media (max-width: 768px) {
   .footer-content {
-    grid-template-columns: 1fr;
-    gap: 30px;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .footer-links {
+    gap: 16px;
   }
 }
 </style>
