@@ -179,15 +179,17 @@ let charIndex = 0
 let typeTimer: ReturnType<typeof setTimeout> | null = null
 let pauseTimer: ReturnType<typeof setTimeout> | null = null
 
+const base = import.meta.env.BASE_URL
+
 const thumbImages = [
-  '/images/sunset.jpg',
-  '/images/baby.jpg',
-  '/images/red-dress.jpg',
-  '/images/city-night.jpg',
-  '/images/cat.jpg',
-  '/images/flowers.jpg',
-  '/images/mountain.jpg',
-  '/images/coffee.jpg',
+  `${base}images/sunset.jpg`,
+  `${base}images/baby.jpg`,
+  `${base}images/red-dress.jpg`,
+  `${base}images/city-night.jpg`,
+  `${base}images/cat.jpg`,
+  `${base}images/flowers.jpg`,
+  `${base}images/mountain.jpg`,
+  `${base}images/coffee.jpg`,
 ]
 
 const typeKeyword = () => {

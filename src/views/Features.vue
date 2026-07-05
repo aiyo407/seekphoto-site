@@ -194,14 +194,16 @@ const techs = [
   }
 ]
 
+const base = import.meta.env.BASE_URL
+
 const getImage = (i: number) => {
   const images = [
-    '/images/sunset.jpg',
-    '/images/baby.jpg',
-    '/images/red-dress.jpg',
-    '/images/city-night.jpg',
-    '/images/cat.jpg',
-    '/images/flowers.jpg',
+    `${base}images/sunset.jpg`,
+    `${base}images/baby.jpg`,
+    `${base}images/red-dress.jpg`,
+    `${base}images/city-night.jpg`,
+    `${base}images/cat.jpg`,
+    `${base}images/flowers.jpg`,
   ]
   return images[i - 1]
 }
