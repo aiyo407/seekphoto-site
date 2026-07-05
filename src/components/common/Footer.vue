@@ -4,7 +4,8 @@
       <div class="footer-content">
         <div class="footer-brand">
           <router-link to="/" class="logo">
-            <img :src="logo" alt="觅影 SeekPhoto" class="logo-img" />
+            <img :src="logo" alt="觅影" class="logo-img" />
+            <span class="logo-text">觅影 <span>SeekPhoto</span></span>
           </router-link>
           <p>用一句话，找到那张照片</p>
         </div>
@@ -19,7 +20,7 @@
       </div>
 
       <div class="footer-bottom">
-        <p>&copy; 2026 SeekPhoto. 基于 MIT 协议开源。</p>
+        <p>&copy; 2026 SeekPhoto. 保留所有权利。</p>
       </div>
     </div>
   </footer>
@@ -57,10 +58,23 @@ import logo from '../../assets/logo.png'
 }
 
 .logo-img {
-  height: 48px;
+  height: 44px;
   width: auto;
   object-fit: contain;
   display: block;
+}
+
+.logo-text {
+  margin-left: 12px;
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--text-primary);
+  letter-spacing: -0.3px;
+}
+
+.logo-text span {
+  font-weight: 500;
+  color: var(--text-secondary);
 }
 
 .footer-brand p {

@@ -145,7 +145,7 @@
         <div class="section-header">
           <span class="section-label">技术栈</span>
           <h2 class="section-title">现代技术，稳定可靠</h2>
-          <p class="section-desc">基于成熟开源技术构建，性能与安全兼顾</p>
+          <p class="section-desc">基于成熟技术构建，性能与安全兼顾</p>
         </div>
         <div class="tech-grid">
           <div class="tech-card" v-for="tech in techs" :key="tech.name">

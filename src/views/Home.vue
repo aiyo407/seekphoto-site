@@ -4,7 +4,7 @@
     <section class="hero">
       <div class="container">
         <div class="hero-content">
-          <span class="badge">开源 · 免费 · 本地优先</span>
+          <span class="badge">免费 · 本地优先</span>
           <h1 class="hero-title">
             用一句话，<br>找到那张照片
           </h1>
@@ -124,8 +124,8 @@
                 <line x1="16" y1="17" x2="8" y2="17"/>
               </svg>
             </div>
-            <h3>开源透明</h3>
-            <p>代码完全开源，你可以随时查看数据处理方式</p>
+            <h3>隐私可控</h3>
+            <p>数据处理方式完全透明，你的照片始终由你掌控</p>
           </div>
         </div>
       </div>

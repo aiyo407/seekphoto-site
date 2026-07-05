@@ -4,6 +4,7 @@
       <div class="header-content">
         <router-link to="/" class="logo">
           <img :src="logo" alt="觅影" class="logo-img" />
+          <span class="logo-text">觅影 <span>SeekPhoto</span></span>
         </router-link>
 
         <nav class="nav">
@@ -72,10 +73,23 @@ onUnmounted(() => {
 }
 
 .logo-img {
-  height: 38px;
+  height: 36px;
   width: auto;
   object-fit: contain;
   display: block;
+}
+
+.logo-text {
+  margin-left: 10px;
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--text-primary);
+  letter-spacing: -0.3px;
+}
+
+.logo-text span {
+  font-weight: 500;
+  color: var(--text-secondary);
 }
 
 .nav {
