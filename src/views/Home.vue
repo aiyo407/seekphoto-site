@@ -4,13 +4,13 @@
     <section class="hero">
       <div class="container">
         <div class="hero-content">
-          <span class="badge">免费 · 本地优先</span>
+          <span class="badge">免费 · 本地运行</span>
           <h1 class="hero-title">
             用一句话，<br>找到那张照片
           </h1>
           <p class="hero-subtitle">
-            觅影 SeekPhoto 是一款基于 AI 的本地图片管理工具。<br>
-            支持语义搜索、人脸识别、时间线浏览，所有数据只存储在你的电脑上。
+            觅影 SeekPhoto 是一款 AI 图片管理工具。<br>
+            支持文字找图、人物分类、时间线浏览，所有数据只存储在你的电脑上。
           </p>
           <div class="hero-actions">
             <router-link to="/download" class="btn btn-primary btn-large">
@@ -103,7 +103,7 @@
               </svg>
             </div>
             <h3>本地存储</h3>
-            <p>所有索引、人脸数据、向量数据库均保存在本地</p>
+            <p>照片信息、人物数据都保存在你的电脑上</p>
           </div>
           <div class="privacy-item">
             <div class="privacy-icon">
@@ -113,7 +113,7 @@
               </svg>
             </div>
             <h3>无需联网</h3>
-            <p>模型下载完成后即可离线使用，保护你的隐私</p>
+            <p>首次下载 AI 功能后，不联网也能正常使用</p>
           </div>
           <div class="privacy-item">
             <div class="privacy-icon">
@@ -152,18 +152,18 @@ import { ref, onMounted, onUnmounted } from 'vue'
 
 const features = [
   {
-    title: '语义搜索',
-    desc: '用自然语言描述你想找的图片，AI 理解语义并返回匹配结果。支持中英文混合搜索。',
+    title: '文字找图',
+    desc: '输入一句话描述你想找的照片，比如海边日落、宝宝的笑容，AI 就能帮你找到。',
     icon: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>'
   },
   {
-    title: '人脸识别',
-    desc: '自动检测照片中的人脸，按人物聚合分类。点击人物即可查看所有相关照片。',
+    title: '人物分类',
+    desc: '自动识别照片中的人物，把同一个人的照片归到一起。点击人物即可查看所有相关照片。',
     icon: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>'
   },
   {
     title: '时间线浏览',
-    desc: '按拍摄时间自动整理照片，支持 EXIF 信息提取，快速定位历史照片。',
+    desc: '按拍摄时间自动整理照片，快速找到某个日期拍摄的照片，重温回忆。',
     icon: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>'
   }
 ]

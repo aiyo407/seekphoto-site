@@ -3,26 +3,26 @@
     <section class="page-hero">
       <div class="container">
         <h1>核心功能</h1>
-        <p>三大 AI 能力，重新定义图片管理</p>
+        <p>三种方式，帮你轻松管理海量照片</p>
       </div>
     </section>
 
-    <!-- 语义搜索 -->
+    <!-- 文字找图 -->
     <section class="feature-section">
       <div class="container">
         <div class="feature-row">
           <div class="feature-text">
             <span class="feature-tag">核心功能</span>
-            <h2>语义搜索</h2>
+            <h2>文字找图</h2>
             <p class="feature-desc">
-              基于 Chinese-CLIP 模型，理解自然语言描述，精准匹配图片内容。
-              无需记住文件名或标签，用日常语言描述即可找到目标图片。
+              输入一句话描述你想找的照片，AI 就能理解你的意思，从海量图片中找出最匹配的结果。
+              不用记住文件名，也不用一张张翻看。
             </p>
             <ul class="feature-list">
-              <li>支持中英文混合搜索</li>
-              <li>理解场景、物体、颜色、情感等语义</li>
-              <li>毫秒级响应，万张图片瞬间检索</li>
-              <li>支持以图搜图功能</li>
+              <li>支持中文搜索</li>
+              <li>能听懂日常描述，比如海边、人物、颜色</li>
+              <li>找照片像搜索网页一样快</li>
+              <li>也能用一张照片找到相似照片</li>
             </ul>
           </div>
           <div class="feature-visual">
@@ -50,22 +50,22 @@
       </div>
     </section>
 
-    <!-- 人脸识别 -->
+    <!-- 人物分类 -->
     <section class="feature-section alt">
       <div class="container">
         <div class="feature-row reverse">
           <div class="feature-text">
             <span class="feature-tag">智能识别</span>
-            <h2>人脸识别</h2>
+            <h2>人物分类</h2>
             <p class="feature-desc">
-              基于 InsightFace + YuNet 模型，自动检测照片中的人脸，
-              按人物聚合分类，轻松管理家庭、朋友、同事的照片。
+              自动识别照片中的人物，把同一个人的照片归到一起。
+              家人、朋友、同事的照片，都能轻松找到。
             </p>
             <ul class="feature-list">
-              <li>自动检测并裁剪人脸缩略图</li>
-              <li>按人物智能分组聚合</li>
-              <li>支持自定义人物命名</li>
-              <li>人脸数据本地存储，隐私安全</li>
+              <li>自动生成每个人的头像</li>
+              <li>同一个人的照片自动归为一组</li>
+              <li>可以给每个人自定义名字</li>
+              <li>人物数据只保存在你的电脑上</li>
             </ul>
           </div>
           <div class="feature-visual">
@@ -102,14 +102,14 @@
             <span class="feature-tag">时光回溯</span>
             <h2>时间线浏览</h2>
             <p class="feature-desc">
-              自动提取 EXIF 拍摄时间，按时间轴整理照片，
-              快速定位历史照片，重温美好回忆。
+              自动读取照片的拍摄时间，按时间轴整理照片。
+              无论是去年的旅行，还是十年前的回忆，都能快速找到。
             </p>
             <ul class="feature-list">
-              <li>自动提取 EXIF 拍摄时间</li>
-              <li>支持文件名时间戳解析</li>
-              <li>按年/月/日分组展示</li>
-              <li>显示相机型号、镜头、GPS 等信息</li>
+              <li>自动读取照片拍摄时间</li>
+              <li>也能从文件名中识别时间</li>
+              <li>按年、月、日分组浏览</li>
+              <li>查看拍摄设备、地点等信息</li>
             </ul>
           </div>
           <div class="feature-visual">
@@ -139,13 +139,13 @@
       </div>
     </section>
 
-    <!-- 技术栈 -->
+    <!-- 产品优势 -->
     <section class="tech-section">
       <div class="container">
         <div class="section-header">
-          <span class="section-label">技术栈</span>
-          <h2 class="section-title">现代技术，稳定可靠</h2>
-          <p class="section-desc">基于成熟技术构建，性能与安全兼顾</p>
+          <span class="section-label">产品优势</span>
+          <h2 class="section-title">简单易用，安全可靠</h2>
+          <p class="section-desc">无需复杂设置，打开就能用</p>
         </div>
         <div class="tech-grid">
           <div class="tech-card" v-for="tech in techs" :key="tech.name">
@@ -162,34 +162,34 @@
 <script setup lang="ts">
 const techs = [
   {
-    name: 'Tauri 2',
-    desc: '轻量级桌面框架，比 Electron 更小更快',
+    name: '完全本地',
+    desc: '照片、数据都保存在你的电脑上，不会上传到任何服务器',
     icon: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>'
   },
   {
-    name: 'Vue 3',
-    desc: '渐进式 JavaScript 框架，响应式 UI',
-    icon: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>'
+    name: '隐私保护',
+    desc: '不上传你的照片，AI 处理也在本地完成，保护个人隐私',
+    icon: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>'
   },
   {
-    name: 'Rust',
-    desc: '高性能后端语言，内存安全',
-    icon: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg>'
-  },
-  {
-    name: 'Chinese-CLIP',
-    desc: '中文图文匹配模型，语义搜索核心',
+    name: '说话就能找',
+    desc: '不用记住文件名，输入一句话描述，AI 帮你找到想要的照片',
     icon: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>'
   },
   {
-    name: 'LanceDB',
-    desc: '向量数据库，毫秒级相似度检索',
-    icon: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg>'
+    name: '人物自动整理',
+    desc: '自动把同一个人的照片归到一起，查找某个人的照片更方便',
+    icon: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>'
   },
   {
-    name: 'InsightFace',
-    desc: '人脸识别模型，高精度检测',
-    icon: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>'
+    name: '时间轴浏览',
+    desc: '按拍摄时间自动整理，快速找到某个年份、月份的照片',
+    icon: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>'
+  },
+  {
+    name: '持续更新',
+    desc: '我们会持续优化搜索效果和使用体验，让找照片越来越简单',
+    icon: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>'
   }
 ]
 
