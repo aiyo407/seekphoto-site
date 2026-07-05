@@ -74,11 +74,15 @@
             <span class="demo-tags-label">试试：</span>
             <span class="demo-tag">海边的日落</span>
             <span class="demo-tag">宝宝的笑容</span>
-            <span class="demo-tag">2023年春节</span>
+            <span class="demo-tag">穿红衣服的人</span>
+            <span class="demo-tag">城市夜景</span>
+            <span class="demo-tag">可爱的猫咪</span>
+            <span class="demo-tag">春天的花朵</span>
           </div>
           <div class="demo-results">
             <div class="demo-result-card" v-for="i in 8" :key="i" :style="{ animationDelay: `${i * 0.06}s` }">
-              <div class="demo-card-image" :style="{ background: thumbColors[i-1] }">
+              <div class="demo-card-image">
+                <img :src="thumbImages[i-1]" alt="示例照片" />
                 <span class="demo-card-score">{{ 96 - i * 3 }}%</span>
               </div>
               <div class="demo-card-info">
@@ -140,7 +144,7 @@
           <router-link to="/download" class="btn btn-primary btn-large">
             下载 for Windows
           </router-link>
-          <span class="cta-note">支持 Windows 10/11 · 约 150MB</span>
+          <span class="cta-note">支持 Windows 10/11 · 约 60MB</span>
         </div>
       </div>
     </section>
@@ -168,22 +172,22 @@ const features = [
   }
 ]
 
-const keywords = ['海边的日落', '穿红衣服的人', '城市夜景', '可爱的猫咪', '春天的花朵']
+const keywords = ['海边的日落', '宝宝的笑容', '穿红衣服的人', '城市夜景', '可爱的猫咪', '春天的花朵', '山间小屋', '咖啡时光']
 const currentKeyword = ref('')
 let keywordIndex = 0
 let charIndex = 0
 let typeTimer: ReturnType<typeof setTimeout> | null = null
 let pauseTimer: ReturnType<typeof setTimeout> | null = null
 
-const thumbColors = [
-  'linear-gradient(135deg, #ff6b6b, #ee5a24)',
-  'linear-gradient(135deg, #4ecdc4, #44bd9e)',
-  'linear-gradient(135deg, #a29bfe, #6c5ce7)',
-  'linear-gradient(135deg, #fdcb6e, #e17055)',
-  'linear-gradient(135deg, #00cec9, #0984e3)',
-  'linear-gradient(135deg, #fd79a8, #e84393)',
-  'linear-gradient(135deg, #6c5ce7, #4834d4)',
-  'linear-gradient(135deg, #00b894, #00cec9)',
+const thumbImages = [
+  '/images/sunset.jpg',
+  '/images/baby.jpg',
+  '/images/red-dress.jpg',
+  '/images/city-night.jpg',
+  '/images/cat.jpg',
+  '/images/flowers.jpg',
+  '/images/mountain.jpg',
+  '/images/coffee.jpg',
 ]
 
 const typeKeyword = () => {
@@ -422,6 +426,14 @@ onUnmounted(() => {
   position: relative;
   aspect-ratio: 1;
   background: var(--bg-tertiary);
+  overflow: hidden;
+}
+
+.demo-card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
 }
 
 .demo-card-score {

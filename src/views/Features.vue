@@ -37,7 +37,8 @@
               </div>
               <div class="visual-results">
                 <div class="visual-result-card" v-for="i in 6" :key="i">
-                  <div class="visual-result-thumb" :style="{ background: getGradient(i) }">
+                  <div class="visual-result-thumb">
+                    <img :src="getImage(i)" alt="搜索结果示例" />
                     <span>{{ 97 - i * 3 }}%</span>
                   </div>
                   <div class="visual-result-name">photo_00{{ i }}.jpg</div>
@@ -193,14 +194,16 @@ const techs = [
   }
 ]
 
-const getGradient = (i: number) => {
-  const gradients = [
-    'linear-gradient(135deg, #ff6b6b, #ee5a24)',
-    'linear-gradient(135deg, #4ecdc4, #44bd9e)',
-    'linear-gradient(135deg, #a29bfe, #6c5ce7)',
-    'linear-gradient(135deg, #fdcb6e, #e17055)',
+const getImage = (i: number) => {
+  const images = [
+    '/images/sunset.jpg',
+    '/images/baby.jpg',
+    '/images/red-dress.jpg',
+    '/images/city-night.jpg',
+    '/images/cat.jpg',
+    '/images/flowers.jpg',
   ]
-  return gradients[i - 1]
+  return images[i - 1]
 }
 
 const getFaceGradient = (i: number) => {
@@ -367,6 +370,14 @@ const getFaceGradient = (i: number) => {
   position: relative;
   aspect-ratio: 1;
   background: var(--bg-tertiary);
+  overflow: hidden;
+}
+
+.visual-result-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
 }
 
 .visual-result-thumb span {
