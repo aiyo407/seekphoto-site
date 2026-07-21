@@ -5,7 +5,7 @@
 觅影（SeekPhoto）是一款运行在 Windows 电脑上的 AI 图片管理工具。它能把散落在硬盘各处的照片整理成可搜索、可浏览的个人图库——**所有数据只存储在你的电脑上，无需上传云端**。
 
 [![免费下载](https://img.shields.io/badge/免费下载-SeekPhoto-4F46E5?style=for-the-badge&logo=github)](https://github.com/aiyo407/seekphoto-site/releases/latest)
-[![访问官网](https://img.shields.io/badge/访问官网-aiyo407.github.io-0EA5E9?style=for-the-badge)](https://aiyo407.github.io/seekphoto-site/)
+[![访问官网](https://img.shields.io/badge/访问官网-www.seekphoto.cn-0EA5E9?style=for-the-badge)](https://www.seekphoto.cn)
 
 ---
 
@@ -25,15 +25,16 @@
 输入一句话，比如“海边的日落”“宝宝的笑容”“穿红衣服的人”，AI 即刻从海量照片中返回最匹配的结果。
 
 - 支持中文自然语言搜索
-- 也能用一张照片搜索相似照片
 - 不用记住文件名，不用一张张翻看
 
-### 👤 人物分类
+### 👤 人物分类（即将推出）
 自动识别照片中的人脸，把同一个人的照片归为一组。家人、朋友、同事的照片都能快速找到。
 
 - 自动生成每个人的头像
 - 可自定义人物名称
 - 人物数据只保存在本地
+
+> 以图搜图、人物分类等 AI 进阶功能即将在后续版本推出，敬请期待。
 
 ### 📅 时间线浏览
 按拍摄时间自动整理照片，按年、月、日分组，轻松找回某段回忆。

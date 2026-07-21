@@ -10,7 +10,7 @@
           </h1>
           <p class="hero-subtitle">
             觅影 SeekPhoto 是一款 AI 图片管理工具。<br>
-            支持文字找图、人物分类、时间线浏览，所有数据只存储在你的电脑上。
+            支持文字找图、时间线浏览，所有数据只存储在你的电脑上。
           </p>
           <div class="hero-actions">
             <router-link to="/download" class="btn btn-primary btn-large">
@@ -42,9 +42,9 @@
         </div>
 
         <div class="feature-grid">
-          <div class="feature-card" v-for="feature in features" :key="feature.title">
+          <div class="feature-card" v-for="feature in features" :key="feature.title" :class="{ soon: feature.soon }">
             <div class="feature-icon" v-html="feature.icon"></div>
-            <h3>{{ feature.title }}</h3>
+            <h3>{{ feature.title }}<span v-if="feature.soon" class="soon-badge">即将推出</span></h3>
             <p>{{ feature.desc }}</p>
           </div>
         </div>
@@ -154,7 +154,7 @@
 <script setup lang="ts">
 import { ref, onMounted, onUnmounted } from 'vue'
 
-const features = [
+const features: { title: string; desc: string; icon: string; soon?: boolean }[] = [
   {
     title: '文字找图',
     desc: '输入一句话描述你想找的照片，比如海边日落、宝宝的笑容，AI 就能帮你找到。',
@@ -163,6 +163,7 @@ const features = [
   {
     title: '人物分类',
     desc: '自动识别照片中的人物，把同一个人的照片归到一起。点击人物即可查看所有相关照片。',
+    soon: true,
     icon: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>'
   },
   {
@@ -310,6 +311,24 @@ onUnmounted(() => {
   font-size: 20px;
   font-weight: 600;
   margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.soon-badge {
+  display: inline-block;
+  padding: 2px 8px;
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--primary);
+  background: var(--primary-light);
+  border-radius: 999px;
+  white-space: nowrap;
+}
+
+.feature-card.soon {
+  opacity: 0.7;
 }
 
 .feature-card p {

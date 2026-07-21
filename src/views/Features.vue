@@ -56,11 +56,11 @@
       <div class="container">
         <div class="feature-row reverse">
           <div class="feature-text">
-            <span class="feature-tag">智能识别</span>
+            <span class="feature-tag soon">即将推出</span>
             <h2>人物分类</h2>
             <p class="feature-desc">
               自动识别照片中的人物，把同一个人的照片归到一起。
-              家人、朋友、同事的照片，都能轻松找到。
+              家人、朋友、同事的照片，都能轻松找到。<strong>该功能即将在后续版本中推出。</strong>
             </p>
             <ul class="feature-list">
               <li>自动生成每个人的头像</li>
@@ -178,8 +178,8 @@ const techs = [
     icon: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>'
   },
   {
-    name: '人物自动整理',
-    desc: '自动把同一个人的照片归到一起，查找某个人的照片更方便',
+    name: '人物自动整理（即将推出）',
+    desc: '自动把同一个人的照片归到一起，查找某个人的照片更方便，该功能即将在后续版本推出',
     icon: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>'
   },
   {
@@ -276,6 +276,11 @@ const getFaceGradient = (i: number) => {
   font-size: 13px;
   font-weight: 500;
   margin-bottom: 16px;
+}
+
+.feature-tag.soon {
+  background: #fff7ed;
+  color: #ea580c;
 }
 
 .feature-text h2 {
