@@ -8,19 +8,33 @@
             <span class="logo-text">觅影 <span>SeekPhoto</span></span>
           </router-link>
           <p>用一句话，找到那张照片</p>
+          <p class="footer-contact">联系：aiyo407@163.com</p>
         </div>
 
         <div class="footer-links">
-          <router-link to="/">首页</router-link>
-          <router-link to="/features">功能</router-link>
-          <router-link to="/download">下载</router-link>
-          <a href="https://github.com/aiyo407/seekphoto-site" target="_blank">GitHub</a>
-          <a href="https://github.com/aiyo407/seekphoto-site/issues" target="_blank">问题反馈</a>
+          <div class="footer-col">
+            <h4>产品</h4>
+            <router-link to="/">首页</router-link>
+            <router-link to="/features">功能</router-link>
+            <router-link to="/pricing">定价</router-link>
+            <router-link to="/download">下载</router-link>
+          </div>
+          <div class="footer-col">
+            <h4>支持</h4>
+            <a href="mailto:aiyo407@163.com">联系我们</a>
+            <a href="mailto:aiyo407@163.com?subject=觅影SeekPhoto%20产品反馈">意见反馈</a>
+          </div>
+          <div class="footer-col">
+            <h4>法律</h4>
+            <a href="#">隐私政策</a>
+            <a href="#">用户协议</a>
+          </div>
         </div>
       </div>
 
       <div class="footer-bottom">
         <p>&copy; 2026 SeekPhoto. 保留所有权利。</p>
+        <p class="icp">ICP 备案：pending</p>
       </div>
     </div>
   </footer>
@@ -39,10 +53,10 @@ import logo from '../../assets/logo.png'
 
 .footer-content {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: space-between;
   flex-wrap: wrap;
-  gap: 24px;
+  gap: 40px;
   margin-bottom: 32px;
 }
 
@@ -82,24 +96,42 @@ import logo from '../../assets/logo.png'
   font-size: 14px;
 }
 
+.footer-contact {
+  font-size: 13px !important;
+  color: var(--text-muted) !important;
+}
+
 .footer-links {
   display: flex;
-  gap: 28px;
+  gap: 48px;
   flex-wrap: wrap;
 }
 
-.footer-links a {
+.footer-col h4 {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 12px;
+}
+
+.footer-col a {
+  display: block;
   color: var(--text-secondary);
   font-size: 14px;
+  padding: 4px 0;
   transition: color 0.2s ease;
 }
 
-.footer-links a:hover {
+.footer-col a:hover {
   color: var(--primary);
 }
 
 .footer-bottom {
-  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px;
   padding-top: 24px;
   border-top: 1px solid var(--border);
 }
@@ -109,14 +141,24 @@ import logo from '../../assets/logo.png'
   font-size: 13px;
 }
 
+.footer-bottom .icp {
+  font-size: 12px;
+}
+
 @media (max-width: 768px) {
   .footer-content {
     flex-direction: column;
     align-items: flex-start;
+    gap: 32px;
   }
 
   .footer-links {
-    gap: 16px;
+    gap: 32px;
+  }
+
+  .footer-bottom {
+    flex-direction: column;
+    align-items: flex-start;
   }
 }
 </style>

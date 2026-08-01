@@ -56,11 +56,11 @@
       <div class="container">
         <div class="feature-row reverse">
           <div class="feature-text">
-            <span class="feature-tag soon">即将推出</span>
+            <span class="feature-tag pro">Pro 功能</span>
             <h2>人物分类</h2>
             <p class="feature-desc">
               自动识别照片中的人物，把同一个人的照片归到一起。
-              家人、朋友、同事的照片，都能轻松找到。<strong>该功能即将在后续版本中推出。</strong>
+              家人、朋友、同事的照片，都能轻松找到。
             </p>
             <ul class="feature-list">
               <li>自动生成每个人的头像</li>
@@ -129,7 +129,7 @@
                   <div class="month-list">
                     <div class="month-item" v-for="month in ['1月', '2月', '3月']" :key="month">
                       <span>{{ month }}</span>
-                      <span class="month-count">{{ Math.floor(Math.random() * 80 + 20) }} 张</span>
+                      <span class="month-count">{{ monthCounts[month] || 42 }} 张</span>
                     </div>
                   </div>
                 </div>
@@ -178,8 +178,8 @@ const techs = [
     icon: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>'
   },
   {
-    name: '人物自动整理（即将推出）',
-    desc: '自动把同一个人的照片归到一起，查找某个人的照片更方便，该功能即将在后续版本推出',
+    name: '人物自动整理',
+    desc: '自动把同一个人的照片归到一起，查找某个人的照片更方便',
     icon: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>'
   },
   {
@@ -196,6 +196,8 @@ const techs = [
 
 const base = import.meta.env.BASE_URL
 
+const monthCounts: Record<string, number> = { '1月': 86, '2月': 52, '3月': 38 }
+
 const getImage = (i: number) => {
   const images = [
     `${base}images/sunset.jpg`,
@@ -210,12 +212,12 @@ const getImage = (i: number) => {
 
 const getFaceGradient = (i: number) => {
   const gradients = [
-    'linear-gradient(135deg, #667eea, #764ba2)',
-    'linear-gradient(135deg, #f093fb, #f5576c)',
-    'linear-gradient(135deg, #4facfe, #00f2fe)',
-    'linear-gradient(135deg, #43e97b, #38f9d7)',
-    'linear-gradient(135deg, #fa709a, #fee140)',
-    'linear-gradient(135deg, #30cfd0, #330867)',
+    'var(--brand-gradient)',
+    'linear-gradient(135deg, #5B53E8, #7C3AED)',
+    'linear-gradient(135deg, #6366F1, #8B5CF6)',
+    'linear-gradient(135deg, #8B5CF6, #A855F7)',
+    'linear-gradient(135deg, #7C3AED, #6366F1)',
+    'linear-gradient(135deg, #5B53E8, #8B5CF6)',
   ]
   return gradients[i - 1]
 }
@@ -231,9 +233,10 @@ const getFaceGradient = (i: number) => {
 }
 
 .page-hero h1 {
-  font-family: 'Outfit', 'Noto Sans SC', sans-serif;
+  font-family: var(--font-sans);
   font-size: 44px;
   font-weight: 700;
+  letter-spacing: -0.02em;
   margin-bottom: 16px;
 }
 
@@ -278,15 +281,16 @@ const getFaceGradient = (i: number) => {
   margin-bottom: 16px;
 }
 
-.feature-tag.soon {
-  background: #fff7ed;
-  color: #ea580c;
+.feature-tag.pro {
+  background: #FEF3C7;
+  color: #D97706;
 }
 
 .feature-text h2 {
-  font-family: 'Outfit', 'Noto Sans SC', sans-serif;
+  font-family: var(--font-sans);
   font-size: 36px;
   font-weight: 700;
+  letter-spacing: -0.02em;
   margin-bottom: 20px;
 }
 

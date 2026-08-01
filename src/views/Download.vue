@@ -17,7 +17,7 @@
               <line x1="12" y1="15" x2="12" y2="3"/>
             </svg>
           </div>
-          <h2>SeekPhoto v0.1.0</h2>
+          <h2>SeekPhoto v0.9.0</h2>
           <p class="version-info">Windows 10/11 64-bit · 约 60MB</p>
           <a href="https://github.com/aiyo407/seekphoto-site/releases/latest" target="_blank" class="btn btn-primary btn-large">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
@@ -147,9 +147,10 @@ const faqs = [
 }
 
 .page-hero h1 {
-  font-family: 'Outfit', 'Noto Sans SC', sans-serif;
+  font-family: var(--font-sans);
   font-size: 44px;
   font-weight: 700;
+  letter-spacing: -0.02em;
   margin-bottom: 16px;
 }
 
@@ -186,9 +187,10 @@ const faqs = [
 }
 
 .download-card h2 {
-  font-family: 'Outfit', 'Noto Sans SC', sans-serif;
+  font-family: var(--font-sans);
   font-size: 28px;
   font-weight: 700;
+  letter-spacing: -0.02em;
   margin-bottom: 8px;
 }
 

@@ -21,9 +21,11 @@ import Footer from './components/common/Footer.vue'
 }
 
 :root {
-  --primary: #4f46e5;
-  --primary-dark: #4338ca;
-  --primary-light: #eef2ff;
+  --primary: #5B53E8;
+  --primary-dark: #483FD6;
+  --primary-light: #EEEAFF;
+  --primary-purple: #8B5CF6;
+  --brand-gradient: linear-gradient(135deg, #5B53E8 0%, #8B5CF6 100%);
   --bg: #fafafa;
   --bg-elevated: #ffffff;
   --text-primary: #0f172a;
@@ -36,10 +38,12 @@ import Footer from './components/common/Footer.vue'
   --radius: 12px;
   --radius-lg: 16px;
   --radius-xl: 24px;
+  /* 系统字体栈：macOS 苹方 / Windows 微软雅黑 / 跨平台回退 */
+  --font-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', 'Helvetica Neue', sans-serif;
 }
 
 body {
-  font-family: 'Noto Sans SC', 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-family: var(--font-sans);
   background: var(--bg);
   color: var(--text-primary);
   line-height: 1.6;

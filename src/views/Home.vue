@@ -4,13 +4,13 @@
     <section class="hero">
       <div class="container">
         <div class="hero-content">
-          <span class="badge">免费 · 本地运行</span>
+          <span class="badge">免费下载 · 本地运行</span>
           <h1 class="hero-title">
             用一句话，<br>找到那张照片
           </h1>
           <p class="hero-subtitle">
             觅影 SeekPhoto 是一款 AI 图片管理工具。<br>
-            支持文字找图、时间线浏览，所有数据只存储在你的电脑上。
+            支持文字找图、人脸识别、时间线浏览，所有数据只存储在你的电脑上。
           </p>
           <div class="hero-actions">
             <router-link to="/download" class="btn btn-primary btn-large">
@@ -38,13 +38,13 @@
         <div class="section-header">
           <span class="section-label">核心能力</span>
           <h2 class="section-title">让找照片变得简单</h2>
-          <p class="section-desc">三大 AI 功能，帮你从海量照片中快速找到想要的那一张</p>
+          <p class="section-desc">核心功能，帮你从海量照片中快速找到想要的那一张</p>
         </div>
 
         <div class="feature-grid">
-          <div class="feature-card" v-for="feature in features" :key="feature.title" :class="{ soon: feature.soon }">
+          <div class="feature-card" v-for="feature in features" :key="feature.title" :class="{ pro: feature.pro }">
             <div class="feature-icon" v-html="feature.icon"></div>
-            <h3>{{ feature.title }}<span v-if="feature.soon" class="soon-badge">即将推出</span></h3>
+            <h3>{{ feature.title }}<span v-if="feature.pro" class="pro-badge">Pro</span></h3>
             <p>{{ feature.desc }}</p>
           </div>
         </div>
@@ -154,7 +154,7 @@
 <script setup lang="ts">
 import { ref, onMounted, onUnmounted } from 'vue'
 
-const features: { title: string; desc: string; icon: string; soon?: boolean }[] = [
+const features: { title: string; desc: string; icon: string; pro?: boolean }[] = [
   {
     title: '文字找图',
     desc: '输入一句话描述你想找的照片，比如海边日落、宝宝的笑容，AI 就能帮你找到。',
@@ -163,7 +163,7 @@ const features: { title: string; desc: string; icon: string; soon?: boolean }[] 
   {
     title: '人物分类',
     desc: '自动识别照片中的人物，把同一个人的照片归到一起。点击人物即可查看所有相关照片。',
-    soon: true,
+    pro: true,
     icon: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>'
   },
   {
@@ -243,10 +243,11 @@ onUnmounted(() => {
 }
 
 .hero-title {
-  font-family: 'Outfit', 'Noto Sans SC', sans-serif;
+  font-family: var(--font-sans);
   font-size: 64px;
   font-weight: 700;
   line-height: 1.1;
+  letter-spacing: -0.02em;
   margin-bottom: 24px;
   color: var(--text-primary);
 }
@@ -316,19 +317,15 @@ onUnmounted(() => {
   gap: 8px;
 }
 
-.soon-badge {
+.pro-badge {
   display: inline-block;
   padding: 2px 8px;
   font-size: 11px;
-  font-weight: 500;
-  color: var(--primary);
-  background: var(--primary-light);
+  font-weight: 600;
+  color: #ffffff;
+  background: #F59E0B;
   border-radius: 999px;
   white-space: nowrap;
-}
-
-.feature-card.soon {
-  opacity: 0.7;
 }
 
 .feature-card p {
@@ -534,16 +531,17 @@ onUnmounted(() => {
 
 .cta-card {
   text-align: center;
-  background: linear-gradient(135deg, var(--primary) 0%, #6366f1 100%);
+  background: var(--brand-gradient);
   border-radius: var(--radius-xl);
   padding: 80px 40px;
   color: #ffffff;
 }
 
 .cta-card h2 {
-  font-family: 'Outfit', 'Noto Sans SC', sans-serif;
+  font-family: var(--font-sans);
   font-size: 36px;
   font-weight: 700;
+  letter-spacing: -0.02em;
   margin-bottom: 12px;
 }
 
