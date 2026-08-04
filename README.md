@@ -1,11 +1,9 @@
-# 觅影 SeekPhoto
+# 觅影随笔
 
-> **用一句话，找到那张照片。**
+觅影随笔是一个运行在 Windows 电脑上的本地图片管理笔记项目。它能把散落在硬盘各处的照片整理成可搜索、可浏览的个人图库——**所有数据只存储在你的电脑上，无需上传云端**。本项目为个人开发者业余时间完成的学习作品，免费分享给同样热爱摄影与图片管理的朋友使用。
 
-觅影（SeekPhoto）是一款运行在 Windows 电脑上的 AI 图片管理工具。它能把散落在硬盘各处的照片整理成可搜索、可浏览的个人图库——**所有数据只存储在你的电脑上，无需上传云端**。
-
-[![免费下载](https://img.shields.io/badge/免费下载-SeekPhoto-4F46E5?style=for-the-badge&logo=github)](https://github.com/aiyo407/seekphoto-site/releases/latest)
-[![访问官网](https://img.shields.io/badge/访问官网-www.seekphoto.cn-0EA5E9?style=for-the-badge)](https://www.seekphoto.cn)
+[![免费下载](https://img.shields.io/badge/免费下载-觅影随笔-4F46E5?style=for-the-badge&logo=github)](https://github.com/aiyo407/seekphoto-site/releases/latest)
+[![访问主页](https://img.shields.io/badge/访问主页-www.seekphoto.cn-0EA5E9?style=for-the-badge)](https://www.seekphoto.cn)
 
 ---
 
@@ -34,7 +32,7 @@
 - 可自定义人物名称
 - 人物数据只保存在本地
 
-> 以图搜图、人物分类等 AI 进阶功能即将在后续版本推出，敬请期待。
+> 以图搜图、人物分类等扩展功能即将在后续版本推出，敬请期待。
 
 ### 📅 时间线浏览
 按拍摄时间自动整理照片，按年、月、日分组，轻松找回某段回忆。

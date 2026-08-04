@@ -4,13 +4,13 @@
     <section class="hero">
       <div class="container">
         <div class="hero-content">
-          <span class="badge">免费下载 · 本地运行</span>
+          <span class="badge">免费下载 · 本地运行 · 隐私保护</span>
           <h1 class="hero-title">
             用一句话，<br>找到那张照片
           </h1>
           <p class="hero-subtitle">
-            觅影 SeekPhoto 是一款 AI 图片管理工具。<br>
-            支持文字找图、人脸识别、时间线浏览，所有数据只存储在你的电脑上。
+            觅影随笔是一个个人开发的本地图片管理项目，支持文字找图、人脸识别、时间线浏览、照片地图。<br>
+            所有数据只存储在你的电脑上，不上传任何服务器。
           </p>
           <div class="hero-actions">
             <router-link to="/download" class="btn btn-primary btn-large">
@@ -21,12 +21,25 @@
               </svg>
               免费下载
             </router-link>
-            <a href="https://github.com/aiyo407/seekphoto-site" target="_blank" class="btn btn-secondary btn-large">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
-              </svg>
-              GitHub
-            </a>
+            <router-link to="/features" class="btn btn-secondary btn-large">
+              查看功能
+            </router-link>
+          </div>
+          <div class="hero-stats">
+            <div class="stat">
+              <span class="stat-num">6+</span>
+              <span class="stat-label">智能功能</span>
+            </div>
+            <div class="stat-divider"></div>
+            <div class="stat">
+              <span class="stat-num">100%</span>
+              <span class="stat-label">本地处理</span>
+            </div>
+            <div class="stat-divider"></div>
+            <div class="stat">
+              <span class="stat-num">0</span>
+              <span class="stat-label">数据上传</span>
+            </div>
           </div>
         </div>
       </div>
@@ -38,13 +51,13 @@
         <div class="section-header">
           <span class="section-label">核心能力</span>
           <h2 class="section-title">让找照片变得简单</h2>
-          <p class="section-desc">核心功能，帮你从海量照片中快速找到想要的那一张</p>
+          <p class="section-desc">六大智能功能，帮你从海量照片中快速找到想要的那一张</p>
         </div>
 
         <div class="feature-grid">
-          <div class="feature-card" v-for="feature in features" :key="feature.title" :class="{ pro: feature.pro }">
+          <div class="feature-card" v-for="feature in features" :key="feature.title">
             <div class="feature-icon" v-html="feature.icon"></div>
-            <h3>{{ feature.title }}<span v-if="feature.pro" class="pro-badge">Pro</span></h3>
+            <h3>{{ feature.title }}</h3>
             <p>{{ feature.desc }}</p>
           </div>
         </div>
@@ -89,6 +102,63 @@
                 <div class="demo-card-name">photo_{{ String(i).padStart(3, '0') }}.jpg</div>
                 <div class="demo-card-meta">2024.02.18 · 4.2 MB</div>
               </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 使用场景 -->
+    <section class="scenarios">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-label">使用场景</span>
+          <h2 class="section-title">觅影能帮你做什么</h2>
+          <p class="section-desc">无论你的照片有多少，都能轻松管理</p>
+        </div>
+
+        <div class="scenario-grid">
+          <div class="scenario-card" v-for="scenario in scenarios" :key="scenario.title">
+            <div class="scenario-icon" v-html="scenario.icon"></div>
+            <h3>{{ scenario.title }}</h3>
+            <p>{{ scenario.desc }}</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 为什么选择觅影 -->
+    <section class="compare">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-label">特性优势</span>
+          <h2 class="section-title">为什么选择觅影</h2>
+          <p class="section-desc">相比传统方式，觅影让照片管理更智能、更安全</p>
+        </div>
+
+        <div class="compare-table">
+          <div class="compare-row compare-header">
+            <div class="compare-cell compare-feature">对比项</div>
+            <div class="compare-cell">传统文件夹</div>
+            <div class="compare-cell">云端相册</div>
+            <div class="compare-cell compare-highlight">觅影随笔</div>
+          </div>
+          <div class="compare-row" v-for="item in compareData" :key="item.feature">
+            <div class="compare-cell compare-feature">{{ item.feature }}</div>
+            <div class="compare-cell">
+              <span v-if="item.folder === 'yes'" class="compare-yes">✓</span>
+              <span v-else-if="item.folder === 'no'" class="compare-no">✗</span>
+              <span v-else class="compare-mid">{{ item.folder }}</span>
+            </div>
+            <div class="compare-cell">
+              <span v-if="item.cloud === 'yes'" class="compare-yes">✓</span>
+              <span v-else-if="item.cloud === 'no'" class="compare-no">✗</span>
+              <span v-else class="compare-mid">{{ item.cloud }}</span>
+            </div>
+            <div class="compare-cell compare-highlight">
+              <span v-if="item.seek === 'yes'" class="compare-yes">✓</span>
+              <span v-else-if="item.seek === 'no'" class="compare-no">✗</span>
+              <span v-else class="compare-mid">{{ item.seek }}</span>
             </div>
           </div>
         </div>
@@ -154,23 +224,70 @@
 <script setup lang="ts">
 import { ref, onMounted, onUnmounted } from 'vue'
 
-const features: { title: string; desc: string; icon: string; pro?: boolean }[] = [
+const features: { title: string; desc: string; icon: string }[] = [
   {
     title: '文字找图',
-    desc: '输入一句话描述你想找的照片，比如海边日落、宝宝的笑容，AI 就能帮你找到。',
+    desc: '输入一句话描述，AI 理解语义并找到匹配照片。支持中文搜索，像聊天一样自然。',
     icon: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>'
   },
   {
     title: '人物分类',
-    desc: '自动识别照片中的人物，把同一个人的照片归到一起。点击人物即可查看所有相关照片。',
-    pro: true,
+    desc: '自动识别照片中的人脸，把同一个人的照片归到一起。家人朋友的照片轻松找到。',
     icon: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>'
   },
   {
     title: '时间线浏览',
-    desc: '按拍摄时间自动整理照片，快速找到某个日期拍摄的照片，重温回忆。',
+    desc: '按拍摄时间自动整理照片，年月分组快速定位，重温每个时刻的回忆。',
+    icon: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>'
+  },
+  {
+    title: '照片地图',
+    desc: '在地图上查看带 GPS 位置的照片，旅行足迹一目了然，地理位置快速定位。',
+    icon: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>'
+  },
+  {
+    title: '标签管理',
+    desc: '给照片添加自定义标签，按主题分类整理，配合搜索快速找到目标照片。',
+    icon: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>'
+  },
+  {
+    title: '相册整理',
+    desc: '创建自定义相册，按主题或项目归类照片，批量导出分享，整理井井有条。',
+    icon: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>'
+  }
+]
+
+const scenarios: { title: string; desc: string; icon: string }[] = [
+  {
+    title: '整理旅行照片',
+    desc: '旅行回来照片太多？用文字描述就能找到想要的那张，还能在地图上重温足迹。',
+    icon: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>'
+  },
+  {
+    title: '记录宝宝成长',
+    desc: '宝宝每天都在长大，用人脸识别把所有照片归到一起，见证每一个珍贵瞬间。',
+    icon: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>'
+  },
+  {
+    title: '管理工作素材',
+    desc: '作品图、设计稿、参考图混杂在一起？用标签和相册分类，快速找到需要的素材。',
+    icon: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>'
+  },
+  {
+    title: '回忆特殊时刻',
+    desc: '生日、纪念日、毕业典礼...用时间线快速回到那一天，重温美好回忆。',
     icon: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>'
   }
+]
+
+const compareData = [
+  { feature: 'AI 语义搜索', folder: 'no', cloud: '部分', seek: 'yes' },
+  { feature: '人脸识别分类', folder: 'no', cloud: 'yes', seek: 'yes' },
+  { feature: '照片地图定位', folder: 'no', cloud: '部分', seek: 'yes' },
+  { feature: '数据隐私保护', folder: 'yes', cloud: 'no', seek: 'yes' },
+  { feature: '不限照片数量', folder: 'yes', cloud: 'no', seek: 'yes' },
+  { feature: '离线使用', folder: 'yes', cloud: 'no', seek: 'yes' },
+  { feature: '自动整理分类', folder: 'no', cloud: '部分', seek: 'yes' },
 ]
 
 const keywords = ['海边的日落', '宝宝的笑容', '穿红衣服的人', '城市夜景', '可爱的猫咪', '春天的花朵', '山间小屋', '咖啡时光']
@@ -271,6 +388,41 @@ onUnmounted(() => {
   gap: 8px;
 }
 
+.hero-stats {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 32px;
+  margin-top: 56px;
+  padding-top: 40px;
+  border-top: 1px solid var(--border);
+}
+
+.stat {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.stat-num {
+  font-family: var(--font-sans);
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--primary);
+  line-height: 1;
+}
+
+.stat-label {
+  font-size: 13px;
+  color: var(--text-secondary);
+}
+
+.stat-divider {
+  width: 1px;
+  height: 32px;
+  background: var(--border);
+}
+
 /* Features */
 .features {
   padding: 120px 0;
@@ -312,20 +464,6 @@ onUnmounted(() => {
   font-size: 20px;
   font-weight: 600;
   margin-bottom: 12px;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.pro-badge {
-  display: inline-block;
-  padding: 2px 8px;
-  font-size: 11px;
-  font-weight: 600;
-  color: #ffffff;
-  background: #F59E0B;
-  border-radius: 999px;
-  white-space: nowrap;
 }
 
 .feature-card p {
@@ -484,9 +622,135 @@ onUnmounted(() => {
   color: var(--text-muted);
 }
 
+/* Scenarios */
+.scenarios {
+  padding: 120px 0;
+  background: var(--bg-elevated);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+
+.scenario-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+}
+
+.scenario-card {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 32px 24px;
+  text-align: center;
+  transition: all 0.2s ease;
+}
+
+.scenario-card:hover {
+  border-color: var(--primary);
+  box-shadow: var(--shadow-lg);
+  transform: translateY(-2px);
+}
+
+.scenario-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: var(--primary-light);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 20px;
+  color: var(--primary);
+}
+
+.scenario-card h3 {
+  font-size: 17px;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.scenario-card p {
+  color: var(--text-secondary);
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+/* Compare */
+.compare {
+  padding: 120px 0;
+}
+
+.compare-table {
+  max-width: 880px;
+  margin: 48px auto 0;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  background: var(--bg-elevated);
+}
+
+.compare-row {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1fr 1fr;
+  border-bottom: 1px solid var(--border);
+}
+
+.compare-row:last-child {
+  border-bottom: none;
+}
+
+.compare-row.compare-header {
+  background: var(--bg);
+  font-weight: 600;
+  font-size: 15px;
+}
+
+.compare-cell {
+  padding: 16px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  color: var(--text-secondary);
+}
+
+.compare-cell.compare-feature {
+  justify-content: flex-start;
+  color: var(--text-primary);
+  font-weight: 500;
+}
+
+.compare-cell.compare-highlight {
+  background: var(--primary-light);
+  color: var(--primary);
+  font-weight: 500;
+}
+
+.compare-row.compare-header .compare-cell.compare-highlight {
+  color: var(--primary);
+}
+
+.compare-yes {
+  color: var(--success);
+  font-weight: 700;
+  font-size: 18px;
+}
+
+.compare-no {
+  color: var(--text-muted);
+  font-size: 18px;
+}
+
+.compare-mid {
+  font-size: 13px;
+}
+
 /* Privacy */
 .privacy {
   padding: 120px 0;
+  background: var(--bg-elevated);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
 }
 
 .privacy-grid {
@@ -585,6 +849,10 @@ onUnmounted(() => {
   .privacy-grid {
     grid-template-columns: 1fr;
   }
+
+  .scenario-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
 @media (max-width: 768px) {
@@ -609,9 +877,19 @@ onUnmounted(() => {
     align-items: center;
   }
 
+  .hero-stats {
+    gap: 20px;
+  }
+
+  .stat-num {
+    font-size: 26px;
+  }
+
   .features,
   .demo,
-  .privacy {
+  .privacy,
+  .scenarios,
+  .compare {
     padding: 80px 0;
   }
 
@@ -621,6 +899,18 @@ onUnmounted(() => {
 
   .demo-app {
     padding: 20px;
+  }
+
+  .scenario-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .compare-table {
+    font-size: 13px;
+  }
+
+  .compare-cell {
+    padding: 10px 8px;
   }
 
   .cta-card {

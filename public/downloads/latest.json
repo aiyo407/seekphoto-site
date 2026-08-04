@@ -1,0 +1,11 @@
+{
+    "platforms":  {
+                      "windows-x86_64":  {
+                                             "signature":  "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVUUHF5MUhSTHJQWG9HOGhHT25hQ2tsdk1XL0J6blpZYmhmbVRRc0pybFgrckJvaXQrQzRBRkUwY1FxM3N6SXdBcnJlYkZCcWozS0pLZTVlTUI0ZUF5amQ0eDArbVRNZFFVPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzg1NzcxOTM1CWZpbGU6c2Vla3Bob3RvXzAuOS4xX3g2NC1zZXR1cC5leGUKY2dGaS9OMXE4cDZId0ErelYxRm4yQndSVklQQXlVbFg0SGVncjZSdzE3SWFaYTBwL1JNTWZjVUZSdXJENUhJWkk3bjUrRlBURlBBcjlpbTNGVW1qQWc9PQo=",
+                                             "url":  "https://www.seekphoto.cn/downloads/seekphoto_0.9.1_x64-setup.exe"
+                                         }
+                  },
+    "pub_date":  "2026-08-03T15:52:27Z",
+    "version":  "0.9.1",
+    "notes":  "觅影 v0.9.1 版本"
+}

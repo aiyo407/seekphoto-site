@@ -5,7 +5,7 @@
         <div class="footer-brand">
           <router-link to="/" class="logo">
             <img :src="logo" alt="觅影" class="logo-img" />
-            <span class="logo-text">觅影 <span>SeekPhoto</span></span>
+            <span class="logo-text">觅影 <span>随笔</span></span>
           </router-link>
           <p>用一句话，找到那张照片</p>
           <p class="footer-contact">联系：aiyo407@163.com</p>
@@ -13,28 +13,32 @@
 
         <div class="footer-links">
           <div class="footer-col">
-            <h4>产品</h4>
+            <h4>导航</h4>
             <router-link to="/">首页</router-link>
             <router-link to="/features">功能</router-link>
-            <router-link to="/pricing">定价</router-link>
+            <router-link to="/guide">使用教程</router-link>
             <router-link to="/download">下载</router-link>
+            <router-link to="/changelog">更新日志</router-link>
           </div>
           <div class="footer-col">
-            <h4>支持</h4>
-            <a href="mailto:aiyo407@163.com">联系我们</a>
-            <a href="mailto:aiyo407@163.com?subject=觅影SeekPhoto%20产品反馈">意见反馈</a>
+            <h4>关于</h4>
+            <router-link to="/about">关于本站</router-link>
+            <a href="mailto:aiyo407@163.com">联系我</a>
+            <a href="mailto:aiyo407@163.com?subject=觅影随笔%20意见反馈">意见反馈</a>
           </div>
           <div class="footer-col">
-            <h4>法律</h4>
-            <a href="#">隐私政策</a>
-            <a href="#">用户协议</a>
+            <h4>说明</h4>
+            <router-link to="/privacy">隐私政策</router-link>
+            <router-link to="/terms">使用说明</router-link>
           </div>
         </div>
       </div>
 
       <div class="footer-bottom">
-        <p>&copy; 2026 SeekPhoto. 保留所有权利。</p>
-        <p class="icp">ICP 备案：pending</p>
+        <p>&copy; 2026 觅影随笔 · 个人作品 · 仅供学习交流</p>
+        <p class="icp">
+          <a href="https://beian.miit.gov.cn" target="_blank" rel="noopener noreferrer">粤ICP备2026XXXXXX号-1</a>
+        </p>
       </div>
     </div>
   </footer>
