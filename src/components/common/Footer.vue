@@ -37,7 +37,7 @@
       <div class="footer-bottom">
         <p>&copy; 2026 觅影随笔 · 个人作品 · 仅供学习交流</p>
         <p class="icp">
-          <a href="https://beian.miit.gov.cn" target="_blank" rel="noopener noreferrer">粤ICP备2026XXXXXX号-1</a>
+          <a href="https://beian.miit.gov.cn/" target="_blank" rel="noopener noreferrer">粤ICP备2026111543号-1</a>
         </p>
       </div>
     </div>
