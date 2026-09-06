@@ -3,7 +3,7 @@
     <section class="page-hero">
       <div class="container">
         <h1>隐私政策</h1>
-        <p>最后更新：2026 年 8 月 1 日</p>
+        <p>最后更新：2026 年 9 月 6 日</p>
       </div>
     </section>
 
@@ -11,14 +11,14 @@
       <div class="container">
         <div class="legal-content">
           <p class="intro">
-            觅影随笔（以下简称"本应用"）是一款个人开发者制作的本地图片管理项目。
+            觅影（以下简称"本应用"）是一款本地运行的 AI 图片搜索工具。
             本项目高度重视你的隐私，本政策详细说明本应用如何处理你的数据。
           </p>
 
           <h2>一、数据存储位置</h2>
           <p>
             本应用的所有数据均存储在你的本地电脑上，不会上传到任何服务器。
-            包括照片文件、缩略图、索引数据、人脸数据、配置信息等，全部保存在你电脑的本地目录中。
+            包括照片文件、缩略图、索引数据、向量数据、配置信息等，全部保存在你电脑的本地目录中。
           </p>
 
           <h2>二、本项目处理哪些数据</h2>
@@ -27,7 +27,7 @@
             <li><strong>照片文件</strong>：你主动添加到应用中的图片文件（JPG、PNG、BMP、WebP 等）</li>
             <li><strong>照片元数据</strong>：从照片 EXIF 中读取的拍摄时间、相机型号、GPS 位置等信息</li>
             <li><strong>AI 向量数据</strong>：照片的语义特征向量，用于支持文字搜索功能</li>
-            <li><strong>人脸特征数据</strong>：照片中检测到的人脸特征向量，用于人物分类功能</li>
+            <li><strong>文字识别数据</strong>：照片中识别出的文字内容，用于图文混合搜索</li>
             <li><strong>缩略图</strong>：为加快浏览速度而生成的照片缩略图</li>
             <li><strong>使用配置</strong>：你的个性化设置，如主题、语言、目录路径等</li>
           </ul>
@@ -36,7 +36,7 @@
           <p>本应用的数据处理完全在你本地电脑上完成：</p>
           <ul>
             <li><strong>AI 推理</strong>：内置 ONNX 模型在本地运行，不依赖云端服务</li>
-            <li><strong>人脸识别</strong>：人脸检测和特征提取在本地完成，不会上传到云端</li>
+            <li><strong>AI 推理</strong>：语义特征与文字识别均在本地完成，不会上传到云端</li>
             <li><strong>向量搜索</strong>：本地向量数据库（LanceDB）支持语义搜索，无需联网</li>
             <li><strong>本地存储</strong>：所有数据保存在本地电脑的应用数据目录中</li>
           </ul>
@@ -56,7 +56,8 @@
             <li><strong>LanceDB</strong>：本地向量数据库</li>
             <li><strong>SQLite</strong>：本地关系型数据库</li>
             <li><strong>Tauri</strong>：桌面应用框架</li>
-            <li><strong>YuNet / MobileFaceNet</strong>：人脸检测与识别模型</li>
+            <li><strong>Chinese-CLIP</strong>：本地语义理解模型（图片特征提取）</li>
+            <li><strong>PP-OCRv4</strong>：本地文字识别模型</li>
           </ul>
           <p>这些组件不会向外部发送数据，所有运算均在本地完成。</p>
 
@@ -87,11 +88,7 @@
             重大变更会通过应用内通知的方式告知你。
           </p>
 
-          <h2>十、联系我们</h2>
-          <p>如果你对本隐私政策有任何疑问，可以通过以下方式联系：</p>
-          <ul>
-            <li>邮箱：aiyo407@163.com</li>
-          </ul>
+          
         </div>
       </div>
     </section>

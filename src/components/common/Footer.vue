@@ -5,10 +5,9 @@
         <div class="footer-brand">
           <router-link to="/" class="logo">
             <img :src="logo" alt="觅影" class="logo-img" />
-            <span class="logo-text">觅影 <span>随笔</span></span>
+            <span class="logo-text">觅影</span>
           </router-link>
           <p>用一句话，找到那张照片</p>
-          <p class="footer-contact">联系：aiyo407@163.com</p>
         </div>
 
         <div class="footer-links">
@@ -23,8 +22,6 @@
           <div class="footer-col">
             <h4>关于</h4>
             <router-link to="/about">关于本站</router-link>
-            <a href="mailto:aiyo407@163.com">联系我</a>
-            <a href="mailto:aiyo407@163.com?subject=觅影随笔%20意见反馈">意见反馈</a>
           </div>
           <div class="footer-col">
             <h4>说明</h4>
@@ -35,9 +32,13 @@
       </div>
 
       <div class="footer-bottom">
-        <p>&copy; 2026 觅影随笔 · 个人作品 · 仅供学习交流</p>
+        <p>&copy; 2026 觅影 · 本地 AI 图片搜索</p>
         <p class="icp">
           <a href="https://beian.miit.gov.cn/" target="_blank" rel="noopener noreferrer">粤ICP备2026111543号-1</a>
+          <a class="mps-beian" href="https://beian.mps.gov.cn/#/query/webSearch?code=44011802001527" target="_blank" rel="noopener noreferrer">
+            <img class="beian-icon" :src="beianIcon" alt="公安备案图标" />
+            <span>粤公网安备44011802001527号</span>
+          </a>
         </p>
       </div>
     </div>
@@ -46,6 +47,7 @@
 
 <script setup lang="ts">
 import logo from '../../assets/logo.png'
+import beianIcon from '../../assets/备案图标.png'
 </script>
 
 <style scoped>
@@ -147,6 +149,24 @@ import logo from '../../assets/logo.png'
 
 .footer-bottom .icp {
   font-size: 12px;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.footer-bottom .icp .mps-beian {
+  display: inline-flex;
+  align-items: center;
+}
+
+.footer-bottom .icp .beian-icon {
+  width: 16px;
+  height: 16px;
+  margin-right: 5px;
+  flex-shrink: 0;
+  display: block;
+  object-fit: contain;
 }
 
 @media (max-width: 768px) {

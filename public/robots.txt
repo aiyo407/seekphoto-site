@@ -1,0 +1,20 @@
+User-agent: *
+Allow: /
+
+# 允许主流 AI 爬虫索引，提升 AI 搜索可见性
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+Sitemap: https://www.seekphoto.cn/sitemap.xml

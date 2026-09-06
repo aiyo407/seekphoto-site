@@ -17,8 +17,8 @@
               <line x1="12" y1="15" x2="12" y2="3"/>
             </svg>
           </div>
-          <h2>觅影随笔 {{ APP_VERSION_DISPLAY }}</h2>
-          <p class="version-info">Windows 10/11 64-bit · 约 60MB</p>
+          <h2>觅影 Windows 版</h2>
+          <p class="version-info">当前版本 {{ APP_VERSION_DISPLAY }} · Windows 10/11 64-bit · 约 60MB</p>
           <a :href="DOWNLOAD_URL" class="btn btn-primary btn-large" @click="trackDownload">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
@@ -126,11 +126,11 @@
 
 <script setup lang="ts">
 import { trackEvent } from '../utils/analytics'
-import { APP_VERSION_DISPLAY, DOWNLOAD_URL } from '../config/version'
+import { DOWNLOAD_URL, APP_VERSION_DISPLAY } from '../config/version'
 
 // 百度统计：追踪下载点击事件
 function trackDownload() {
-  trackEvent('download', 'click', 'windows_setup', APP_VERSION_DISPLAY)
+  trackEvent('download', 'click', 'windows_setup')
 }
 
 const steps = [
@@ -144,7 +144,8 @@ const faqs = [
   { q: '安装时提示"Windows 已保护你的电脑"？', a: '这是因为应用尚未获得 Microsoft 签名。点击"更多信息" → "仍要运行"即可继续安装。' },
   { q: '需要联网才能使用吗？', a: '不需要。觅影完全本地运行，所有数据处理都在本地完成，无需联网。首次下载 AI 功能需要网络，之后可离线使用。' },
   { q: '支持哪些图片格式？', a: '目前支持 JPG、JPEG、PNG、BMP、WebP 格式。后续版本将增加更多格式支持。' },
-  { q: '数据安全吗？', a: '非常安全。所有数据（包括照片信息、人物数据）都存储在你的本地电脑上，不会上传到任何服务器。' }
+  { q: '数据安全吗？', a: '非常安全。所有数据（包括照片信息、索引数据）都存储在你的本地电脑上，不会上传到任何服务器。' },
+  { q: '如何获取最新版本？', a: '应用启动时会静默检查更新；你也可以随时到官网下载页获取最新安装包，覆盖安装即可完成升级。' }
 ]
 </script>
 

@@ -4,7 +4,7 @@
     <section class="page-hero">
       <div class="container">
         <h1>关于觅影</h1>
-        <p>一款用心打造的本地图片管理笔记</p>
+        <p>一款本地 AI 图片搜索工具</p>
       </div>
     </section>
 
@@ -15,10 +15,10 @@
           <span class="section-label">项目故事</span>
           <h2 class="section-title">从需求出发，做一款懂照片的工具</h2>
           <div class="story-text">
-            <p>觅影随笔诞生于一个简单的需求：在海量照片中快速找到想要的那一张。</p>
-            <p>作为个人开发者，我希望有一款工具能真正理解照片内容，而不是只靠文件名和日期。</p>
-            <p>于是利用业余时间，觅影诞生了——一个完全本地运行、隐私优先的图片管理项目，也是个人学习与作品展示的博客。</p>
-            <p>本项目免费开放给同样热爱摄影与图片管理的朋友使用，希望它能让你的照片管理更轻松。</p>
+            <p>觅影诞生于一个简单的需求：在海量照片中快速找到想要的那一张。</p>
+            <p>我们希望有一款工具能真正理解照片内容，而不是只靠文件名和日期。</p>
+            <p>于是觅影诞生了——一款完全本地运行、隐私优先的 AI 图片搜索工具。</p>
+            <p>觅影免费提供给同样热爱摄影与图片管理的朋友使用，希望它能让你的照片管理更轻松。</p>
           </div>
         </div>
       </div>
@@ -42,63 +42,30 @@
       </div>
     </section>
 
-    <!-- 技术栈 -->
+    <!-- 技术如何为你工作 -->
     <section class="tech-stack">
       <div class="container">
         <div class="section-header">
-          <span class="section-label">技术栈</span>
-          <h2 class="section-title">用现代技术，打造可靠工具</h2>
-          <p class="section-desc">觅影基于成熟的开源技术构建，兼顾性能与体验</p>
+          <span class="section-label">技术支撑</span>
+          <h2 class="section-title">它靠什么做到这些</h2>
+          <p class="section-desc">觅影用一套本地 AI 与轻量技术，把复杂的搜索变成你随手可用的能力</p>
         </div>
         <div class="tech-list">
           <div class="tech-row" v-for="tech in techs" :key="tech.label">
             <div class="tech-row-icon" v-html="tech.icon"></div>
-            <div class="tech-row-label">{{ tech.label }}</div>
-            <div class="tech-row-tags">
-              <span class="tech-tag" v-for="tag in tech.tags" :key="tag">{{ tag }}</span>
+            <div class="tech-row-body">
+              <div class="tech-row-label">{{ tech.label }}</div>
+              <p class="tech-row-desc">{{ tech.desc }}</p>
+              <div class="tech-row-tags">
+                <span class="tech-tag" v-for="tag in tech.tags" :key="tag">{{ tag }}</span>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- 联系方式 -->
-    <section class="contact">
-      <div class="container">
-        <div class="section-header">
-          <span class="section-label">联系方式</span>
-          <h2 class="section-title">与我联系</h2>
-          <p class="section-desc">有任何建议或问题，欢迎随时联系</p>
-        </div>
-        <div class="contact-grid">
-          <a class="contact-card" href="mailto:aiyo407@163.com">
-            <div class="contact-icon">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
-                <polyline points="22,6 12,13 2,6"/>
-              </svg>
-            </div>
-            <div class="contact-info">
-              <span class="contact-label">邮箱</span>
-              <span class="contact-value">aiyo407@163.com</span>
-            </div>
-          </a>
-          <a class="contact-card" href="https://www.seekphoto.cn" target="_blank" rel="noopener">
-            <div class="contact-icon">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <circle cx="12" cy="12" r="10"/>
-                <line x1="2" y1="12" x2="22" y2="12"/>
-                <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
-              </svg>
-            </div>
-            <div class="contact-info">
-              <span class="contact-label">主页</span>
-              <span class="contact-value">www.seekphoto.cn</span>
-            </div>
-          </a>
-        </div>
-      </div>
-    </section>
+    
 
     <!-- CTA -->
     <section class="cta">
@@ -107,7 +74,7 @@
           <h2>开始使用觅影</h2>
           <p>免费下载，即刻体验 AI 图片搜索</p>
           <router-link to="/download" class="btn btn-primary btn-large">
-            下载 for Windows
+            下载 Windows 版
           </router-link>
           <span class="cta-note">支持 Windows 10/11 · 约 60MB</span>
         </div>
@@ -135,26 +102,36 @@ const principles: { title: string; desc: string; icon: string }[] = [
   }
 ]
 
-const techs: { label: string; tags: string[]; icon: string }[] = [
+const techs: { label: string; desc: string; tags: string[]; icon: string }[] = [
   {
-    label: '前端',
-    tags: ['Vue 3', 'TypeScript', 'Tauri'],
-    icon: '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>'
-  },
-  {
-    label: '后端',
-    tags: ['Rust', 'ONNX Runtime'],
-    icon: '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>'
-  },
-  {
-    label: 'AI 模型',
-    tags: ['Chinese-CLIP', 'YuNet', 'MobileFaceNet'],
+    label: 'AI 看懂照片内容',
+    desc: '用 AI 理解每张照片的画面，所以你可以用一句话描述来搜图，而不是靠文件名或日期。',
+    tags: ['Chinese-CLIP 语义模型'],
     icon: '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 1v6m0 10v6M4.22 4.22l4.24 4.24m7.07 7.07l4.24 4.24M1 12h6m10 0h6M4.22 19.78l4.24-4.24m7.07-7.07l4.24-4.24"/></svg>'
   },
   {
-    label: '数据库',
-    tags: ['LanceDB', 'SQLite'],
+    label: '图片里的文字也能搜',
+    desc: '自动识别照片中的文字（招牌、文档、截图），让带文字的图片也变得可搜索。',
+    tags: ['PP-OCRv4 文字识别'],
+    icon: '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="8" y1="13" x2="16" y2="13"/><line x1="8" y1="17" x2="14" y2="17"/></svg>'
+  },
+  {
+    label: '几十万张也能秒出',
+    desc: '把照片转成向量存储，相似度检索毫秒级返回，照片再多也不卡。',
+    tags: ['LanceDB 向量数据库'],
     icon: '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg>'
+  },
+  {
+    label: '轻量不占内存',
+    desc: '用 Rust 与 Tauri 打造，比传统 Electron 应用更省资源、启动更快。',
+    tags: ['Rust', 'Tauri'],
+    icon: '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>'
+  },
+  {
+    label: '数据不出本机',
+    desc: 'AI 模型在你的电脑上运行，照片永不离开本机，无需联网也能用。',
+    tags: ['ONNX Runtime', '离线推理'],
+    icon: '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>'
   }
 ]
 </script>
@@ -293,13 +270,25 @@ const techs: { label: string; tags: string[]; icon: string }[] = [
 
 .tech-row {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   gap: 24px;
   padding: 24px 32px;
   background: var(--bg-elevated);
   border: 1px solid var(--border);
   border-radius: var(--radius-lg);
   transition: all 0.2s ease;
+}
+
+.tech-row-body {
+  flex: 1;
+  min-width: 0;
+}
+
+.tech-row-desc {
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--text-secondary);
+  margin: 6px 0 12px;
 }
 
 .tech-row:hover {
@@ -341,68 +330,6 @@ const techs: { label: string; tags: string[]; icon: string }[] = [
   border-radius: 999px;
   font-size: 13px;
   color: var(--text-secondary);
-}
-
-/* Contact */
-.contact {
-  padding: 120px 0;
-  background: var(--bg-elevated);
-  border-top: 1px solid var(--border);
-  border-bottom: 1px solid var(--border);
-}
-
-.contact-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 24px;
-  max-width: 760px;
-  margin: 0 auto;
-}
-
-.contact-card {
-  display: flex;
-  align-items: center;
-  gap: 20px;
-  padding: 32px;
-  background: var(--bg);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-lg);
-  transition: all 0.2s ease;
-}
-
-.contact-card:hover {
-  border-color: var(--primary);
-  box-shadow: var(--shadow-lg);
-  transform: translateY(-2px);
-}
-
-.contact-icon {
-  width: 48px;
-  height: 48px;
-  border-radius: 50%;
-  background: var(--primary-light);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--primary);
-  flex-shrink: 0;
-}
-
-.contact-info {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-}
-
-.contact-label {
-  font-size: 13px;
-  color: var(--text-secondary);
-}
-
-.contact-value {
-  font-size: 16px;
-  font-weight: 600;
-  color: var(--text-primary);
 }
 
 /* CTA */
@@ -467,8 +394,7 @@ const techs: { label: string; tags: string[]; icon: string }[] = [
 
   .story,
   .principles,
-  .tech-stack,
-  .contact {
+  .tech-stack {
     padding: 80px 0;
   }
 
@@ -491,9 +417,6 @@ const techs: { label: string; tags: string[]; icon: string }[] = [
     width: auto;
   }
 
-  .contact-grid {
-    grid-template-columns: 1fr;
-  }
 
   .cta-card {
     padding: 56px 24px;

@@ -147,7 +147,7 @@ const steps: Step[] = [
   },
   {
     title: '建立索引',
-    desc: '等待 AI 自动分析照片，生成缩略图、识别画面内容和人脸。后台进行不打扰使用。',
+    desc: '等待 AI 自动分析照片，生成缩略图、识别画面内容。后台进行不打扰使用。',
     icon: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12a9 9 0 1 1-6.219-8.56"/><polyline points="21 4 21 10 15 10"/></svg>'
   },
   {
@@ -164,9 +164,9 @@ const tips: Tip[] = [
     icon: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>'
   },
   {
-    title: '人物管理',
-    desc: '觅影会自动识别人脸并把同一个人归到一起。给人物命名、合并或拆分，让相册更整洁。',
-    icon: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>'
+    title: '相似照片整理',
+    desc: '用一张照片搜索相似图，快速整理重复、连拍和系列照片，清理冗余更轻松。',
+    icon: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>'
   },
   {
     title: '时间线浏览',
@@ -229,7 +229,7 @@ const faqs: Faq[] = [
   },
   {
     q: '照片会被上传吗？',
-    a: '不会。觅影完全在本地运行，照片、人脸数据、AI 模型都在你的电脑上处理。没有任何数据会上传到服务器，隐私绝对安全。'
+    a: '不会。觅影完全在本地运行，照片、索引与 AI 模型都在你的电脑上处理。没有任何数据会上传到服务器，隐私绝对安全。'
   },
   {
     q: '如何更新到新版本？',
@@ -237,7 +237,7 @@ const faqs: Faq[] = [
   },
   {
     q: '数据存储在哪里？',
-    a: '所有数据存储在系统的应用数据目录中（Windows 下为 %APPDATA%/seekphoto/）。包括缩略图、人脸库、向量数据库等。删除应用不会删除照片原件。'
+    a: '所有数据存储在系统的应用数据目录中（Windows 下为 %APPDATA%/seekphoto/）。包括缩略图、向量数据库等。删除应用不会删除照片原件。'
   }
 ]
 </script>

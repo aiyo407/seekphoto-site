@@ -9,7 +9,7 @@
             用一句话，<br>找到那张照片
           </h1>
           <p class="hero-subtitle">
-            觅影随笔是一个个人开发的本地图片管理项目，支持文字找图、人脸识别、时间线浏览、照片地图。<br>
+            觅影是一款本地运行的 AI 图片搜索工具，支持文字找图、以图搜图、时间线浏览与照片地图。<br>
             所有数据只存储在你的电脑上，不上传任何服务器。
           </p>
           <div class="hero-actions">
@@ -27,7 +27,7 @@
           </div>
           <div class="hero-stats">
             <div class="stat">
-              <span class="stat-num">6+</span>
+              <span class="stat-num">7+</span>
               <span class="stat-label">智能功能</span>
             </div>
             <div class="stat-divider"></div>
@@ -51,7 +51,7 @@
         <div class="section-header">
           <span class="section-label">核心能力</span>
           <h2 class="section-title">让找照片变得简单</h2>
-          <p class="section-desc">六大智能功能，帮你从海量照片中快速找到想要的那一张</p>
+          <p class="section-desc">七大智能功能，帮你从海量照片中快速找到想要的那一张</p>
         </div>
 
         <div class="feature-grid">
@@ -141,7 +141,7 @@
             <div class="compare-cell compare-feature">对比项</div>
             <div class="compare-cell">传统文件夹</div>
             <div class="compare-cell">云端相册</div>
-            <div class="compare-cell compare-highlight">觅影随笔</div>
+            <div class="compare-cell compare-highlight">觅影</div>
           </div>
           <div class="compare-row" v-for="item in compareData" :key="item.feature">
             <div class="compare-cell compare-feature">{{ item.feature }}</div>
@@ -177,7 +177,7 @@
               </svg>
             </div>
             <h3>本地存储</h3>
-            <p>照片信息、人物数据都保存在你的电脑上</p>
+            <p>照片信息、索引数据都保存在你的电脑上</p>
           </div>
           <div class="privacy-item">
             <div class="privacy-icon">
@@ -200,6 +200,23 @@
             </div>
             <h3>隐私可控</h3>
             <p>数据处理方式完全透明，你的照片始终由你掌控</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 常见问题 -->
+    <section class="faq">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-label">常见问题</span>
+          <h2 class="section-title">关于觅影，你可能想知道</h2>
+          <p class="section-desc">本地 AI 搜图，简单、安全地管理你的照片</p>
+        </div>
+        <div class="faq-list">
+          <div class="faq-item" v-for="item in faqs" :key="item.q">
+            <h3 class="faq-q">{{ item.q }}</h3>
+            <p class="faq-a">{{ item.a }}</p>
           </div>
         </div>
       </div>
@@ -231,9 +248,9 @@ const features: { title: string; desc: string; icon: string }[] = [
     icon: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>'
   },
   {
-    title: '人物分类',
-    desc: '自动识别照片中的人脸，把同一个人的照片归到一起。家人朋友的照片轻松找到。',
-    icon: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>'
+    title: '以图搜图',
+    desc: '用一张照片找出相似的照片，同场景、同主体的图一目了然，轻松整理重复与系列照片。',
+    icon: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>'
   },
   {
     title: '时间线浏览',
@@ -254,6 +271,11 @@ const features: { title: string; desc: string; icon: string }[] = [
     title: '相册整理',
     desc: '创建自定义相册，按主题或项目归类照片，批量导出分享，整理井井有条。',
     icon: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>'
+  },
+  {
+    title: '文字识别',
+    desc: '识别照片中的文字（招牌、文档、截图），让带文字的图片也能被搜到。结果限量展示。',
+    icon: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="8" y1="13" x2="16" y2="13"/><line x1="8" y1="17" x2="14" y2="17"/></svg>'
   }
 ]
 
@@ -265,7 +287,7 @@ const scenarios: { title: string; desc: string; icon: string }[] = [
   },
   {
     title: '记录宝宝成长',
-    desc: '宝宝每天都在长大，用人脸识别把所有照片归到一起，见证每一个珍贵瞬间。',
+    desc: '宝宝每天都在长大，用时间线和相册记录每个珍贵瞬间，文字搜索随时回味那些笑脸。',
     icon: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>'
   },
   {
@@ -282,12 +304,20 @@ const scenarios: { title: string; desc: string; icon: string }[] = [
 
 const compareData = [
   { feature: 'AI 语义搜索', folder: 'no', cloud: '部分', seek: 'yes' },
-  { feature: '人脸识别分类', folder: 'no', cloud: 'yes', seek: 'yes' },
+  { feature: '文字识别 OCR', folder: 'no', cloud: '部分', seek: 'yes' },
   { feature: '照片地图定位', folder: 'no', cloud: '部分', seek: 'yes' },
   { feature: '数据隐私保护', folder: 'yes', cloud: 'no', seek: 'yes' },
   { feature: '不限照片数量', folder: 'yes', cloud: 'no', seek: 'yes' },
   { feature: '离线使用', folder: 'yes', cloud: 'no', seek: 'yes' },
   { feature: '自动整理分类', folder: 'no', cloud: '部分', seek: 'yes' },
+]
+
+const faqs: { q: string; a: string }[] = [
+  { q: '觅影是什么？', a: '觅影（SeekPhoto）是一款运行在 Windows 上的本地 AI 图片搜索工具。用一句话描述，就能从海量照片里找到想要的那一张。' },
+  { q: '觅影收费吗？', a: '觅影免费下载使用，核心功能——语义搜图、以图搜图、照片地图、文字识别——都可以免费体验，所有数据本地处理、不上传云端。' },
+  { q: '我的照片安全吗？', a: '安全。照片信息和 AI 索引都只保存在你的电脑上，不上传任何服务器；AI 模型也在本地运行，照片永不离开本机。' },
+  { q: '支持哪些系统？', a: '目前支持 Windows 10 / 11 的 64 位系统。' },
+  { q: '怎么用一句话搜图？', a: '在搜索框输入自然语言描述，例如“海边的日落”“穿红衣服的人”“可爱的猫咪”，AI 会理解语义并返回最匹配的照片。' }
 ]
 
 const keywords = ['海边的日落', '宝宝的笑容', '穿红衣服的人', '城市夜景', '可爱的猫咪', '春天的花朵', '山间小屋', '咖啡时光']
@@ -832,6 +862,39 @@ onUnmounted(() => {
   opacity: 0.8;
 }
 
+/* FAQ */
+.faq {
+  padding: 120px 0;
+}
+
+.faq-list {
+  max-width: 880px;
+  margin: 48px auto 0;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.faq-item {
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 28px 32px;
+}
+
+.faq-q {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 12px;
+  color: var(--text-primary);
+}
+
+.faq-a {
+  font-size: 15px;
+  line-height: 1.8;
+  color: var(--text-secondary);
+}
+
 /* Animations */
 @keyframes fadeIn {
   from { opacity: 0; transform: translateY(8px); }
@@ -889,7 +952,8 @@ onUnmounted(() => {
   .demo,
   .privacy,
   .scenarios,
-  .compare {
+  .compare,
+  .faq {
     padding: 80px 0;
   }
 

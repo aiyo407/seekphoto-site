@@ -1,8 +1,8 @@
-# 觅影随笔
+# 觅影 SeekPhoto
 
-觅影随笔是一个运行在 Windows 电脑上的本地图片管理笔记项目。它能把散落在硬盘各处的照片整理成可搜索、可浏览的个人图库——**所有数据只存储在你的电脑上，无需上传云端**。本项目为个人开发者业余时间完成的学习作品，免费分享给同样热爱摄影与图片管理的朋友使用。
+觅影 SeekPhoto 是一款运行在 Windows 电脑上的本地 AI 图片搜索管理工具。它能把散落在硬盘各处的照片整理成可搜索、可浏览的个人图库——**所有数据只存储在你的电脑上，无需上传云端**，用一句话就能找到想要的那张照片。免费提供给同样热爱摄影与图片管理的朋友使用。
 
-[![免费下载](https://img.shields.io/badge/免费下载-觅影随笔-4F46E5?style=for-the-badge&logo=github)](https://github.com/aiyo407/seekphoto-site/releases/latest)
+[![免费下载](https://img.shields.io/badge/免费下载-觅影-4F46E5?style=for-the-badge&logo=github)](https://github.com/aiyo407/seekphoto-site/releases/latest)
 [![访问主页](https://img.shields.io/badge/访问主页-www.seekphoto.cn-0EA5E9?style=for-the-badge)](https://www.seekphoto.cn)
 
 ---

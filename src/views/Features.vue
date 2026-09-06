@@ -3,7 +3,7 @@
     <section class="page-hero">
       <div class="container">
         <h1>核心功能</h1>
-        <p>八大智能功能，帮你轻松管理海量照片</p>
+        <p>核心智能功能，帮你轻松管理海量照片</p>
       </div>
     </section>
 
@@ -91,42 +91,40 @@
       </div>
     </section>
 
-    <!-- 详细功能演示：人物分类 -->
+    <!-- 详细功能演示：以图搜图 -->
     <section class="feature-section alt">
       <div class="container">
         <div class="feature-row reverse">
           <div class="feature-text">
-            <span class="feature-tag">扩展功能</span>
-            <h2>人物分类</h2>
+            <span class="feature-tag">核心功能</span>
+            <h2>以图搜图</h2>
             <p class="feature-desc">
-              自动识别照片中的人物，把同一个人的照片归到一起。
-              家人、朋友、同事的照片，都能轻松找到。
+              用一张照片，找出与它相似的照片。同场景、同主体、同风格的图一目了然，
+              整理重复照片、系列照片更轻松。
             </p>
             <ul class="feature-list">
-              <li>自动生成每个人的头像</li>
-              <li>同一个人的照片自动归为一组</li>
-              <li>可以给每个人自定义名字</li>
-              <li>支持合并和拆分人物</li>
-              <li>人物数据只保存在你的电脑上</li>
+              <li>选中一张图即可搜相似</li>
+              <li>同场景、同主体自动归拢</li>
+              <li>配合时间线快速比对</li>
+              <li>结果全部本地计算，不上传</li>
             </ul>
           </div>
           <div class="feature-visual">
             <div class="visual-card visual-sidebar">
               <div class="visual-sidebar-header">
-                <span>全部人物</span>
-                <span class="visual-count">5 人</span>
+                <span>相似照片</span>
+                <span class="visual-count">8 张</span>
               </div>
               <div class="person-list">
                 <div class="person-item" v-for="i in 5" :key="i" :class="{ selected: i === 1 }">
                   <div class="person-avatar" :style="{ background: getFaceGradient(i) }">
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                      <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
-                      <circle cx="12" cy="7" r="4"/>
+                      <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/>
                     </svg>
                   </div>
                   <div class="person-info">
-                    <span class="person-name">人物 {{ i }}</span>
-                    <span class="person-count">{{ 32 - i * 5 }} 张照片</span>
+                    <span class="person-name">photo_0{{ i }}</span>
+                    <span class="person-count">{{ 95 - i * 3 }}% 相似</span>
                   </div>
                 </div>
               </div>
@@ -195,6 +193,7 @@
       </div>
     </section>
 
+    
     <!-- CTA -->
     <section class="cta">
       <div class="container">
@@ -202,7 +201,7 @@
           <h2>开始使用觅影</h2>
           <p>免费下载，即刻体验 AI 图片搜索</p>
           <router-link to="/download" class="btn btn-primary btn-large">
-            下载 for Windows
+            下载 Windows 版
           </router-link>
           <span class="cta-note">支持 Windows 10/11 · 约 60MB</span>
         </div>
@@ -244,12 +243,12 @@ const features: Feature[] = [
     points: ['中文自然语言', '语义理解', '毫秒级响应']
   },
   {
-    title: '人物分类',
-    desc: '自动识别照片中的人脸，把同一个人的照片归到一起。家人朋友的照片轻松找到。',
-    icon: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>',
+    title: '文字识别',
+    desc: '识别照片中的文字内容（招牌、文档、截图），让带文字的图片也能被搜到。结果限量展示。',
+    icon: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="8" y1="13" x2="16" y2="13"/><line x1="8" y1="17" x2="14" y2="17"/></svg>',
     category: 'advanced',
     tag: '扩展',
-    points: ['人脸识别', '自动分组', '自定义命名']
+    points: ['OCR 文字识别', '图文搜索', '限量结果']
   },
   {
     title: '时间线浏览',
@@ -344,9 +343,9 @@ const techs = [
     icon: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>'
   },
   {
-    name: '人物自动整理',
-    desc: '自动把同一个人的照片归到一起，查找某个人的照片更方便',
-    icon: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>'
+    name: 'AI 自动整理',
+    desc: '自动为照片添加标签、归类主题，整理更省心',
+    icon: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>'
   },
   {
     name: '时间轴浏览',

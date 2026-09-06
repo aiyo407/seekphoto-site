@@ -4,7 +4,7 @@
       <div class="header-content">
         <router-link to="/" class="logo" @click="closeMenu">
           <img :src="logo" alt="觅影" class="logo-img" />
-          <span class="logo-text">觅影 <span>随笔</span></span>
+          <span class="logo-text">觅影</span>
         </router-link>
 
         <nav class="nav">
@@ -133,11 +133,6 @@ onUnmounted(() => {
   font-weight: 700;
   color: var(--text-primary);
   letter-spacing: -0.3px;
-}
-
-.logo-text span {
-  font-weight: 500;
-  color: var(--text-secondary);
 }
 
 .nav {
