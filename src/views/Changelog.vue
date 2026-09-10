@@ -61,9 +61,22 @@ interface Version {
 const versions: Version[] = [
   {
     version: APP_VERSION_DISPLAY,
-    date: '2026-09-06',
+    date: '2026-09-10',
     tag: '最新版本',
     tagType: 'latest',
+    changes: [
+      '修复缩略图补齐：后台批量生成遇到系统保留目录不再静默失败，缺失的预览图可自动补齐',
+      '索引进度实时可见：后台自动续跑索引时不再停留在「正在准备」，实时显示已识别张数',
+      'GPU 更稳定：显卡瞬时重置不再永久禁用 DirectML，自动降批重试并保留 GPU 加速，索引速度大幅恢复',
+      '修复活动中心进度显示自相矛盾、内存占用显示为 0 的问题',
+      '活动中心「并发」改为「执行中」，真实反映正在干活的任务数'
+    ]
+  },
+  {
+    version: 'v0.11.0',
+    date: '2026-09-06',
+    tag: '功能更新',
+    tagType: 'feature',
     changes: [
       '改版为内置离线矢量地图，无需联网、无需授权即可查看照片足迹',
       '升级 AI 模型：Chinese-CLIP 语义引擎 + PP-OCRv4 文字识别',
