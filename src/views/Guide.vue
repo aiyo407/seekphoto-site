@@ -141,52 +141,52 @@ const steps: Step[] = [
     icon: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>'
   },
   {
-    title: '添加目录',
-    desc: '在设置中添加你的照片文件夹，支持多个目录。觅影会自动扫描所有图片。',
+    title: '首次引导',
+    desc: '启动后会自动检测电脑里有照片的文件夹，点击一键添加即可，也可以稍后在设置中添加多个目录。照片始终留在原位置，觅影不会复制或移动它们。',
     icon: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/><line x1="12" y1="11" x2="12" y2="17"/><line x1="9" y1="14" x2="15" y2="14"/></svg>'
   },
   {
-    title: '建立索引',
-    desc: '等待 AI 自动分析照片，生成缩略图、识别画面内容。后台进行不打扰使用。',
+    title: '后台索引',
+    desc: 'AI 自动分析照片、生成缩略图。底部活动中心实时显示「已识别 X/Y 张」，可随时暂停继续；空闲时还会自动补齐缺口，不打扰正常使用。',
     icon: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12a9 9 0 1 1-6.219-8.56"/><polyline points="21 4 21 10 15 10"/></svg>'
   },
   {
     title: '开始搜索',
-    desc: '在搜索框输入文字描述，比如"海边日落"，AI 立刻返回最匹配的照片。',
+    desc: '在顶部搜索框输入自然语言，比如「海边日落」，AI 立刻返回最匹配的照片；也可以点左侧时间线、拍摄日历、地图随意浏览。',
     icon: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>'
   }
 ]
 
 const tips: Tip[] = [
   {
-    title: '语义搜索技巧',
-    desc: '用自然语言描述画面，如"海边日落"、"穿红衣服的人"。越具体的描述，结果越精准。',
-    icon: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>'
-  },
-  {
-    title: '相似照片整理',
-    desc: '用一张照片搜索相似图，快速整理重复、连拍和系列照片，清理冗余更轻松。',
+    title: '以图搜图',
+    desc: '右键任意照片选择「查找相似照片」，快速找出连拍、重复和同系列照片，整理冗余更轻松。',
     icon: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>'
   },
   {
-    title: '时间线浏览',
-    desc: '按年月快速定位照片。即使没有 EXIF 信息，也能从文件名中识别拍摄时间。',
-    icon: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>'
+    title: '图片文字搜索',
+    desc: '觅影会识别照片里的文字内容，截图、单据、招牌上的字也能直接搜到，快速定位凭据和资料照片。',
+    icon: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>'
   },
   {
-    title: '照片地图',
-    desc: '在地图上查看带 GPS 位置的照片分布，旅行足迹一目了然，按地点快速筛选。',
+    title: '拍摄日历',
+    desc: '热力图汇总你每一天拍的照片数量，点击任意日期即可查看当天所有照片，回顾某段日子一目了然。',
+    icon: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>'
+  },
+  {
+    title: '照片清理',
+    desc: '自动检测失焦、抖动的模糊照片，按模糊度排序预览，一键批量移入回收站，释放存储空间。',
+    icon: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>'
+  },
+  {
+    title: '照片地图与位置补全',
+    desc: '带 GPS 的照片自动显示在地图上，内置离线地图无需联网；没有 GPS 的照片还能按拍摄时间一键推断补全位置，可随时撤销。',
     icon: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>'
   },
   {
-    title: '标签分类',
-    desc: '右键点击照片即可添加标签，按主题整理。标签可与搜索配合，快速找到目标照片。',
+    title: '收藏、标签与智能相册',
+    desc: '右键照片即可收藏、评分、添加标签或加入相册；还能创建智能相册自动归类，标准版及以上支持 AI 自动标签与分类。',
     icon: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>'
-  },
-  {
-    title: '相册创建',
-    desc: '创建自定义相册，把照片按项目或主题归类。支持批量导出，方便分享和备份。',
-    icon: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>'
   }
 ]
 
@@ -215,17 +215,26 @@ const searchExamples: SearchGroup[] = [
     category: '时间类',
     tags: ['去年夏天', '春节期间', '圣诞节', '毕业旅行', '早晨', '黄昏'],
     icon: '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>'
+  },
+  {
+    category: '文字内容类',
+    tags: ['截图', '合同文件', '快递单', '名片', '门店招牌', '聊天记录'],
+    icon: '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>'
   }
 ]
 
 const faqs: Faq[] = [
   {
+    q: '觅影会移动或修改我的照片吗？',
+    a: '不会。觅影只在原位置读取照片做索引和展示，不复制、不搬运、不改写原图；扫描和删除类操作也只进入系统回收站，随时可以还原。'
+  },
+  {
     q: '索引需要多长时间？',
-    a: '索引速度取决于照片数量和电脑性能。一般每分钟能处理 100-300 张照片。索引在后台进行，不会影响你正常使用电脑，也可以随时暂停或继续。'
+    a: '取决于照片数量和电脑性能：有独立显卡（DirectML 加速）时可达每分钟数百张，仅用 CPU 时约每分钟 20-40 张。索引在后台自动进行，底部活动中心实时显示进度，可随时暂停；缩略图缺口还会在空闲时自动补齐。'
   },
   {
     q: '支持哪些图片格式？',
-    a: '目前支持 JPG、JPEG、PNG、BMP、WebP 等常见格式。建议使用 JPG 格式以获得最佳处理速度，RAW 格式暂不支持。'
+    a: '支持 JPG、PNG、BMP、WebP、GIF、TIFF，以及 iPhone 的 HEIC/HEIF 格式；还支持常见相机 RAW 格式（佳能 CR2/CR3、尼康 NEF、索尼 ARW、Adobe DNG、松下 RW2、奥林巴斯 ORF、富士 RAF、宾得 PEF 等）。'
   },
   {
     q: '照片会被上传吗？',
@@ -233,7 +242,7 @@ const faqs: Faq[] = [
   },
   {
     q: '如何更新到新版本？',
-    a: '觅影会在启动时自动检查更新（需要联网）。发现新版本后会提示你下载安装，也可以在"设置 - 关于"中手动检查更新。更新过程保留所有数据。'
+    a: '觅影会在启动后自动检查更新（需要联网），也可以在「设置 - 关于」中手动检查。发现新版本后会提示下载安装，更新过程保留所有数据。注意：0.11.1 及更早的版本因签名配置问题无法在线升级，需从官网手动下载安装一次。'
   },
   {
     q: '数据存储在哪里？',
