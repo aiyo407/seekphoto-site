@@ -1,5 +1,5 @@
 /** 应用版本（仅更新日志页展示用，与下载链接无关） */
-export const APP_VERSION = '0.11.5'
+export const APP_VERSION = '0.11.6'
 
 /** 显示用版本号（带 v 前缀，如 "v0.9.0"） */
 export const APP_VERSION_DISPLAY = `v${APP_VERSION}`
