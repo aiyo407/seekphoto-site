@@ -66,7 +66,7 @@
                 </svg>
               </div>
               <h3>处理器</h3>
-              <p>Intel/AMD 双核以上</p>
+              <p>Intel/AMD 双核以上（推荐 4 核以上）</p>
             </div>
             <div class="req-card">
               <div class="req-icon">
@@ -75,7 +75,7 @@
                 </svg>
               </div>
               <h3>内存</h3>
-              <p>4GB 以上（推荐 8GB）</p>
+              <p>8GB 以上（推荐 16GB）</p>
             </div>
             <div class="req-card">
               <div class="req-icon">
@@ -84,7 +84,7 @@
                 </svg>
               </div>
               <h3>存储空间</h3>
-              <p>500MB 可用空间</p>
+              <p>2GB 以上，另按图库规模预留索引与缓存（约每 1 万张照片 250MB）</p>
             </div>
           </div>
         </div>
