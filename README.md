@@ -2,7 +2,7 @@
 
 觅影 SeekPhoto 是一款运行在 Windows 电脑上的本地 AI 图片搜索管理工具。它能把散落在硬盘各处的照片整理成可搜索、可浏览的个人图库——**所有数据只存储在你的电脑上，无需上传云端**，用一句话就能找到想要的那张照片。免费提供给同样热爱摄影与图片管理的朋友使用。
 
-[![免费下载](https://img.shields.io/badge/免费下载-觅影-4F46E5?style=for-the-badge&logo=github)](https://github.com/aiyo407/seekphoto-site/releases/latest)
+[![免费下载](https://img.shields.io/badge/免费下载-觅影-4F46E5?style=for-the-badge)](https://www.seekphoto.cn)
 [![访问主页](https://img.shields.io/badge/访问主页-www.seekphoto.cn-0EA5E9?style=for-the-badge)](https://www.seekphoto.cn)
 
 ---
@@ -24,15 +24,6 @@
 
 - 支持中文自然语言搜索
 - 不用记住文件名，不用一张张翻看
-
-### 👤 人物分类（即将推出）
-自动识别照片中的人脸，把同一个人的照片归为一组。家人、朋友、同事的照片都能快速找到。
-
-- 自动生成每个人的头像
-- 可自定义人物名称
-- 人物数据只保存在本地
-
-> 以图搜图、人物分类等扩展功能即将在后续版本推出，敬请期待。
 
 ### 📅 时间线浏览
 按拍摄时间自动整理照片，按年、月、日分组，轻松找回某段回忆。
@@ -68,7 +59,7 @@
 ## 三步开始使用
 
 1. **下载安装包**  
-   从 [GitHub Releases](https://github.com/aiyo407/seekphoto-site/releases/latest) 下载最新的 `.exe` 安装文件。
+   从 [GitHub Releases](https://www.seekphoto.cn) 下载最新的 `.exe` 安装文件。
 
 2. **运行安装程序**  
    双击安装包，按照向导完成安装。
@@ -88,7 +79,7 @@
 | 存储空间 | 2GB 可用空间；索引与缩略图缓存随图库增长，约每 1 万张照片 250MB（10 万张约 2.5GB） |
 | 安装包大小 | 约 60MB |
 
-👉 [**立即免费下载**](https://github.com/aiyo407/seekphoto-site/releases/latest)
+👉 [**立即免费下载**](https://www.seekphoto.cn)
 
 ---
 
@@ -109,4 +100,4 @@ A：非常安全。所有数据都存储在你的本地电脑上，不会上传�
 ---
 
 **别让回忆在备份里吃灰，找照片只需一句话。**  
-[免费下载觅影](https://github.com/aiyo407/seekphoto-site/releases/latest)
+[免费下载觅影](https://www.seekphoto.cn)
