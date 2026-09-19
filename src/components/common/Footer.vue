@@ -28,6 +28,10 @@
             <router-link to="/privacy">隐私政策</router-link>
             <router-link to="/terms">使用说明</router-link>
           </div>
+          <div class="footer-col">
+            <h4>社区</h4>
+            <a href="https://qm.qq.com/q/VLdutsMlmU" target="_blank" rel="noopener noreferrer">用户交流群</a>
+          </div>
         </div>
       </div>
 
