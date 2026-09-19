@@ -60,10 +60,20 @@ interface Version {
 
 const versions: Version[] = [
   {
+    version: 'v0.11.11',
+    date: '2026-09-19',
+    tag: '关键修复',
+    tagType: 'latest',
+    changes: [
+      '修复竖拍照片缩略图横躺显示的问题',
+      '网格视图布局更紧凑，照片信息展示更清晰'
+    ]
+  },
+  {
     version: 'v0.11.10',
     date: '2026-09-19',
     tag: '功能更新',
-    tagType: 'latest',
+    tagType: 'feature',
     changes: [
       '优化搜索加载与界面显示，精简冗余信息，修复若干体验细节'
     ]
