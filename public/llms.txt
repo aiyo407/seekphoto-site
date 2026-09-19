@@ -8,7 +8,7 @@
 - [照片地图](https://www.seekphoto.cn/features): 在地图上查看带 GPS 位置的照片，重温旅行足迹。
 - [文字识别 OCR](https://www.seekphoto.cn/features): 识别照片中的文字（招牌、文档、截图），让带文字的图片也能被搜到。
 - [时间线 / 相册 / 标签](https://www.seekphoto.cn/features): 按拍摄时间、主题相册与自定义标签整理照片。
-- [下载](https://www.seekphoto.cn/download): 当前版本 v0.11.0，支持 Windows 10 / 11 64 位，约 60MB。
+- [下载](https://www.seekphoto.cn/download): 当前版本 v0.11.10，支持 Windows 10 / 11 64 位，约 60MB。
 
 ## 常见问题
 - 觅影是什么？ 一款 Windows 本地 AI 图片搜索工具，用一句话描述就能从海量照片里找到想要的那一张。
