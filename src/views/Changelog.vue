@@ -60,10 +60,19 @@ interface Version {
 
 const versions: Version[] = [
   {
+    version: 'v0.11.10',
+    date: '2026-09-19',
+    tag: '功能更新',
+    tagType: 'latest',
+    changes: [
+      '优化搜索加载与界面显示，精简冗余信息，修复若干体验细节'
+    ]
+  },
+  {
     version: 'v0.11.9',
     date: '2026-09-16',
     tag: '功能更新',
-    tagType: 'latest',
+    tagType: 'feature',
     changes: [
       '批量删除大幅提速：整批照片一次送入回收站，50 张从约 70 秒降到 0.5 秒，整理大库不再干等',
       '删除后数字全同步：工具栏总数、侧栏年月计数、日历热力图、地图位置补全立即更新，不再显示删除前的旧数字',
