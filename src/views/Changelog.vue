@@ -60,10 +60,23 @@ interface Version {
 
 const versions: Version[] = [
   {
+    version: 'v0.11.12',
+    date: '2026-09-21',
+    tag: '功能更新',
+    tagType: 'latest',
+    changes: [
+      '新增「以图搜图」入口，相似照片一键查找',
+      '缩略图加载批量优化，浏览更流畅、更省系统资源',
+      '滚动方向预取，缩略图即时出现不等待',
+      '搜索无结果时给出引导提示，更快找到方向',
+      '修复大图查看器底部缩略图墙部分不显示的问题'
+    ]
+  },
+  {
     version: 'v0.11.11',
     date: '2026-09-19',
     tag: '关键修复',
-    tagType: 'latest',
+    tagType: 'feature',
     changes: [
       '修复竖拍照片缩略图横躺显示的问题',
       '网格视图布局更紧凑，照片信息展示更清晰'
