@@ -3,7 +3,7 @@
     <!-- Page Hero -->
     <section class="page-hero">
       <div class="container">
-        <h1>关于觅影</h1>
+        <h1>关于SeekPhoto</h1>
         <p>一款本地 AI 图片搜索工具</p>
       </div>
     </section>
@@ -15,10 +15,10 @@
           <span class="section-label">项目故事</span>
           <h2 class="section-title">从需求出发，做一款懂照片的工具</h2>
           <div class="story-text">
-            <p>觅影诞生于一个简单的需求：在海量照片中快速找到想要的那一张。</p>
+            <p>SeekPhoto诞生于一个简单的需求：在海量照片中快速找到想要的那一张。</p>
             <p>我们希望有一款工具能真正理解照片内容，而不是只靠文件名和日期。</p>
-            <p>于是觅影诞生了——一款完全本地运行、隐私优先的 AI 图片搜索工具。</p>
-            <p>觅影免费提供给同样热爱摄影与图片管理的朋友使用，希望它能让你的照片管理更轻松。</p>
+            <p>于是SeekPhoto诞生了——一款完全本地运行、隐私优先的 AI 图片搜索工具。</p>
+            <p>SeekPhoto免费提供给同样热爱摄影与图片管理的朋友使用，希望它能让你的照片管理更轻松。</p>
           </div>
         </div>
       </div>
@@ -30,7 +30,7 @@
         <div class="section-header">
           <span class="section-label">设计理念</span>
           <h2 class="section-title">三个原则，贯穿始终</h2>
-          <p class="section-desc">隐私、智能、易用，是觅影始终坚守的设计准则</p>
+          <p class="section-desc">隐私、智能、易用，是SeekPhoto始终坚守的设计准则</p>
         </div>
         <div class="principle-grid">
           <div class="principle-card" v-for="item in principles" :key="item.title">
@@ -48,7 +48,7 @@
         <div class="section-header">
           <span class="section-label">技术支撑</span>
           <h2 class="section-title">它靠什么做到这些</h2>
-          <p class="section-desc">觅影用一套本地 AI 与轻量技术，把复杂的搜索变成你随手可用的能力</p>
+          <p class="section-desc">SeekPhoto用一套本地 AI 与轻量技术，把复杂的搜索变成你随手可用的能力</p>
         </div>
         <div class="tech-list">
           <div class="tech-row" v-for="tech in techs" :key="tech.label">
@@ -71,7 +71,7 @@
     <section class="cta">
       <div class="container">
         <div class="cta-card">
-          <h2>开始使用觅影</h2>
+          <h2>开始使用SeekPhoto</h2>
           <p>免费下载，即刻体验 AI 图片搜索</p>
           <router-link to="/download" class="btn btn-primary btn-large">
             下载 Windows 版

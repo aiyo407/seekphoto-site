@@ -4,7 +4,7 @@
     <section class="page-hero">
       <div class="container">
         <h1>更新日志</h1>
-        <p>持续优化，让觅影更好用</p>
+        <p>持续优化，让SeekPhoto更好用</p>
       </div>
     </section>
 

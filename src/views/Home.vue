@@ -9,7 +9,7 @@
             用一句话，<br>找到那张照片
           </h1>
           <p class="hero-subtitle">
-            觅影是一款本地运行的 AI 图片搜索工具，支持文字找图、以图搜图、时间线浏览与照片地图。<br>
+            SeekPhoto是一款本地运行的 AI 图片搜索工具，支持文字找图、以图搜图、时间线浏览与照片地图。<br>
             所有数据只存储在你的电脑上，不上传任何服务器。
           </p>
           <div class="hero-actions">
@@ -113,7 +113,7 @@
       <div class="container">
         <div class="section-header">
           <span class="section-label">使用场景</span>
-          <h2 class="section-title">觅影能帮你做什么</h2>
+          <h2 class="section-title">SeekPhoto能帮你做什么</h2>
           <p class="section-desc">无论你的照片有多少，都能轻松管理</p>
         </div>
 
@@ -127,13 +127,13 @@
       </div>
     </section>
 
-    <!-- 为什么选择觅影 -->
+    <!-- 为什么选择SeekPhoto -->
     <section class="compare">
       <div class="container">
         <div class="section-header">
           <span class="section-label">特性优势</span>
-          <h2 class="section-title">为什么选择觅影</h2>
-          <p class="section-desc">相比传统方式，觅影让照片管理更智能、更安全</p>
+          <h2 class="section-title">为什么选择SeekPhoto</h2>
+          <p class="section-desc">相比传统方式，SeekPhoto让照片管理更智能、更安全</p>
         </div>
 
         <div class="compare-table">
@@ -141,7 +141,7 @@
             <div class="compare-cell compare-feature">对比项</div>
             <div class="compare-cell">传统文件夹</div>
             <div class="compare-cell">云端相册</div>
-            <div class="compare-cell compare-highlight">觅影</div>
+            <div class="compare-cell compare-highlight">SeekPhoto</div>
           </div>
           <div class="compare-row" v-for="item in compareData" :key="item.feature">
             <div class="compare-cell compare-feature">{{ item.feature }}</div>
@@ -210,7 +210,7 @@
       <div class="container">
         <div class="section-header">
           <span class="section-label">常见问题</span>
-          <h2 class="section-title">关于觅影，你可能想知道</h2>
+          <h2 class="section-title">关于SeekPhoto，你可能想知道</h2>
           <p class="section-desc">本地 AI 搜图，简单、安全地管理你的照片</p>
         </div>
         <div class="faq-list">
@@ -226,7 +226,7 @@
     <section class="cta">
       <div class="container">
         <div class="cta-card">
-          <h2>开始使用觅影</h2>
+          <h2>开始使用SeekPhoto</h2>
           <p>免费下载，即刻体验 AI 图片搜索</p>
           <router-link to="/download" class="btn btn-primary btn-large">
             下载 for Windows
@@ -313,8 +313,8 @@ const compareData = [
 ]
 
 const faqs: { q: string; a: string }[] = [
-  { q: '觅影是什么？', a: '觅影（SeekPhoto）是一款运行在 Windows 上的本地 AI 图片搜索工具。用一句话描述，就能从海量照片里找到想要的那一张。' },
-  { q: '觅影收费吗？', a: '觅影免费下载使用，核心功能——语义搜图、以图搜图、照片地图、文字识别——都可以免费体验，所有数据本地处理、不上传云端。' },
+  { q: 'SeekPhoto是什么？', a: 'SeekPhoto是一款运行在 Windows 上的本地 AI 图片搜索工具。用一句话描述，就能从海量照片里找到想要的那一张。' },
+  { q: 'SeekPhoto收费吗？', a: 'SeekPhoto免费下载使用，核心功能——语义搜图、以图搜图、照片地图、文字识别——都可以免费体验，所有数据本地处理、不上传云端。' },
   { q: '我的照片安全吗？', a: '安全。照片信息和 AI 索引都只保存在你的电脑上，不上传任何服务器；AI 模型也在本地运行，照片永不离开本机。' },
   { q: '支持哪些系统？', a: '目前支持 Windows 10 / 11 的 64 位系统。' },
   { q: '怎么用一句话搜图？', a: '在搜索框输入自然语言描述，例如“海边的日落”“穿红衣服的人”“可爱的猫咪”，AI 会理解语义并返回最匹配的照片。' }

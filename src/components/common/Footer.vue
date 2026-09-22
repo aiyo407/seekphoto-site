@@ -4,8 +4,8 @@
       <div class="footer-content">
         <div class="footer-brand">
           <router-link to="/" class="logo">
-            <img :src="logo" alt="觅影" class="logo-img" />
-            <span class="logo-text">觅影</span>
+            <img :src="logo" alt="SeekPhoto" class="logo-img" />
+            <span class="logo-text">SeekPhoto</span>
           </router-link>
           <p>用一句话，找到那张照片</p>
         </div>
@@ -36,7 +36,7 @@
       </div>
 
       <div class="footer-bottom">
-        <p>&copy; 2026 觅影 · 本地 AI 图片搜索</p>
+        <p>&copy; 2026 SeekPhoto · 本地 AI 图片搜索</p>
         <p class="icp">
           <a href="https://beian.miit.gov.cn/" target="_blank" rel="noopener noreferrer">粤ICP备2026111543号-1</a>
           <a class="mps-beian" href="https://beian.mps.gov.cn/#/query/webSearch?code=44011802001527" target="_blank" rel="noopener noreferrer">

@@ -5,7 +5,7 @@
       <div class="container">
         <span class="badge">从入门到精通</span>
         <h1>使用教程</h1>
-        <p>四步开始使用觅影，轻松管理你的海量照片</p>
+        <p>四步开始使用SeekPhoto，轻松管理你的海量照片</p>
       </div>
     </section>
 
@@ -34,7 +34,7 @@
       <div class="container">
         <div class="section-header">
           <span class="section-label">进阶技巧</span>
-          <h2 class="section-title">发挥觅影的全部能力</h2>
+          <h2 class="section-title">发挥SeekPhoto的全部能力</h2>
           <p class="section-desc">掌握这些技巧，让找照片变得更高效</p>
         </div>
 
@@ -77,7 +77,7 @@
         <div class="section-header">
           <span class="section-label">常见问题</span>
           <h2 class="section-title">你可能想知道</h2>
-          <p class="section-desc">关于觅影使用的常见疑问解答</p>
+          <p class="section-desc">关于SeekPhoto使用的常见疑问解答</p>
         </div>
 
         <div class="faq-list">
@@ -94,7 +94,7 @@
       <div class="container">
         <div class="cta-card">
           <h2>准备好开始了吗</h2>
-          <p>免费下载觅影，用 AI 重新发现你的照片库</p>
+          <p>免费下载SeekPhoto，用 AI 重新发现你的照片库</p>
           <router-link to="/download" class="btn btn-primary btn-large">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
@@ -142,7 +142,7 @@ const steps: Step[] = [
   },
   {
     title: '首次引导',
-    desc: '启动后会自动检测电脑里有照片的文件夹，点击一键添加即可，也可以稍后在设置中添加多个目录。照片始终留在原位置，觅影不会复制或移动它们。',
+    desc: '启动后会自动检测电脑里有照片的文件夹，点击一键添加即可，也可以稍后在设置中添加多个目录。照片始终留在原位置，SeekPhoto不会复制或移动它们。',
     icon: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/><line x1="12" y1="11" x2="12" y2="17"/><line x1="9" y1="14" x2="15" y2="14"/></svg>'
   },
   {
@@ -165,7 +165,7 @@ const tips: Tip[] = [
   },
   {
     title: '图片文字搜索',
-    desc: '觅影会识别照片里的文字内容，截图、单据、招牌上的字也能直接搜到，快速定位凭据和资料照片。',
+    desc: 'SeekPhoto会识别照片里的文字内容，截图、单据、招牌上的字也能直接搜到，快速定位凭据和资料照片。',
     icon: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>'
   },
   {
@@ -225,8 +225,8 @@ const searchExamples: SearchGroup[] = [
 
 const faqs: Faq[] = [
   {
-    q: '觅影会移动或修改我的照片吗？',
-    a: '不会。觅影只在原位置读取照片做索引和展示，不复制、不搬运、不改写原图；扫描和删除类操作也只进入系统回收站，随时可以还原。'
+    q: 'SeekPhoto会移动或修改我的照片吗？',
+    a: '不会。SeekPhoto只在原位置读取照片做索引和展示，不复制、不搬运、不改写原图；扫描和删除类操作也只进入系统回收站，随时可以还原。'
   },
   {
     q: '索引需要多长时间？',
@@ -238,11 +238,11 @@ const faqs: Faq[] = [
   },
   {
     q: '照片会被上传吗？',
-    a: '不会。觅影完全在本地运行，照片、索引与 AI 模型都在你的电脑上处理。没有任何数据会上传到服务器，隐私绝对安全。'
+    a: '不会。SeekPhoto完全在本地运行，照片、索引与 AI 模型都在你的电脑上处理。没有任何数据会上传到服务器，隐私绝对安全。'
   },
   {
     q: '如何更新到新版本？',
-    a: '觅影会在启动后自动检查更新（需要联网），也可以在「设置 - 关于」中手动检查。发现新版本后会提示下载安装，更新过程保留所有数据。注意：0.11.1 及更早的版本因签名配置问题无法在线升级，需从官网手动下载安装一次。'
+    a: 'SeekPhoto会在启动后自动检查更新（需要联网），也可以在「设置 - 关于」中手动检查。发现新版本后会提示下载安装，更新过程保留所有数据。注意：0.11.1 及更早的版本因签名配置问题无法在线升级，需从官网手动下载安装一次。'
   },
   {
     q: '数据存储在哪里？',

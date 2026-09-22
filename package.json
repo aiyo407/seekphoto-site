@@ -1,7 +1,7 @@
 {
   "name": "seekphoto-site",
   "version": "1.0.0",
-  "description": "觅影 SeekPhoto - 本地 AI 图片搜索管理工具官网",
+  "description": "SeekPhoto - 本地 AI 图片搜索管理工具官网",
   "type": "module",
   "scripts": {
     "dev": "vite",

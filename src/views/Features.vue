@@ -198,7 +198,7 @@
     <section class="cta">
       <div class="container">
         <div class="cta-card">
-          <h2>开始使用觅影</h2>
+          <h2>开始使用SeekPhoto</h2>
           <p>免费下载，即刻体验 AI 图片搜索</p>
           <router-link to="/download" class="btn btn-primary btn-large">
             下载 Windows 版

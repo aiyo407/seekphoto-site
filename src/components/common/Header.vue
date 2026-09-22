@@ -3,8 +3,8 @@
     <div class="container">
       <div class="header-content">
         <router-link to="/" class="logo" @click="closeMenu">
-          <img :src="logo" alt="觅影" class="logo-img" />
-          <span class="logo-text">觅影</span>
+          <img :src="logo" alt="SeekPhoto" class="logo-img" />
+          <span class="logo-text">SeekPhoto</span>
         </router-link>
 
         <nav class="nav">

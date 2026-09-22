@@ -11,7 +11,7 @@
       <div class="container">
         <div class="legal-content">
           <p class="intro">
-            觅影（以下简称"本应用"）是一款本地运行的 AI 图片搜索工具。
+            SeekPhoto（以下简称"本应用"）是一款本地运行的 AI 图片搜索工具。
             本项目高度重视你的隐私，本政策详细说明本应用如何处理你的数据。
           </p>
 
