@@ -4,7 +4,7 @@
     <section class="page-hero">
       <div class="container">
         <h1>更新日志</h1>
-        <p>持续优化，让SeekPhoto更好用</p>
+        <p>持续优化，让觅影更好用</p>
       </div>
     </section>
 
@@ -60,10 +60,22 @@ interface Version {
 
 const versions: Version[] = [
   {
+    version: 'v0.11.13',
+    date: '2026-09-22',
+    tag: '关键修复',
+    tagType: 'latest',
+    changes: [
+      '修复缩略图逐张慢显：滚动浏览即时出图不再一张张等待，网格更流畅',
+      '网格卡片节点池化，消除滚动时 DOM 频繁增删带来的卡顿',
+      '槽位池动态跟随窗口，修复极端视口下缩略图被截断的问题',
+      'OCR 文字识别默认切换为 INT8 量化模型，体积更小、加载更快，并加 sha256 校验确保模型完整'
+    ]
+  },
+  {
     version: 'v0.11.12',
     date: '2026-09-21',
     tag: '功能更新',
-    tagType: 'latest',
+    tagType: 'feature',
     changes: [
       '新增「以图搜图」入口，相似照片一键查找',
       '缩略图加载批量优化，浏览更流畅、更省系统资源',
