@@ -60,10 +60,21 @@ interface Version {
 
 const versions: Version[] = [
   {
+    version: 'v0.11.15',
+    date: '2026-09-27',
+    tag: '关键修复',
+    tagType: 'latest',
+    changes: [
+      '修复竖拍照片缩略图方向错误、比例异常的问题',
+      '修复系统回收站等隐藏目录的照片误入图库',
+      '优化网格浏览：滚动更顺滑，消除图片闪烁与跳动'
+    ]
+  },
+  {
     version: 'v0.11.14',
     date: '2026-09-25',
     tag: '新功能',
-    tagType: 'latest',
+    tagType: 'feature',
     changes: [
       '照片地图搜索联动：地图中搜索时自动切换为「搜索结果」视图，只显示命中且带定位的照片',
       '修复网格视图照片抖动、滚动时滚动条突然跳回顶部，页面滚动更平稳',
