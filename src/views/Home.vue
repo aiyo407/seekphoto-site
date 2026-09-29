@@ -38,7 +38,7 @@
             <div class="stat-divider"></div>
             <div class="stat">
               <span class="stat-num">0</span>
-              <span class="stat-label">数据上传</span>
+              <span class="stat-label">照片上传</span>
             </div>
           </div>
         </div>
