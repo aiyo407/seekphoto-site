@@ -9,7 +9,7 @@
             用一句话，<br>找到那张照片
           </h1>
           <p class="hero-subtitle">
-            SeekPhoto是一款本地运行的 AI 图片搜索工具，支持文字找图、以图搜图、时间线浏览与照片地图。<br>
+            输入即出结果，不等 AI。本地运行的 AI 图片搜索工具：文字找图、以图搜图、时间线浏览与照片地图。<br>
             所有数据只存储在你的电脑上，不上传任何服务器。
           </p>
           <div class="hero-actions">
@@ -27,8 +27,8 @@
           </div>
           <div class="hero-stats">
             <div class="stat">
-              <span class="stat-num">7+</span>
-              <span class="stat-label">智能功能</span>
+              <span class="stat-num">即时</span>
+              <span class="stat-label">本地即时搜索</span>
             </div>
             <div class="stat-divider"></div>
             <div class="stat">
@@ -69,8 +69,8 @@
       <div class="container">
         <div class="section-header">
           <span class="section-label">体验演示</span>
-          <h2 class="section-title">像聊天一样搜索照片</h2>
-          <p class="section-desc">输入自然语言描述，AI 即刻理解并返回最匹配的结果</p>
+          <h2 class="section-title">打两个字，照片就出来了</h2>
+          <p class="section-desc">文件名输入到一半，结果已经在眼前——本地即时匹配，零等待；想让 AI 理解画面内容（"海边的日落"），再按一次回车</p>
         </div>
 
         <div class="demo-app">
@@ -244,7 +244,7 @@ import { ref, onMounted, onUnmounted } from 'vue'
 const features: { title: string; desc: string; icon: string }[] = [
   {
     title: '文字找图',
-    desc: '输入一句话描述，AI 理解语义并找到匹配照片。支持中文搜索，像聊天一样自然。',
+    desc: '两层搜索：文件名即时匹配，输入即出结果；语义搜索懂画面，没写标题的照片也能搜到。支持中文。',
     icon: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>'
   },
   {
@@ -269,7 +269,7 @@ const features: { title: string; desc: string; icon: string }[] = [
   },
   {
     title: '相册整理',
-    desc: '创建自定义相册，按主题或项目归类照片，批量导出分享，整理井井有条。',
+    desc: '创建相册，还能把筛选条件存成智能相册——设一次，新照片自动归入，越用越懂你。',
     icon: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>'
   },
   {

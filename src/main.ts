@@ -5,7 +5,7 @@ import './styles/main.css'
 import { trackPageView } from './utils/analytics'
 
 const routes = [
-  { path: '/', component: () => import('./views/Home.vue'), meta: { title: 'SeekPhoto - 本地 AI 图片搜索', description: '用一句话，找到那张照片。本地 AI 语义搜图、以图搜图、照片地图与 OCR 文字识别，内置离线矢量地图，数据全部留在本机。' } },
+  { path: '/', component: () => import('./views/Home.vue'), meta: { title: 'SeekPhoto - 本地 AI 图片搜索', description: '用一句话，找到那张照片。输入即出结果，不等 AI——本地语义搜图、以图搜图、照片地图与 OCR 文字识别，内置离线矢量地图，数据全部留在本机。' } },
   { path: '/features', component: () => import('./views/Features.vue'), meta: { title: '功能介绍 - SeekPhoto', description: '本地 AI 语义搜图、以图搜图、文字识别 OCR、照片地图、相似去重与自动标签，多种能力帮你轻松管理海量照片。' } },
   { path: '/guide', component: () => import('./views/Guide.vue'), meta: { title: '使用教程 - SeekPhoto', description: '四步上手SeekPhoto，从下载安装到搜索技巧，快速掌握图片管理笔记的完整使用方法。' } },
   { path: '/download', component: () => import('./views/Download.vue'), meta: { title: '下载 - SeekPhoto', description: '免费下载SeekPhoto，Windows 10/11 64-bit，本地运行无需联网。' } },

@@ -54,7 +54,7 @@
         <div class="section-header">
           <span class="section-label">搜索灵感</span>
           <h2 class="section-title">搜索语法示例</h2>
-          <p class="section-desc">用自然语言描述，AI 会理解你的意思。试试下面这些关键词</p>
+          <p class="section-desc">输入过程中，文件名匹配的照片即时出现；按回车，AI 再按画面内容精搜。试试下面这些关键词</p>
         </div>
 
         <div class="examples-grid">
@@ -152,7 +152,7 @@ const steps: Step[] = [
   },
   {
     title: '开始搜索',
-    desc: '在顶部搜索框输入自然语言，比如「海边日落」，AI 立刻返回最匹配的照片；也可以点左侧时间线、拍摄日历、地图随意浏览。',
+    desc: '在顶部搜索框输入文字，文件名匹配的照片即时出现；输入「海边日落」再按回车，AI 按画面内容精搜。也可以点左侧时间线、拍摄日历、地图随意浏览。',
     icon: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>'
   }
 ]
