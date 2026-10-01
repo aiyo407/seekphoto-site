@@ -60,10 +60,20 @@ interface Version {
 
 const versions: Version[] = [
   {
+    version: 'v0.11.17',
+    date: '2026-10-01',
+    tag: '关键修复',
+    tagType: 'latest',
+    changes: [
+      '修复图片信息面板标题在内容较长时被遮挡的问题',
+      '界面细节与稳定性优化',
+    ],
+  },
+  {
     version: 'v0.11.16',
     date: '2026-10-01',
     tag: '功能更新',
-    tagType: 'latest',
+    tagType: 'feature',
     changes: [
       '界面更紧凑：侧栏标签列表单行显示，同屏可见内容翻倍',
       '照片信息面板：基本信息新增「格式」「像素量」，预览图完整展示不再裁切',
