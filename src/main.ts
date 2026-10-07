@@ -1,47 +1,18 @@
-import { createApp } from 'vue'
-import { createRouter, createWebHistory } from 'vue-router'
+import { ViteSSG } from 'vite-ssg'
 import App from './App.vue'
-import './styles/main.css'
+import { routes } from './router'
 import { trackPageView } from './utils/analytics'
 
-const routes = [
-  { path: '/', component: () => import('./views/Home.vue'), meta: { title: 'SeekPhoto - 本地 AI 图片搜索', description: '用一句话，找到那张照片。输入即出结果，不等 AI——本地语义搜图、以图搜图、照片地图与 OCR 文字识别，内置离线矢量地图，数据全部留在本机。' } },
-  { path: '/features', component: () => import('./views/Features.vue'), meta: { title: '功能介绍 - SeekPhoto', description: '本地 AI 语义搜图、以图搜图、文字识别 OCR、照片地图、相似去重与自动标签，多种能力帮你轻松管理海量照片。' } },
-  { path: '/guide', component: () => import('./views/Guide.vue'), meta: { title: '使用教程 - SeekPhoto', description: '四步上手SeekPhoto，从下载安装到搜索技巧，快速掌握图片管理笔记的完整使用方法。' } },
-  { path: '/download', component: () => import('./views/Download.vue'), meta: { title: '下载 - SeekPhoto', description: '免费下载SeekPhoto，Windows 10/11 64-bit，本地运行无需联网。' } },
-  { path: '/about', component: () => import('./views/About.vue'), meta: { title: '关于 - SeekPhoto', description: '本地 AI 图片搜索工具SeekPhoto的官方站点，了解设计理念、技术栈与更新动态。' } },
-  { path: '/changelog', component: () => import('./views/Changelog.vue'), meta: { title: '更新日志 - SeekPhoto', description: 'SeekPhoto版本更新历史，持续优化，让找照片越来越简单。' } },
-  { path: '/privacy', component: () => import('./views/Privacy.vue'), meta: { title: '隐私政策 - SeekPhoto', description: 'SeekPhoto隐私政策，所有数据存储在本地，不上传任何服务器。' } },
-  { path: '/terms', component: () => import('./views/Terms.vue'), meta: { title: '使用说明 - SeekPhoto', description: 'SeekPhoto使用说明，请阅读后使用。' } },
-]
-
-const router = createRouter({
-  history: createWebHistory('/'),
-  routes,
-  scrollBehavior() {
-    return { top: 0 }
-  },
-})
-
-// 路由切换时动态更新 title / description，提升 SEO
-router.afterEach((to) => {
-  const meta = to.meta as { title?: string; description?: string }
-  if (meta.title) {
-    document.title = meta.title
-  }
-  if (meta.description) {
-    let descEl = document.querySelector('meta[name="description"]')
-    if (!descEl) {
-      descEl = document.createElement('meta')
-      descEl.setAttribute('name', 'description')
-      document.head.appendChild(descEl)
+// vite-ssg 入口：同一工厂同时服务 SSR 预渲染（构建期）与客户端接管（运行时）。
+// head 由 @unhead/vue 自动接管（已在 App.vue 用 useHead 按路由注入）。
+export const createApp = ViteSSG(
+  App,
+  { routes, base: import.meta.env.BASE_URL },
+  ({ app, router, isClient }) => {
+    app.use(router)
+    // 百度统计：仅客户端导航时推送 PV（SSR 阶段不触发）
+    if (isClient) {
+      router.afterEach((to) => trackPageView(to.fullPath))
     }
-    descEl.setAttribute('content', meta.description)
   }
-  // 百度统计：SPA 路由切换推送 PV
-  trackPageView(to.fullPath)
-})
-
-const app = createApp(App)
-app.use(router)
-app.mount('#app')
+)
