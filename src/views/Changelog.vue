@@ -3,8 +3,8 @@
     <!-- Page Hero -->
     <section class="page-hero">
       <div class="container">
-        <h1>更新日志</h1>
-        <p>持续优化，让觅影更好用</p>
+        <h1>{{ t('changelog.heroTitle') }}</h1>
+        <p>{{ t('changelog.heroDesc') }}</p>
       </div>
     </section>
 
@@ -18,7 +18,7 @@
               <div class="version-header">
                 <div class="version-title">
                   <h3>{{ item.version }}</h3>
-                  <span class="version-tag" :class="item.tagType">{{ item.tag }}</span>
+                  <span class="version-tag" :class="item.tagType">{{ tagLabels[item.tag] }}</span>
                 </div>
                 <span class="version-date">{{ item.date }}</span>
               </div>
@@ -35,12 +35,12 @@
     <section class="cta">
       <div class="container">
         <div class="cta-card">
-          <h2>更新到最新版本</h2>
-          <p>体验 {{ APP_VERSION_DISPLAY }} 带来的全新功能与优化</p>
-          <router-link to="/download" class="btn btn-primary btn-large">
-            下载最新版本
+          <h2>{{ t('changelog.ctaTitle') }}</h2>
+          <p>{{ t('changelog.ctaDesc', { v: APP_VERSION_DISPLAY }) }}</p>
+          <router-link :to="loc('/download')" class="btn btn-primary btn-large">
+            {{ t('common.download') }}
           </router-link>
-          <span class="cta-note">支持 Windows 10/11 · 约 60MB</span>
+          <span class="cta-note">{{ t('common.supportWin') }}</span>
         </div>
       </div>
     </section>
@@ -48,7 +48,17 @@
 </template>
 
 <script setup lang="ts">
+import { computed } from 'vue'
+import { useRoute } from 'vue-router'
+import { useI18n } from 'vue-i18n'
 import { APP_VERSION_DISPLAY } from '../config/version'
+import { localeFromPath, localizedPath } from '../i18n'
+
+const { t, tm } = useI18n({ useScope: 'global' })
+const route = useRoute()
+const currentLocale = localeFromPath(route.path)
+const loc = (b: string) => localizedPath(b, currentLocale)
+const tagLabels = computed(() => tm('changelog.tags') as unknown as Record<string, string>)
 
 interface Version {
   version: string
@@ -60,10 +70,23 @@ interface Version {
 
 const versions: Version[] = [
   {
+    version: 'v0.11.21',
+    date: '2026-10-09',
+    tag: 'latest',
+    tagType: 'latest',
+    changes: [
+      '修复后台整理照片期间搜索一直转圈、迟迟不出结果的问题',
+      '修复图片文字识别后台任务反复重启、按文字搜照片无结果的问题',
+      '搜索出错时给出明确提示，不再误以为「确实没有相关照片」',
+      '搜索加载时右侧信息栏与网格同步显示骨架占位，不再整段消失',
+      '照片卡片更清爽：悬停不再浮出文字信息，右下角显示节日角标',
+    ],
+  },
+  {
     version: 'v0.11.20',
     date: '2026-10-06',
-    tag: '功能更新',
-    tagType: 'latest',
+    tag: 'feature',
+    tagType: 'feature',
     changes: [
       '后台任务更聪明：自动感知电池、内存与发热，边浏览边整理更流畅',
       '自动索引默认开启：新增、修改的照片自动入库，无需手动操作',
@@ -76,7 +99,7 @@ const versions: Version[] = [
   {
     version: 'v0.11.19',
     date: '2026-10-05',
-    tag: '新功能',
+    tag: 'feature',
     tagType: 'feature',
     changes: [
       '照片信息面板：新增文件大小，支持复制路径、在文件夹中显示',
@@ -89,7 +112,7 @@ const versions: Version[] = [
   {
     version: 'v0.11.18',
     date: '2026-10-04',
-    tag: '关键修复',
+    tag: 'fix',
     tagType: 'feature',
     changes: [
       '修复服务端激活码无法激活的问题',
@@ -103,7 +126,7 @@ const versions: Version[] = [
   {
     version: 'v0.11.17',
     date: '2026-10-01',
-    tag: '关键修复',
+    tag: 'fix',
     tagType: 'feature',
     changes: [
       '修复图片信息面板标题在内容较长时被遮挡的问题',
@@ -113,7 +136,7 @@ const versions: Version[] = [
   {
     version: 'v0.11.16',
     date: '2026-10-01',
-    tag: '功能更新',
+    tag: 'latest',
     tagType: 'feature',
     changes: [
       '界面更紧凑：侧栏标签列表单行显示，同屏可见内容翻倍',
@@ -126,7 +149,7 @@ const versions: Version[] = [
   {
     version: 'v0.11.15',
     date: '2026-09-27',
-    tag: '关键修复',
+    tag: 'fix',
     tagType: 'feature',
     changes: [
       '修复竖拍照片缩略图方向错误、比例异常的问题',
@@ -137,7 +160,7 @@ const versions: Version[] = [
   {
     version: 'v0.11.14',
     date: '2026-09-25',
-    tag: '新功能',
+    tag: 'feature',
     tagType: 'feature',
     changes: [
       '照片地图搜索联动：地图中搜索时自动切换为「搜索结果」视图，只显示命中且带定位的照片',
@@ -149,7 +172,7 @@ const versions: Version[] = [
   {
     version: 'v0.11.13',
     date: '2026-09-22',
-    tag: '关键修复',
+    tag: 'fix',
     tagType: 'feature',
     changes: [
       '修复缩略图逐张慢显：滚动浏览即时出图不再一张张等待，网格更流畅',
@@ -161,7 +184,7 @@ const versions: Version[] = [
   {
     version: 'v0.11.12',
     date: '2026-09-21',
-    tag: '功能更新',
+    tag: 'latest',
     tagType: 'feature',
     changes: [
       '新增「以图搜图」入口，相似照片一键查找',
@@ -174,7 +197,7 @@ const versions: Version[] = [
   {
     version: 'v0.11.11',
     date: '2026-09-19',
-    tag: '关键修复',
+    tag: 'fix',
     tagType: 'feature',
     changes: [
       '修复竖拍照片缩略图横躺显示的问题',
@@ -184,7 +207,7 @@ const versions: Version[] = [
   {
     version: 'v0.11.10',
     date: '2026-09-19',
-    tag: '功能更新',
+    tag: 'latest',
     tagType: 'feature',
     changes: [
       '优化搜索加载与界面显示，精简冗余信息，修复若干体验细节'
@@ -193,7 +216,7 @@ const versions: Version[] = [
   {
     version: 'v0.11.9',
     date: '2026-09-16',
-    tag: '功能更新',
+    tag: 'latest',
     tagType: 'feature',
     changes: [
       '批量删除大幅提速：整批照片一次送入回收站，50 张从约 70 秒降到 0.5 秒，整理大库不再干等',
@@ -207,7 +230,7 @@ const versions: Version[] = [
   {
     version: 'v0.11.8',
     date: '2026-09-13',
-    tag: '新功能',
+    tag: 'feature',
     tagType: 'feature',
     changes: [
       '网格多选升级：悬停图片浮现勾选框，点击即进入选择模式；支持 Ctrl+点击快速选中、Shift+点击范围选择，挑图整理效率大幅提升',
@@ -217,7 +240,7 @@ const versions: Version[] = [
   {
     version: 'v0.11.7',
     date: '2026-09-13',
-    tag: '关键修复',
+    tag: 'fix',
     tagType: 'feature',
     changes: [
       '语义搜索卡死根治：向量索引异常时自动降级为高速检索（亚秒级响应），后台自动重建索引自愈，不再出现搜索超时无结果',
@@ -228,7 +251,7 @@ const versions: Version[] = [
   {
     version: 'v0.11.6',
     date: '2026-09-13',
-    tag: '关键修复',
+    tag: 'fix',
     tagType: 'feature',
     changes: [
       '语义搜索提速：修复索引碎片化导致的查询卡顿，海量照片库搜索恢复毫秒级响应',
@@ -244,7 +267,7 @@ const versions: Version[] = [
   {
     version: 'v0.11.5',
     date: '2026-09-12',
-    tag: '关键修复',
+    tag: 'fix',
     tagType: 'feature',
     changes: [
       '索引回退 CPU 后速度修复：显卡不可用时不再被误降为逐张处理，索引速度恢复约 10 倍',
@@ -255,7 +278,7 @@ const versions: Version[] = [
   {
     version: 'v0.11.4',
     date: '2026-09-12',
-    tag: '功能更新',
+    tag: 'latest',
     tagType: 'feature',
     changes: [
       'GPU 加速兼容性增强：优先使用独立显卡加速索引，自动规避老旧核显驱动问题',
@@ -268,7 +291,7 @@ const versions: Version[] = [
   {
     version: 'v0.11.3',
     date: '2026-09-12',
-    tag: '关键修复',
+    tag: 'fix',
     tagType: 'feature',
     changes: [
       'GPU 自动恢复：显卡瞬时重置导致索引回退 CPU 后，每 5 分钟自动探测，恢复后立即切回 GPU 加速',
@@ -279,7 +302,7 @@ const versions: Version[] = [
   {
     version: 'v0.11.2',
     date: '2026-09-11',
-    tag: '关键修复',
+    tag: 'fix',
     tagType: 'feature',
     changes: [
       '修复自动更新失败的问题：旧版本因签名校验配置错误无法在线升级',
@@ -289,7 +312,7 @@ const versions: Version[] = [
   {
     version: 'v0.11.1',
     date: '2026-09-10',
-    tag: '功能更新',
+    tag: 'latest',
     tagType: 'feature',
     changes: [
       '修复缩略图补齐：后台批量生成遇到系统保留目录不再静默失败，缺失的预览图可自动补齐',
@@ -302,7 +325,7 @@ const versions: Version[] = [
   {
     version: 'v0.11.0',
     date: '2026-09-06',
-    tag: '功能更新',
+    tag: 'latest',
     tagType: 'feature',
     changes: [
       '改版为内置离线矢量地图，无需联网、无需授权即可查看照片足迹',
@@ -316,7 +339,7 @@ const versions: Version[] = [
   {
     version: 'v0.8.0',
     date: '2026-06-15',
-    tag: '功能更新',
+    tag: 'latest',
     tagType: 'feature',
     changes: [
       '新增自动标签功能',
@@ -328,7 +351,7 @@ const versions: Version[] = [
   {
     version: 'v0.7.0',
     date: '2026-04-20',
-    tag: '功能更新',
+    tag: 'latest',
     tagType: 'feature',
     changes: [
       '新增人脸识别与人物相册',
@@ -340,7 +363,7 @@ const versions: Version[] = [
   {
     version: 'v0.6.0',
     date: '2026-02-10',
-    tag: '首个公开版本',
+    tag: 'initial',
     tagType: 'initial',
     changes: [
       'AI 语义搜索（文字找图）',
