@@ -2,8 +2,8 @@
   <div class="features-page">
     <section class="page-hero">
       <div class="container">
-        <h1>核心功能</h1>
-        <p>核心智能功能，帮你轻松管理海量照片</p>
+        <h1>{{ t('features.heroTitle') }}</h1>
+        <p>{{ t('features.heroDesc') }}</p>
       </div>
     </section>
 
@@ -17,7 +17,7 @@
             :class="['nav-tab', { active: activeCategory === cat.key }]"
             @click="activeCategory = cat.key"
           >
-            {{ cat.label }}
+            {{ t(cat.labelKey) }}
             <span class="tab-count">{{ getFeaturesByCategory(cat.key).length }}</span>
           </button>
         </div>
@@ -35,7 +35,7 @@
           >
             <div class="feature-item-icon" v-html="feature.icon"></div>
             <div class="feature-item-content">
-              <span class="feature-item-tag" :class="feature.category">{{ feature.tag }}</span>
+              <span class="feature-item-tag" :class="feature.category">{{ t(feature.tag) }}</span>
               <h3>{{ feature.title }}</h3>
               <p>{{ feature.desc }}</p>
               <ul class="feature-item-list">
@@ -52,17 +52,11 @@
       <div class="container">
         <div class="feature-row">
           <div class="feature-text">
-            <span class="feature-tag">核心功能</span>
-            <h2>文字找图</h2>
-            <p class="feature-desc">
-              输入一句话描述你想找的照片，AI 就能理解你的意思，从海量图片中找出最匹配的结果。
-              不用记住文件名，也不用一张张翻看。
-            </p>
+            <span class="feature-tag">{{ t('features.tagCore') }}</span>
+            <h2>{{ t('features.detailTextTitle') }}</h2>
+            <p class="feature-desc">{{ t('features.detailTextDesc') }}</p>
             <ul class="feature-list">
-              <li>支持中文自然语言搜索</li>
-              <li>能听懂日常描述，比如海边、人物、颜色</li>
-              <li>找照片像搜索网页一样快</li>
-              <li>也能用一张照片找到相似照片</li>
+              <li v-for="pt in tm('features.detailTextList')" :key="pt">{{ pt }}</li>
             </ul>
           </div>
           <div class="feature-visual">
@@ -96,24 +90,18 @@
       <div class="container">
         <div class="feature-row reverse">
           <div class="feature-text">
-            <span class="feature-tag">核心功能</span>
-            <h2>以图搜图</h2>
-            <p class="feature-desc">
-              用一张照片，找出与它相似的照片。同场景、同主体、同风格的图一目了然，
-              整理重复照片、系列照片更轻松。
-            </p>
+            <span class="feature-tag">{{ t('features.tagCore') }}</span>
+            <h2>{{ t('features.detailImageTitle') }}</h2>
+            <p class="feature-desc">{{ t('features.detailImageDesc') }}</p>
             <ul class="feature-list">
-              <li>选中一张图即可搜相似</li>
-              <li>同场景、同主体自动归拢</li>
-              <li>配合时间线快速比对</li>
-              <li>结果全部本地计算，不上传</li>
+              <li v-for="pt in tm('features.detailImageList')" :key="pt">{{ pt }}</li>
             </ul>
           </div>
           <div class="feature-visual">
             <div class="visual-card visual-sidebar">
               <div class="visual-sidebar-header">
-                <span>相似照片</span>
-                <span class="visual-count">8 张</span>
+                <span>{{ t('features.demoSimilar') }}</span>
+                <span class="visual-count">{{ t('features.demoCount') }}</span>
               </div>
               <div class="person-list">
                 <div class="person-item" v-for="i in 5" :key="i" :class="{ selected: i === 1 }">
@@ -139,17 +127,11 @@
       <div class="container">
         <div class="feature-row">
           <div class="feature-text">
-            <span class="feature-tag">核心功能</span>
-            <h2>照片地图</h2>
-            <p class="feature-desc">
-              在地图上查看带有 GPS 位置的照片，旅行足迹一目了然。
-              点击地图上的标记，快速查看该位置拍摄的所有照片。
-            </p>
+            <span class="feature-tag">{{ t('features.tagCore') }}</span>
+            <h2>{{ t('features.detailMapTitle') }}</h2>
+            <p class="feature-desc">{{ t('features.detailMapDesc') }}</p>
             <ul class="feature-list">
-              <li>自动读取照片 GPS 信息</li>
-              <li>在地图上显示拍照位置</li>
-              <li>点击标记查看该位置照片</li>
-              <li>重温旅行足迹</li>
+              <li v-for="pt in tm('features.detailMapList')" :key="pt">{{ pt }}</li>
             </ul>
           </div>
           <div class="feature-visual">
@@ -166,7 +148,7 @@
                   <circle cx="60" cy="120" r="6" fill="var(--primary)"/>
                 </svg>
                 <div class="map-info">
-                  <span>5 个位置 · 28 张照片</span>
+                  <span>{{ t('features.demoMapInfo') }}</span>
                 </div>
               </div>
             </div>
@@ -179,9 +161,9 @@
     <section class="tech-section">
       <div class="container">
         <div class="section-header">
-          <span class="section-label">特性优势</span>
-          <h2 class="section-title">简单易用，安全可靠</h2>
-          <p class="section-desc">无需复杂设置，打开就能用</p>
+          <span class="section-label">{{ t('features.techLabel') }}</span>
+          <h2 class="section-title">{{ t('features.techTitle') }}</h2>
+          <p class="section-desc">{{ t('features.techDesc') }}</p>
         </div>
         <div class="tech-grid">
           <div class="tech-card" v-for="tech in techs" :key="tech.name">
@@ -198,12 +180,12 @@
     <section class="cta">
       <div class="container">
         <div class="cta-card">
-          <h2>开始使用SeekPhoto</h2>
-          <p>免费下载，即刻体验 AI 图片搜索</p>
-          <router-link to="/download" class="btn btn-primary btn-large">
-            下载 Windows 版
+          <h2>{{ t('features.ctaTitle') }}</h2>
+          <p>{{ t('features.ctaDesc') }}</p>
+          <router-link :to="loc('/download')" class="btn btn-primary btn-large">
+            {{ t('common.downloadWindows') }}
           </router-link>
-          <span class="cta-note">支持 Windows 10/11 · 约 60MB</span>
+          <span class="cta-note">{{ t('features.ctaNote') }}</span>
         </div>
       </div>
     </section>
@@ -212,152 +194,70 @@
 
 <script setup lang="ts">
 import { ref, computed } from 'vue'
+import { useRoute } from 'vue-router'
+import { useI18n } from 'vue-i18n'
+import { localeFromPath, localizedPath } from '../i18n'
 
 type Category = 'core' | 'advanced' | 'tool'
 
-interface Feature {
-  title: string
-  desc: string
-  icon: string
-  category: Category
-  tag: string
-  points: string[]
-}
+const { t, tm } = useI18n({ useScope: 'global' })
+const route = useRoute()
+const currentLocale = localeFromPath(route.path)
+const loc = (b: string) => localizedPath(b, currentLocale)
 
+// 分类标签（文案走 i18n）
 const categories = [
-  { key: 'all' as const, label: '全部功能' },
-  { key: 'core' as const, label: '核心功能' },
-  { key: 'advanced' as const, label: '扩展功能' },
-  { key: 'tool' as const, label: '实用工具' },
+  { key: 'all' as const, labelKey: 'features.catAll' },
+  { key: 'core' as const, labelKey: 'features.catCore' },
+  { key: 'advanced' as const, labelKey: 'features.catAdvanced' },
+  { key: 'tool' as const, labelKey: 'features.catTool' },
 ]
 
 const activeCategory = ref<'all' | Category>('all')
 
-const features: Feature[] = [
-  {
-    title: '文字找图',
-    desc: '输入一句话描述，AI 理解语义并找到匹配照片。支持中文搜索，像聊天一样自然。',
-    icon: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>',
-    category: 'core',
-    tag: '核心',
-    points: ['中文自然语言', '语义理解', '毫秒级响应']
-  },
-  {
-    title: '文字识别',
-    desc: '识别照片中的文字内容（招牌、文档、截图），让带文字的图片也能被搜到。结果限量展示。',
-    icon: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="8" y1="13" x2="16" y2="13"/><line x1="8" y1="17" x2="14" y2="17"/></svg>',
-    category: 'advanced',
-    tag: '扩展',
-    points: ['OCR 文字识别', '图文搜索', '限量结果']
-  },
-  {
-    title: '时间线浏览',
-    desc: '按拍摄时间自动整理照片，年月分组快速定位，重温每个时刻的回忆。',
-    icon: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>',
-    category: 'core',
-    tag: '核心',
-    points: ['年月分组', '快速定位', '文件名识别']
-  },
-  {
-    title: '照片地图',
-    desc: '在地图上查看带 GPS 位置的照片，旅行足迹一目了然，地理位置快速定位。',
-    icon: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>',
-    category: 'core',
-    tag: '核心',
-    points: ['GPS 定位', '足迹可视化', '位置筛选']
-  },
-  {
-    title: '标签管理',
-    desc: '给照片添加自定义标签，按主题分类整理，配合搜索快速找到目标照片。',
-    icon: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>',
-    category: 'core',
-    tag: '核心',
-    points: ['自定义标签', '主题分类', '快速筛选']
-  },
-  {
-    title: '相册整理',
-    desc: '创建自定义相册，按主题或项目归类照片，批量导出分享，整理井井有条。',
-    icon: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>',
-    category: 'core',
-    tag: '核心',
-    points: ['自定义相册', '批量管理', '一键导出']
-  },
-  {
-    title: '以图搜图',
-    desc: '用一张照片找到相似的照片，快速定位同场景、同主题的图片。',
-    icon: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>',
-    category: 'advanced',
-    tag: '扩展',
-    points: ['相似搜索', '视觉匹配', '快速定位']
-  },
-  {
-    title: '相似照片去重',
-    desc: '自动识别重复或高度相似的照片，帮你清理冗余，节省存储空间。',
-    icon: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="13" height="13"/><rect x="8" y="8" width="13" height="13"/></svg>',
-    category: 'advanced',
-    tag: '扩展',
-    points: ['重复检测', '智能识别', '一键清理']
-  },
-  {
-    title: '批量导出',
-    desc: '选中多张照片批量导出，支持原图和缩略图，方便分享和备份。',
-    icon: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>',
-    category: 'tool',
-    tag: '工具',
-    points: ['批量操作', '原图导出', '快速分享']
-  },
-  {
-    title: '搜索历史',
-    desc: '自动记录搜索历史，一键重复搜索，节省输入时间。',
-    icon: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3v5h5"/><path d="M3.05 13A9 9 0 1 0 6 5.3L3 8"/><path d="M12 7v5l4 2"/></svg>',
-    category: 'tool',
-    tag: '工具',
-    points: ['历史记录', '一键重搜', '快速访问']
-  }
-]
+// 每个功能的「分类 / 标签 / 图标」是语言无关的，留在组件内
+const featureMeta: Record<string, { category: Category; tagKey: string; icon: string }> = {
+  textSearch: { category: 'core', tagKey: 'features.tagCore', icon: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>' },
+  ocr: { category: 'advanced', tagKey: 'features.tagAdvanced', icon: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="8" y1="13" x2="16" y2="13"/><line x1="8" y1="17" x2="14" y2="17"/></svg>' },
+  timeline: { category: 'core', tagKey: 'features.tagCore', icon: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>' },
+  map: { category: 'core', tagKey: 'features.tagCore', icon: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>' },
+  tags: { category: 'core', tagKey: 'features.tagCore', icon: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>' },
+  albums: { category: 'core', tagKey: 'features.tagCore', icon: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>' },
+  imageSearch: { category: 'advanced', tagKey: 'features.tagAdvanced', icon: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>' },
+  dedup: { category: 'advanced', tagKey: 'features.tagAdvanced', icon: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="13" height="13"/><rect x="8" y="8" width="13" height="13"/></svg>' },
+  export: { category: 'tool', tagKey: 'features.tagTool', icon: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>' },
+  history: { category: 'tool', tagKey: 'features.tagTool', icon: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3v5h5"/><path d="M3.05 13A9 9 0 1 0 6 5.3L3 8"/><path d="M12 7v5l4 2"/></svg>' },
+}
+
+const features = computed(() =>
+  (tm('features.features') as unknown as any[]).map((f) => {
+    const m = featureMeta[f.key]
+    return { ...f, category: m.category, tag: m.tagKey, icon: m.icon }
+  })
+)
 
 const filteredFeatures = computed(() => {
-  if (activeCategory.value === 'all') return features
-  return features.filter(f => f.category === activeCategory.value)
+  if (activeCategory.value === 'all') return features.value
+  return features.value.filter((f) => f.category === activeCategory.value)
 })
 
 const getFeaturesByCategory = (cat: string) => {
-  if (cat === 'all') return features
-  return features.filter(f => f.category === cat)
+  if (cat === 'all') return features.value
+  return features.value.filter((f) => f.category === cat)
 }
 
-const techs = [
-  {
-    name: '完全本地',
-    desc: '照片、数据都保存在你的电脑上，不会上传到任何服务器',
-    icon: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>'
-  },
-  {
-    name: '隐私保护',
-    desc: '不上传你的照片，AI 处理也在本地完成，保护个人隐私',
-    icon: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>'
-  },
-  {
-    name: '说话就能找',
-    desc: '不用记住文件名，输入一句话描述，AI 帮你找到想要的照片',
-    icon: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>'
-  },
-  {
-    name: 'AI 自动整理',
-    desc: '自动为照片添加标签、归类主题，整理更省心',
-    icon: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>'
-  },
-  {
-    name: '时间轴浏览',
-    desc: '按拍摄时间自动整理，快速找到某个年份、月份的照片',
-    icon: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>'
-  },
-  {
-    name: '持续更新',
-    desc: '我们会持续优化搜索效果和使用体验，让找照片越来越简单',
-    icon: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>'
-  }
-]
+// 技术优势图标（按 key）
+const techIcons: Record<string, string> = {
+  local: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>',
+  privacy: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>',
+  talk: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>',
+  auto: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>',
+  timeline: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>',
+  update: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>',
+}
+const techs = computed(() =>
+  (tm('features.techs') as unknown as any[]).map((tc) => ({ ...tc, icon: techIcons[tc.key] }))
+)
 
 const base = import.meta.env.BASE_URL
 

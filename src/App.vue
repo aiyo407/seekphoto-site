@@ -13,27 +13,50 @@ import Header from './components/common/Header.vue'
 import Footer from './components/common/Footer.vue'
 import { useRoute } from 'vue-router'
 import { useHead } from '@unhead/vue'
+import { useI18n } from 'vue-i18n'
 import { APP_VERSION } from './config/version'
+import {
+  i18n,
+  localeFromPath,
+  stripLocale,
+  localizedPath,
+  LOCALE_HREFLANG,
+  SUPPORTED_LOCALES,
+  type AppLocale,
+} from './i18n'
 
 const route = useRoute()
+const { t, tm } = useI18n({ useScope: 'global' })
 const SITE = 'https://www.seekphoto.cn'
-const SITE_DESC =
-  'SeekPhoto 是一款本地 AI 图片搜索管理工具，运行在 Windows 上。用一句话就能搜到照片：语义搜图、以图搜图、照片地图与文字识别（OCR），内置离线矢量地图，所有数据本地处理、不上传云端。'
 
-// 按路由注入完整 head（title/description/OG/Twitter/canonical）+ 结构化数据。
+// SSG 渲染期 / 首屏：依据路由前缀同步语言，确保子组件 t() 渲染前已就位
+const currentLocale: AppLocale = localeFromPath(route.path)
+i18n.global.locale.value = currentLocale
+
+// 按路由注入完整 head（title/description/OG/Twitter/canonical/hreflang）+ 结构化数据。
 // 构建期由 vite-ssg 渲染进每页静态 HTML，爬虫无需执行 JS 即可读到。
 useHead(() => {
-  const title = (route.meta.title as string) || 'SeekPhoto - 本地 AI 图片搜索'
-  const description = (route.meta.description as string) || SITE_DESC
-  const url = SITE + route.path
+  const locale = localeFromPath(route.path)
+  const pageKey = (route.meta.pageKey as string) || 'home'
+  const title = t(`meta.${pageKey}.title`) as string
+  const description = t(`meta.${pageKey}.description`) as string
+  const base = stripLocale(route.path)
+  const url = SITE + localizedPath(base, locale)
 
   const graph: Record<string, unknown>[] = [
+    {
+      '@type': 'Organization',
+      name: 'SeekPhoto',
+      url: SITE,
+      logo: { '@type': 'ImageObject', url: SITE + '/og-image.png', width: 1200, height: 630 },
+      sameAs: ['https://qm.qq.com/q/VLdutsMlmU'],
+    },
     {
       '@type': 'WebSite',
       url: SITE,
       name: 'SeekPhoto',
-      description: SITE_DESC,
-      inLanguage: 'zh-CN',
+      description: t('meta.home.description'),
+      inLanguage: locale,
     },
     {
       '@type': 'SoftwareApplication',
@@ -42,29 +65,40 @@ useHead(() => {
       applicationCategory: 'MultimediaApplication',
       operatingSystem: 'Windows 10, Windows 11',
       softwareVersion: APP_VERSION,
-      description: '本地 AI 图片搜索管理工具，支持语义搜图、以图搜图、照片地图与文字识别，所有数据本地处理。',
+      description: t('meta.download.description'),
       offers: { '@type': 'Offer', price: '0', priceCurrency: 'CNY' },
       publisher: { '@type': 'Organization', name: 'SeekPhoto' },
     },
   ]
 
   // FAQ 结构化数据仅首页（与首页文案一致，直接喂 AI 问答）
-  if (route.path === '/') {
+  if (pageKey === 'home') {
+    const faqs = tm('home.faqs') as unknown as { q: string; a: string }[]
     graph.push({
       '@type': 'FAQPage',
-      mainEntity: [
-        { '@type': 'Question', name: 'SeekPhoto是什么？', acceptedAnswer: { '@type': 'Answer', text: 'SeekPhoto是一款运行在 Windows 上的本地 AI 图片搜索工具，用一句话描述就能从海量照片里找到想要的那一张。' } },
-        { '@type': 'Question', name: 'SeekPhoto收费吗？', acceptedAnswer: { '@type': 'Answer', text: 'SeekPhoto免费下载使用，核心功能（语义搜图、以图搜图、照片地图、文字识别）都可免费体验，所有数据本地处理、不上传云端。' } },
-        { '@type': 'Question', name: '我的照片安全吗？', acceptedAnswer: { '@type': 'Answer', text: '照片信息和 AI 索引都只保存在你的电脑上，不上传任何服务器；AI 模型也在本地运行，照片永不离开本机。' } },
-        { '@type': 'Question', name: '支持哪些系统？', acceptedAnswer: { '@type': 'Answer', text: '目前支持 Windows 10 与 Windows 11 的 64 位系统。' } },
-        { '@type': 'Question', name: '怎么用一句话搜图？', acceptedAnswer: { '@type': 'Answer', text: '在搜索框输入自然语言描述，例如“海边的日落”“穿红衣服的人”“可爱的猫咪”，AI 会理解语义并返回最匹配的照片。' } },
-      ],
+      mainEntity: faqs.map((f) => ({
+        '@type': 'Question',
+        name: f.q,
+        acceptedAnswer: { '@type': 'Answer', text: f.a },
+      })),
     })
   }
 
+  // hreflang 备用链接：每种语言一份 + x-default（回退到简体）
+  const alternates = SUPPORTED_LOCALES.map((loc) => ({
+    rel: 'alternate',
+    hreflang: LOCALE_HREFLANG[loc],
+    href: SITE + localizedPath(base, loc),
+  }))
+  alternates.push({
+    rel: 'alternate',
+    hreflang: 'x-default',
+    href: SITE + localizedPath(base, 'zh-CN'),
+  })
+
   return {
     title,
-    htmlAttrs: { lang: 'zh-CN' },
+    htmlAttrs: { lang: LOCALE_HREFLANG[locale] },
     meta: [
       { name: 'description', content: description },
       { property: 'og:type', content: 'website' },
@@ -73,13 +107,13 @@ useHead(() => {
       { property: 'og:description', content: description },
       { property: 'og:url', content: url },
       { property: 'og:image', content: SITE + '/og-image.png' },
-      { property: 'og:locale', content: 'zh_CN' },
+      { property: 'og:locale', content: locale === 'zh-TW' ? 'zh_Hant' : 'zh_CN' },
       { name: 'twitter:card', content: 'summary_large_image' },
       { name: 'twitter:title', content: title },
       { name: 'twitter:description', content: description },
       { name: 'twitter:image', content: SITE + '/og-image.png' },
     ],
-    link: [{ rel: 'canonical', href: url }],
+    link: [{ rel: 'canonical', href: url }, ...alternates],
     script: [
       {
         type: 'application/ld+json',

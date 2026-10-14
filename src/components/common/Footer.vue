@@ -3,40 +3,40 @@
     <div class="container">
       <div class="footer-content">
         <div class="footer-brand">
-          <router-link to="/" class="logo">
+          <router-link :to="loc('/')" class="logo">
             <img :src="logo" alt="SeekPhoto" class="logo-img" />
             <span class="logo-text">SeekPhoto</span>
           </router-link>
-          <p>用一句话，找到那张照片</p>
+          <p>{{ t('footer.tagline') }}</p>
         </div>
 
         <div class="footer-links">
           <div class="footer-col">
-            <h4>导航</h4>
-            <router-link to="/">首页</router-link>
-            <router-link to="/features">功能</router-link>
-            <router-link to="/guide">使用教程</router-link>
-            <router-link to="/download">下载</router-link>
-            <router-link to="/changelog">更新日志</router-link>
+            <h4>{{ t('footer.navTitle') }}</h4>
+            <router-link :to="loc('/')">{{ t('nav.home') }}</router-link>
+            <router-link :to="loc('/features')">{{ t('nav.features') }}</router-link>
+            <router-link :to="loc('/guide')">{{ t('nav.guide') }}</router-link>
+            <router-link :to="loc('/download')">{{ t('nav.download') }}</router-link>
+            <router-link :to="loc('/changelog')">{{ t('nav.changelog') }}</router-link>
           </div>
           <div class="footer-col">
-            <h4>关于</h4>
-            <router-link to="/about">关于本站</router-link>
+            <h4>{{ t('footer.aboutTitle') }}</h4>
+            <router-link :to="loc('/about')">{{ t('nav.about') }}</router-link>
           </div>
           <div class="footer-col">
-            <h4>说明</h4>
-            <router-link to="/privacy">隐私政策</router-link>
-            <router-link to="/terms">使用说明</router-link>
+            <h4>{{ t('footer.legalTitle') }}</h4>
+            <router-link :to="loc('/privacy')">{{ t('nav.privacy') }}</router-link>
+            <router-link :to="loc('/terms')">{{ t('nav.terms') }}</router-link>
           </div>
           <div class="footer-col">
-            <h4>社区</h4>
-            <a href="https://qm.qq.com/q/VLdutsMlmU" target="_blank" rel="noopener noreferrer">用户交流群</a>
+            <h4>{{ t('footer.communityTitle') }}</h4>
+            <a href="https://qm.qq.com/q/VLdutsMlmU" target="_blank" rel="noopener noreferrer">{{ t('footer.community') }}</a>
           </div>
         </div>
       </div>
 
       <div class="footer-bottom">
-        <p>&copy; 2026 SeekPhoto · 本地 AI 图片搜索</p>
+        <p>{{ t('footer.copyright') }}</p>
         <p class="icp">
           <a href="https://beian.miit.gov.cn/" target="_blank" rel="noopener noreferrer">粤ICP备2026111543号-1</a>
           <a class="mps-beian" href="https://beian.mps.gov.cn/#/query/webSearch?code=44011802001527" target="_blank" rel="noopener noreferrer">
@@ -50,8 +50,16 @@
 </template>
 
 <script setup lang="ts">
+import { useRoute } from 'vue-router'
+import { useI18n } from 'vue-i18n'
 import logo from '../../assets/logo.png'
 import beianIcon from '../../assets/备案图标.png'
+import { localeFromPath, localizedPath, type AppLocale } from '../../i18n'
+
+const { t } = useI18n({ useScope: 'global' })
+const route = useRoute()
+const currentLocale = localeFromPath(route.path)
+const loc = (base: string) => localizedPath(base, currentLocale as AppLocale)
 </script>
 
 <style scoped>

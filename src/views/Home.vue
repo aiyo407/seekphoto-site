@@ -4,41 +4,36 @@
     <section class="hero">
       <div class="container">
         <div class="hero-content">
-          <span class="badge">免费下载 · 本地运行 · 隐私保护</span>
-          <h1 class="hero-title">
-            用一句话，<br>找到那张照片
-          </h1>
-          <p class="hero-subtitle">
-            输入即出结果，不等 AI。本地运行的 AI 图片搜索工具：文字找图、以图搜图、时间线浏览与照片地图。<br>
-            所有数据只存储在你的电脑上，不上传任何服务器。
-          </p>
+      <span class="badge">{{ t('home.badge') }}</span>
+      <h1 class="hero-title">{{ t('home.heroTitle') }}</h1>
+      <p class="hero-subtitle" v-html="t('home.heroSubtitle')"></p>
           <div class="hero-actions">
-            <router-link to="/download" class="btn btn-primary btn-large">
+            <router-link :to="loc('/download')" class="btn btn-primary btn-large">
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
                 <polyline points="7 10 12 15 17 10"/>
                 <line x1="12" y1="15" x2="12" y2="3"/>
               </svg>
-              免费下载
+              {{ t('common.freeDownload') }}
             </router-link>
-            <router-link to="/features" class="btn btn-secondary btn-large">
-              查看功能
+            <router-link :to="loc('/features')" class="btn btn-secondary btn-large">
+              {{ t('common.viewFeatures') }}
             </router-link>
           </div>
           <div class="hero-stats">
             <div class="stat">
-              <span class="stat-num">即时</span>
-              <span class="stat-label">本地即时搜索</span>
+              <span class="stat-num">{{ t('home.statsInstant') }}</span>
+              <span class="stat-label">{{ t('home.statsInstantLabel') }}</span>
             </div>
             <div class="stat-divider"></div>
             <div class="stat">
-              <span class="stat-num">100%</span>
-              <span class="stat-label">本地处理</span>
+              <span class="stat-num">{{ t('home.statsLocal') }}</span>
+              <span class="stat-label">{{ t('home.statsLocalLabel') }}</span>
             </div>
             <div class="stat-divider"></div>
             <div class="stat">
-              <span class="stat-num">0</span>
-              <span class="stat-label">照片上传</span>
+              <span class="stat-num">{{ t('home.statsZero') }}</span>
+              <span class="stat-label">{{ t('home.statsZeroLabel') }}</span>
             </div>
           </div>
         </div>
@@ -49,9 +44,9 @@
     <section class="features">
       <div class="container">
         <div class="section-header">
-          <span class="section-label">核心能力</span>
-          <h2 class="section-title">让找照片变得简单</h2>
-          <p class="section-desc">七大智能功能，帮你从海量照片中快速找到想要的那一张</p>
+          <span class="section-label">{{ t('home.featuresLabel') }}</span>
+          <h2 class="section-title">{{ t('home.featuresTitle') }}</h2>
+          <p class="section-desc">{{ t('home.featuresDesc') }}</p>
         </div>
 
         <div class="feature-grid">
@@ -68,9 +63,9 @@
     <section class="demo">
       <div class="container">
         <div class="section-header">
-          <span class="section-label">体验演示</span>
-          <h2 class="section-title">打两个字，照片就出来了</h2>
-          <p class="section-desc">文件名输入到一半，结果已经在眼前——本地即时匹配，零等待；想让 AI 理解画面内容（"海边的日落"），再按一次回车</p>
+          <span class="section-label">{{ t('home.demoLabel') }}</span>
+          <h2 class="section-title">{{ t('home.demoTitle') }}</h2>
+          <p class="section-desc">{{ t('home.demoDesc') }}</p>
         </div>
 
         <div class="demo-app">
@@ -84,13 +79,8 @@
             <button class="demo-search-btn">搜索</button>
           </div>
           <div class="demo-tags">
-            <span class="demo-tags-label">试试：</span>
-            <span class="demo-tag">海边的日落</span>
-            <span class="demo-tag">宝宝的笑容</span>
-            <span class="demo-tag">穿红衣服的人</span>
-            <span class="demo-tag">城市夜景</span>
-            <span class="demo-tag">可爱的猫咪</span>
-            <span class="demo-tag">春天的花朵</span>
+            <span class="demo-tags-label">{{ t('home.tryLabel') }}</span>
+            <span class="demo-tag" v-for="kw in keywords" :key="kw">{{ kw }}</span>
           </div>
           <div class="demo-results">
             <div class="demo-result-card" v-for="i in 8" :key="i" :style="{ animationDelay: `${i * 0.06}s` }">
@@ -112,9 +102,9 @@
     <section class="scenarios">
       <div class="container">
         <div class="section-header">
-          <span class="section-label">使用场景</span>
-          <h2 class="section-title">SeekPhoto能帮你做什么</h2>
-          <p class="section-desc">无论你的照片有多少，都能轻松管理</p>
+          <span class="section-label">{{ t('home.scenariosLabel') }}</span>
+          <h2 class="section-title">{{ t('home.scenariosTitle') }}</h2>
+          <p class="section-desc">{{ t('home.scenariosDesc') }}</p>
         </div>
 
         <div class="scenario-grid">
@@ -131,17 +121,17 @@
     <section class="compare">
       <div class="container">
         <div class="section-header">
-          <span class="section-label">特性优势</span>
-          <h2 class="section-title">为什么选择SeekPhoto</h2>
-          <p class="section-desc">相比传统方式，SeekPhoto让照片管理更智能、更安全</p>
+          <span class="section-label">{{ t('home.compareLabel') }}</span>
+          <h2 class="section-title">{{ t('home.compareTitle') }}</h2>
+          <p class="section-desc">{{ t('home.compareDesc') }}</p>
         </div>
 
         <div class="compare-table">
           <div class="compare-row compare-header">
-            <div class="compare-cell compare-feature">对比项</div>
-            <div class="compare-cell">传统文件夹</div>
-            <div class="compare-cell">云端相册</div>
-            <div class="compare-cell compare-highlight">SeekPhoto</div>
+            <div class="compare-cell compare-feature">{{ t('home.compareFeature') }}</div>
+            <div class="compare-cell">{{ t('home.compareFolder') }}</div>
+            <div class="compare-cell">{{ t('home.compareCloud') }}</div>
+            <div class="compare-cell compare-highlight">{{ t('home.compareSeek') }}</div>
           </div>
           <div class="compare-row" v-for="item in compareData" :key="item.feature">
             <div class="compare-cell compare-feature">{{ item.feature }}</div>
@@ -176,8 +166,8 @@
                 <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
               </svg>
             </div>
-            <h3>本地存储</h3>
-            <p>照片信息、索引数据都保存在你的电脑上</p>
+            <h3>{{ t('home.privacyItems.0.title') }}</h3>
+            <p>{{ t('home.privacyItems.0.desc') }}</p>
           </div>
           <div class="privacy-item">
             <div class="privacy-icon">
@@ -186,8 +176,8 @@
                 <circle cx="12" cy="12" r="3"/>
               </svg>
             </div>
-            <h3>无需联网</h3>
-            <p>首次下载 AI 功能后，不联网也能正常使用</p>
+            <h3>{{ t('home.privacyItems.1.title') }}</h3>
+            <p>{{ t('home.privacyItems.1.desc') }}</p>
           </div>
           <div class="privacy-item">
             <div class="privacy-icon">
@@ -198,8 +188,8 @@
                 <line x1="16" y1="17" x2="8" y2="17"/>
               </svg>
             </div>
-            <h3>隐私可控</h3>
-            <p>数据处理方式完全透明，你的照片始终由你掌控</p>
+            <h3>{{ t('home.privacyItems.2.title') }}</h3>
+            <p>{{ t('home.privacyItems.2.desc') }}</p>
           </div>
         </div>
       </div>
@@ -209,9 +199,9 @@
     <section class="faq">
       <div class="container">
         <div class="section-header">
-          <span class="section-label">常见问题</span>
-          <h2 class="section-title">关于SeekPhoto，你可能想知道</h2>
-          <p class="section-desc">本地 AI 搜图，简单、安全地管理你的照片</p>
+          <span class="section-label">{{ t('home.faqLabel') }}</span>
+          <h2 class="section-title">{{ t('home.faqTitle') }}</h2>
+          <p class="section-desc">{{ t('home.faqDesc') }}</p>
         </div>
         <div class="faq-list">
           <div class="faq-item" v-for="item in faqs" :key="item.q">
@@ -226,12 +216,12 @@
     <section class="cta">
       <div class="container">
         <div class="cta-card">
-          <h2>开始使用SeekPhoto</h2>
-          <p>免费下载，即刻体验 AI 图片搜索</p>
-          <router-link to="/download" class="btn btn-primary btn-large">
-            下载 for Windows
+          <h2>{{ t('home.ctaTitle') }}</h2>
+          <p>{{ t('home.ctaDesc') }}</p>
+          <router-link :to="loc('/download')" class="btn btn-primary btn-large">
+            {{ t('common.downloadWindows') }}
           </router-link>
-          <span class="cta-note">支持 Windows 10/11 · 约 60MB</span>
+          <span class="cta-note">{{ t('home.ctaNote') }}</span>
         </div>
       </div>
     </section>
@@ -239,88 +229,45 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted, onUnmounted } from 'vue'
+import { ref, computed, onMounted, onUnmounted } from 'vue'
+import { useRoute } from 'vue-router'
+import { useI18n } from 'vue-i18n'
+import { localeFromPath, localizedPath } from '../i18n'
 
-const features: { title: string; desc: string; icon: string }[] = [
-  {
-    title: '文字找图',
-    desc: '两层搜索：文件名即时匹配，输入即出结果；语义搜索懂画面，没写标题的照片也能搜到。支持中文。',
-    icon: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>'
-  },
-  {
-    title: '以图搜图',
-    desc: '用一张照片找出相似的照片，同场景、同主体的图一目了然，轻松整理重复与系列照片。',
-    icon: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>'
-  },
-  {
-    title: '时间线浏览',
-    desc: '按拍摄时间自动整理照片，年月分组快速定位，重温每个时刻的回忆。',
-    icon: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>'
-  },
-  {
-    title: '照片地图',
-    desc: '在地图上查看带 GPS 位置的照片，旅行足迹一目了然，地理位置快速定位。',
-    icon: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>'
-  },
-  {
-    title: '标签管理',
-    desc: '给照片添加自定义标签，按主题分类整理，配合搜索快速找到目标照片。',
-    icon: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>'
-  },
-  {
-    title: '相册整理',
-    desc: '创建相册，还能把筛选条件存成智能相册——设一次，新照片自动归入，越用越懂你。',
-    icon: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>'
-  },
-  {
-    title: '文字识别',
-    desc: '识别照片中的文字（招牌、文档、截图），让带文字的图片也能被搜到。结果限量展示。',
-    icon: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="8" y1="13" x2="16" y2="13"/><line x1="8" y1="17" x2="14" y2="17"/></svg>'
-  }
-]
+const { t, tm } = useI18n({ useScope: 'global' })
+const route = useRoute()
+const currentLocale = localeFromPath(route.path)
+// 站内链接保持当前语言
+const loc = (b: string) => localizedPath(b, currentLocale)
 
-const scenarios: { title: string; desc: string; icon: string }[] = [
-  {
-    title: '整理旅行照片',
-    desc: '旅行回来照片太多？用文字描述就能找到想要的那张，还能在地图上重温足迹。',
-    icon: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>'
-  },
-  {
-    title: '记录宝宝成长',
-    desc: '宝宝每天都在长大，用时间线和相册记录每个珍贵瞬间，文字搜索随时回味那些笑脸。',
-    icon: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>'
-  },
-  {
-    title: '管理工作素材',
-    desc: '作品图、设计稿、参考图混杂在一起？用标签和相册分类，快速找到需要的素材。',
-    icon: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>'
-  },
-  {
-    title: '回忆特殊时刻',
-    desc: '生日、纪念日、毕业典礼...用时间线快速回到那一天，重温美好回忆。',
-    icon: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>'
-  }
-]
+// 图标按 key 映射（语言无关，留在组件内）
+const featureIcons: Record<string, string> = {
+  textSearch: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>',
+  imageSearch: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>',
+  timeline: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>',
+  map: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>',
+  tags: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>',
+  albums: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>',
+  ocr: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="8" y1="13" x2="16" y2="13"/><line x1="8" y1="17" x2="14" y2="17"/></svg>',
+}
+const scenarioIcons: Record<string, string> = {
+  travel: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>',
+  baby: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>',
+  work: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>',
+  moment: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>',
+}
 
-const compareData = [
-  { feature: 'AI 语义搜索', folder: 'no', cloud: '部分', seek: 'yes' },
-  { feature: '文字识别 OCR', folder: 'no', cloud: '部分', seek: 'yes' },
-  { feature: '照片地图定位', folder: 'no', cloud: '部分', seek: 'yes' },
-  { feature: '数据隐私保护', folder: 'yes', cloud: 'no', seek: 'yes' },
-  { feature: '不限照片数量', folder: 'yes', cloud: 'no', seek: 'yes' },
-  { feature: '离线使用', folder: 'yes', cloud: 'no', seek: 'yes' },
-  { feature: '自动整理分类', folder: 'no', cloud: '部分', seek: 'yes' },
-]
+// 文案全部来自 i18n；图标按 key 补回
+const features = computed(() =>
+  (tm('home.features') as unknown as any[]).map((f) => ({ ...f, icon: featureIcons[f.key] }))
+)
+const scenarios = computed(() =>
+  (tm('home.scenarios') as unknown as any[]).map((s) => ({ ...s, icon: scenarioIcons[s.key] }))
+)
+const compareData = computed(() => tm('home.compareData') as unknown as any[])
+const faqs = computed(() => tm('home.faqs') as unknown as any[])
+const keywords = computed(() => tm('home.keywords') as unknown as string[])
 
-const faqs: { q: string; a: string }[] = [
-  { q: 'SeekPhoto是什么？', a: 'SeekPhoto是一款运行在 Windows 上的本地 AI 图片搜索工具。用一句话描述，就能从海量照片里找到想要的那一张。' },
-  { q: 'SeekPhoto收费吗？', a: 'SeekPhoto免费下载使用，核心功能——语义搜图、以图搜图、照片地图、文字识别——都可以免费体验，所有数据本地处理、不上传云端。' },
-  { q: '我的照片安全吗？', a: '安全。照片信息和 AI 索引都只保存在你的电脑上，不上传任何服务器；AI 模型也在本地运行，照片永不离开本机。' },
-  { q: '支持哪些系统？', a: '目前支持 Windows 10 / 11 的 64 位系统。' },
-  { q: '怎么用一句话搜图？', a: '在搜索框输入自然语言描述，例如“海边的日落”“穿红衣服的人”“可爱的猫咪”，AI 会理解语义并返回最匹配的照片。' }
-]
-
-const keywords = ['海边的日落', '宝宝的笑容', '穿红衣服的人', '城市夜景', '可爱的猫咪', '春天的花朵', '山间小屋', '咖啡时光']
 const currentKeyword = ref('')
 let keywordIndex = 0
 let charIndex = 0
@@ -341,7 +288,7 @@ const thumbImages = [
 ]
 
 const typeKeyword = () => {
-  const target = keywords[keywordIndex]
+  const target = keywords.value[keywordIndex]
   if (charIndex <= target.length) {
     currentKeyword.value = target.slice(0, charIndex)
     charIndex++
@@ -349,7 +296,7 @@ const typeKeyword = () => {
   } else {
     pauseTimer = setTimeout(() => {
       charIndex = 0
-      keywordIndex = (keywordIndex + 1) % keywords.length
+      keywordIndex = (keywordIndex + 1) % keywords.value.length
       typeKeyword()
     }, 2000)
   }

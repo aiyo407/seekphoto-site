@@ -2,26 +2,37 @@
   <header class="header" :class="{ scrolled: isScrolled }">
     <div class="container">
       <div class="header-content">
-        <router-link to="/" class="logo" @click="closeMenu">
+        <router-link :to="loc('/')" class="logo" @click="closeMenu">
           <img :src="logo" alt="SeekPhoto" class="logo-img" />
           <span class="logo-text">SeekPhoto</span>
         </router-link>
 
         <nav class="nav">
-          <router-link to="/">首页</router-link>
-          <router-link to="/features">功能</router-link>
-          <router-link to="/guide">使用教程</router-link>
-          <router-link to="/download">下载</router-link>
+          <router-link v-for="item in navItems" :key="item.base" :to="loc(item.base)">
+            {{ t(item.key) }}
+          </router-link>
         </nav>
 
         <div class="header-actions">
+          <!-- 语言切换 -->
+          <div class="lang-switch" role="group" :aria-label="t('nav.lang')">
+            <router-link
+              v-for="opt in localeOptions"
+              :key="opt.value"
+              :to="switchLocale(opt.value)"
+              class="lang-btn"
+              :class="{ active: currentLocale === opt.value }"
+            >
+              {{ opt.label }}
+            </router-link>
+          </div>
           <!-- 移动端汉堡按钮 -->
           <button
             type="button"
             class="menu-toggle"
             :class="{ active: isMenuOpen }"
             :aria-expanded="isMenuOpen"
-            aria-label="菜单"
+            :aria-label="t('nav.menu')"
             @click="toggleMenu"
           >
             <span></span>
@@ -35,12 +46,24 @@
     <!-- 移动端抽屉菜单 -->
     <transition name="drawer">
       <nav v-if="isMenuOpen" class="mobile-nav">
-        <router-link to="/" @click="closeMenu">首页</router-link>
-        <router-link to="/features" @click="closeMenu">功能</router-link>
-        <router-link to="/guide" @click="closeMenu">使用教程</router-link>
-        <router-link to="/download" @click="closeMenu">下载</router-link>
-        <router-link to="/about" @click="closeMenu">关于本站</router-link>
-        <router-link to="/changelog" @click="closeMenu">更新日志</router-link>
+        <router-link v-for="item in navItems" :key="item.base" :to="loc(item.base)" @click="closeMenu">
+          {{ t(item.key) }}
+        </router-link>
+        <router-link v-for="item in mobileExtra" :key="item.base" :to="loc(item.base)" @click="closeMenu">
+          {{ t(item.key) }}
+        </router-link>
+        <div class="mobile-lang">
+          <router-link
+            v-for="opt in localeOptions"
+            :key="opt.value"
+            :to="switchLocale(opt.value)"
+            class="lang-btn"
+            :class="{ active: currentLocale === opt.value }"
+            @click="closeMenu"
+          >
+            {{ opt.label }}
+          </router-link>
+        </div>
       </nav>
     </transition>
 
@@ -52,13 +75,45 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted, onUnmounted, watch } from 'vue'
+import { ref, computed, onMounted, onUnmounted, watch } from 'vue'
 import { useRoute } from 'vue-router'
+import { useI18n } from 'vue-i18n'
 import logo from '../../assets/logo.png'
+import {
+  localeFromPath,
+  stripLocale,
+  localizedPath,
+  type AppLocale,
+} from '../../i18n'
+
+const { t } = useI18n({ useScope: 'global' })
+const route = useRoute()
+const currentLocale = computed<AppLocale>(() => localeFromPath(route.path))
+const basePath = computed(() => stripLocale(route.path))
+
+// 当前语言的页面链接（带前缀）
+const loc = (base: string) => localizedPath(base, currentLocale.value)
+// 切换到目标语言时，停留在同一页面
+const switchLocale = (target: AppLocale) => localizedPath(basePath.value, target)
+
+const localeOptions: { value: AppLocale; label: string }[] = [
+  { value: 'zh-CN', label: '简' },
+  { value: 'zh-TW', label: '繁' },
+]
+
+const navItems = [
+  { base: '/', key: 'nav.home' },
+  { base: '/features', key: 'nav.features' },
+  { base: '/guide', key: 'nav.guide' },
+  { base: '/download', key: 'nav.download' },
+]
+const mobileExtra = [
+  { base: '/about', key: 'nav.about' },
+  { base: '/changelog', key: 'nav.changelog' },
+]
 
 const isScrolled = ref(false)
 const isMenuOpen = ref(false)
-const route = useRoute()
 
 const handleScroll = () => {
   isScrolled.value = window.scrollY > 10
@@ -162,7 +217,34 @@ onUnmounted(() => {
 .header-actions {
   display: flex;
   align-items: center;
-  gap: 4px;
+  gap: 8px;
+}
+
+/* 语言切换 */
+.lang-switch {
+  display: inline-flex;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  overflow: hidden;
+  background: var(--bg-elevated);
+}
+
+.lang-btn {
+  padding: 5px 12px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-secondary);
+  transition: all 0.2s ease;
+  line-height: 1.4;
+}
+
+.lang-btn:hover {
+  color: var(--primary);
+}
+
+.lang-btn.active {
+  background: var(--primary);
+  color: #ffffff;
 }
 
 /* 汉堡按钮 - 默认隐藏 */
@@ -262,6 +344,19 @@ onUnmounted(() => {
   .mobile-nav a.router-link-active {
     color: var(--primary);
     background: var(--primary-light);
+  }
+
+  .mobile-lang {
+    display: inline-flex;
+    margin-top: 8px;
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    overflow: hidden;
+    width: fit-content;
+  }
+
+  .mobile-lang .lang-btn {
+    padding: 8px 18px;
   }
 
   .drawer-mask {

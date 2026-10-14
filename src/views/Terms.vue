@@ -2,121 +2,60 @@
   <div class="legal-page">
     <section class="page-hero">
       <div class="container">
-        <h1>使用说明</h1>
-        <p>最后更新：2026 年 9 月 6 日</p>
+        <h1>{{ t('terms.heroTitle') }}</h1>
+        <p>{{ t('terms.heroDate') }}</p>
       </div>
     </section>
 
     <section class="content-section">
       <div class="container">
         <div class="legal-content">
-          <p class="intro">
-            欢迎使用SeekPhoto（以下简称"本应用"）。本应用是一款本地运行的 AI 图片搜索工具，
-            免费分享给爱好摄影与图片管理的朋友使用。请在使用前仔细阅读本说明，
-            使用本应用即表示你同意本说明的全部条款。
-          </p>
+          <p class="intro">{{ t('terms.intro') }}</p>
 
-          <h2>一、项目说明</h2>
-          <p>
-            本应用是一款本地运行的图片管理项目，提供语义搜索、文字识别、
-            时间线浏览等功能。所有数据处理均在用户本地电脑完成，不依赖云端服务。
-            本应用遵循开源协议，供个人免费使用。
-          </p>
+          <h2>{{ t('terms.h1') }}</h2>
+          <p>{{ t('terms.p1') }}</p>
 
-          <h2>二、使用许可</h2>
-          <p>本应用供免费使用，你可以在遵守本说明的前提下：</p>
+          <h2>{{ t('terms.h2') }}</h2>
+          <p>{{ t('terms.p2') }}</p>
           <ul>
-            <li>在个人电脑上安装和使用本应用</li>
-            <li>免费使用全部功能，包括 AI 语义搜索、时间线浏览、照片地图等</li>
-            <li>处理不限数量的个人照片</li>
-            <li>出于学习交流目的分享本应用给朋友</li>
+            <li v-for="(it, i) in termsPermit" :key="i">{{ it }}</li>
           </ul>
-          <p>以下行为不被允许：</p>
+          <p>{{ t('terms.p2b') }}</p>
           <ul>
-            <li>将本应用作为商品进行销售或捆绑销售</li>
-            <li>未经授权对本应用进行二次开发后声称是自己的作品</li>
-            <li>用于任何商业经营场景</li>
+            <li v-for="(it, i) in termsForbid" :key="i">{{ it }}</li>
           </ul>
 
-          <h2>三、用户行为规范</h2>
-          <p>使用本应用时，你应当遵守以下规范：</p>
+          <h2>{{ t('terms.h3') }}</h2>
+          <p>{{ t('terms.p3') }}</p>
           <ul>
-            <li><strong>合法使用</strong>：不得将本应用用于任何违法或侵权用途</li>
-            <li><strong>尊重隐私</strong>：处理他人照片时应当获得相关权利人的同意</li>
-            <li><strong>合规使用</strong>：遵守所在地区关于个人数据保护的法律法规</li>
-            <li><strong>尊重劳动</strong>：尊重开发者的劳动成果，不篡改应用版权信息</li>
-            <li><strong>合理使用</strong>：本应用为个人工具，不适合作为企业级批量处理方案</li>
+            <li v-for="(it, i) in termsNorm" :key="i"><strong>{{ it.strong }}</strong>：{{ it.text }}</li>
           </ul>
 
-          <h2>四、知识产权</h2>
-          <p>
-            本应用的软件代码、界面设计、图标素材、文档等知识产权归本项目开发者所有，
-            受著作权法和相关法律保护。
-          </p>
-          <p>
-            本应用使用的开源组件遵循其各自的开源协议（如 MIT、Apache 2.0 等），
-            相关组件的版权归属其原始作者。
-          </p>
-          <p>
-            用户使用本应用处理的照片及相关数据，其知识产权归用户或相关权利人所有，
-            本应用不对用户数据主张任何权利。
-          </p>
+          <h2>{{ t('terms.h4') }}</h2>
+          <p>{{ t('terms.p4') }}</p>
+          <p>{{ t('terms.p4b') }}</p>
+          <p>{{ t('terms.p4c') }}</p>
 
-          <h2>五、免责声明</h2>
+          <h2>{{ t('terms.h5') }}</h2>
           <ul>
-            <li>
-              <strong>数据安全</strong>：虽然本应用采用本地存储，但用户应当自行负责数据的备份。
-              因硬件故障、系统崩溃等导致的数据丢失，本应用不承担责任。
-            </li>
-            <li>
-              <strong>使用风险</strong>：本应用按"现状"提供，不保证所有功能在所有设备上均能完美运行。
-              因使用本应用造成的任何直接或间接损失，本应用不承担责任。
-            </li>
-            <li>
-              <strong>准确性</strong>：AI 搜索与文字识别结果可能存在偏差，仅供参考。
-              搜索结果仅供参考，不构成任何专业建议。
-            </li>
-            <li>
-              <strong>第三方服务</strong>：本应用可能包含指向第三方网站的链接，
-              这些网站的内容和隐私政策不在本说明管辖范围内。
-            </li>
-            <li>
-              <strong>非商业承诺</strong>：本项目为个人维护的开源/免费作品，开发者不承诺提供持续的技术支持或版本更新保障。
-            </li>
+            <li v-for="(it, i) in termsDisclaimer" :key="i"><strong>{{ it.strong }}</strong>：{{ it.text }}</li>
           </ul>
 
-          <h2>六、关于功能启用</h2>
-          <p>
-            本应用的部分进阶功能（如文字识别、相似去重等）为开发者投入额外精力实现的进阶能力，
-            启用时需要本地完成一次简单的操作流程。该流程完全在本地完成，不联网、不涉及任何商业交易。
-          </p>
-          <p>相关说明：</p>
+          <h2>{{ t('terms.h6') }}</h2>
+          <p>{{ t('terms.p6') }}</p>
+          <p>{{ t('terms.p6b') }}</p>
           <ul>
-            <li>所有功能均可免费使用</li>
-            <li>功能启用信息仅保存在你的本地电脑，不会上传任何服务器</li>
-            <li>更换设备时可通过应用内的功能重新启用</li>
-            <li>请勿尝试绕过功能启用流程，这可能影响应用的正常运行</li>
+            <li v-for="(it, i) in termsEnable" :key="i">{{ it }}</li>
           </ul>
 
-          <h2>七、协议变更</h2>
-          <p>
-            本说明可能会不时更新，更新后的说明将在应用内或本页面公布。
-            继续使用本应用即视为你接受更新后的说明。
-          </p>
+          <h2>{{ t('terms.h7') }}</h2>
+          <p>{{ t('terms.p7') }}</p>
 
-          <h2>八、协议终止</h2>
-          <p>
-            你可以随时停止使用本应用并卸载软件。
-            卸载后，所有本地数据将被保留在你的电脑中，你可以手动删除应用目录以彻底清除数据。
-          </p>
+          <h2>{{ t('terms.h8') }}</h2>
+          <p>{{ t('terms.p8') }}</p>
 
-          <h2>九、法律适用</h2>
-          <p>
-            本说明受中华人民共和国法律管辖。因本说明或使用本应用产生的任何争议，
-            双方应首先通过友好协商解决；协商不成的，任何一方均可向开发者所在地有管辖权的人民法院提起诉讼。
-          </p>
-
-          
+          <h2>{{ t('terms.h9') }}</h2>
+          <p>{{ t('terms.p9') }}</p>
         </div>
       </div>
     </section>
@@ -124,6 +63,15 @@
 </template>
 
 <script setup lang="ts">
+import { computed } from 'vue'
+import { useI18n } from 'vue-i18n'
+
+const { t, tm } = useI18n({ useScope: 'global' })
+const termsPermit = computed(() => tm('terms.permitList') as unknown as string[])
+const termsForbid = computed(() => tm('terms.forbidList') as unknown as string[])
+const termsNorm = computed(() => tm('terms.normList') as unknown as any[])
+const termsDisclaimer = computed(() => tm('terms.disclaimerList') as unknown as any[])
+const termsEnable = computed(() => tm('terms.enableList') as unknown as string[])
 </script>
 
 <style scoped>

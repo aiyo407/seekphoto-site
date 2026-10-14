@@ -2,94 +2,59 @@
   <div class="legal-page">
     <section class="page-hero">
       <div class="container">
-        <h1>隐私政策</h1>
-        <p>最后更新：2026 年 9 月 6 日</p>
+        <h1>{{ t('privacy.heroTitle') }}</h1>
+        <p>{{ t('privacy.heroDate') }}</p>
       </div>
     </section>
 
     <section class="content-section">
       <div class="container">
         <div class="legal-content">
-          <p class="intro">
-            SeekPhoto（以下简称"本应用"）是一款本地运行的 AI 图片搜索工具。
-            本项目高度重视你的隐私，本政策详细说明本应用如何处理你的数据。
-          </p>
+          <p class="intro">{{ t('privacy.intro') }}</p>
 
-          <h2>一、数据存储位置</h2>
-          <p>
-            本应用的所有数据均存储在你的本地电脑上，不会上传到任何服务器。
-            包括照片文件、缩略图、索引数据、向量数据、配置信息等，全部保存在你电脑的本地目录中。
-          </p>
+          <h2>{{ t('privacy.h1') }}</h2>
+          <p>{{ t('privacy.p1') }}</p>
 
-          <h2>二、本项目处理哪些数据</h2>
-          <p>本应用在运行过程中会处理以下数据，但<strong>所有处理均在本地完成，不会外传</strong>：</p>
+          <h2>{{ t('privacy.h2') }}</h2>
+          <p>{{ t('privacy.p2') }}<strong>{{ t('privacy.p2Strong') }}</strong></p>
           <ul>
-            <li><strong>照片文件</strong>：你主动添加到应用中的图片文件（JPG、PNG、BMP、WebP 等）</li>
-            <li><strong>照片元数据</strong>：从照片 EXIF 中读取的拍摄时间、相机型号、GPS 位置等信息</li>
-            <li><strong>AI 向量数据</strong>：照片的语义特征向量，用于支持文字搜索功能</li>
-            <li><strong>文字识别数据</strong>：照片中识别出的文字内容，用于图文混合搜索</li>
-            <li><strong>缩略图</strong>：为加快浏览速度而生成的照片缩略图</li>
-            <li><strong>使用配置</strong>：你的个性化设置，如主题、语言、目录路径等</li>
+            <li v-for="(it, i) in privacyData" :key="i"><strong>{{ it.strong }}</strong>：{{ it.text }}</li>
           </ul>
 
-          <h2>三、数据如何被处理</h2>
-          <p>本应用的数据处理完全在你本地电脑上完成：</p>
+          <h2>{{ t('privacy.h3') }}</h2>
+          <p>{{ t('privacy.p3') }}</p>
           <ul>
-            <li><strong>AI 推理</strong>：内置 ONNX 模型在本地运行，不依赖云端服务</li>
-            <li><strong>AI 推理</strong>：语义特征与文字识别均在本地完成，不会上传到云端</li>
-            <li><strong>向量搜索</strong>：本地向量数据库（LanceDB）支持语义搜索，无需联网</li>
-            <li><strong>本地存储</strong>：所有数据保存在本地电脑的应用数据目录中</li>
+            <li v-for="(it, i) in privacyProcess" :key="i"><strong>{{ it.strong }}</strong>：{{ it.text }}</li>
           </ul>
 
-          <h2>四、网络访问说明</h2>
-          <p>本应用在以下情况下会访问网络，<strong>除此之外完全离线运行</strong>：</p>
+          <h2>{{ t('privacy.h4') }}</h2>
+          <p>{{ t('privacy.p4') }}<strong>{{ t('privacy.p4Strong') }}</strong></p>
           <ul>
-            <li><strong>模型下载</strong>：首次使用时下载 AI 模型文件（约 700MB），下载完成后可离线使用</li>
-            <li><strong>版本更新检查</strong>：启动时静默检查是否有新版本（可关闭）</li>
-            <li><strong>匿名使用统计</strong>（默认开启，可关闭）：仅上报事件名称、时间戳、随机安装编号与应用版本号，<strong>绝不含照片、文件路径、搜索词或任何文件内容</strong>，无法关联到真实身份；可在「设置 → 隐私与存储」中随时关闭</li>
+            <li v-for="(it, i) in privacyNet" :key="i"><strong>{{ it.strong }}</strong>：{{ it.text }}</li>
           </ul>
-          <p>网络访问仅用于上述明确目的，<strong>不会上传你的照片或任何文件内容</strong>。</p>
+          <p>{{ t('privacy.p4b') }}<strong>{{ t('privacy.p4bStrong') }}</strong></p>
 
-          <h2>五、第三方组件</h2>
-          <p>本应用使用以下开源第三方组件，这些组件均在本地运行：</p>
+          <h2>{{ t('privacy.h5') }}</h2>
+          <p>{{ t('privacy.p5') }}</p>
           <ul>
-            <li><strong>ONNX Runtime</strong>：AI 模型推理引擎</li>
-            <li><strong>LanceDB</strong>：本地向量数据库</li>
-            <li><strong>SQLite</strong>：本地关系型数据库</li>
-            <li><strong>Tauri</strong>：桌面应用框架</li>
-            <li><strong>Chinese-CLIP</strong>：本地语义理解模型（图片特征提取）</li>
-            <li><strong>PP-OCRv4</strong>：本地文字识别模型</li>
+            <li v-for="(it, i) in privacyComp" :key="i"><strong>{{ it.strong }}</strong>：{{ it.text }}</li>
           </ul>
-          <p>这些组件不会向外部发送数据，所有运算均在本地完成。</p>
+          <p>{{ t('privacy.p5b') }}</p>
 
-          <h2>六、你的权利</h2>
-          <p>由于所有数据都存储在你的本地电脑上，你拥有完全的控制权：</p>
+          <h2>{{ t('privacy.h6') }}</h2>
+          <p>{{ t('privacy.p6') }}</p>
           <ul>
-            <li><strong>查看权</strong>：可以随时在应用目录中查看所有数据文件</li>
-            <li><strong>删除权</strong>：删除应用目录或卸载应用即可彻底清除所有数据</li>
-            <li><strong>导出权</strong>：可以通过应用内置的备份功能导出数据</li>
-            <li><strong>控制权</strong>：可以随时停止使用、删除照片、清除索引</li>
+            <li v-for="(it, i) in privacyRights" :key="i"><strong>{{ it.strong }}</strong>：{{ it.text }}</li>
           </ul>
 
-          <h2>七、数据安全</h2>
-          <p>
-            本应用采用本地存储模式，你的数据不会离开你的电脑，因此不存在数据泄露风险。
-            所有处理逻辑、特征向量、配置信息均保存在本地电脑的应用数据目录中，由你完全掌控。
-          </p>
+          <h2>{{ t('privacy.h7') }}</h2>
+          <p>{{ t('privacy.p7') }}</p>
 
-          <h2>八、儿童隐私</h2>
-          <p>
-            本应用不针对 13 岁以下儿童，也不会故意收集儿童的个人信息。
-            如果家长发现孩子未经同意使用了本应用，可以随时删除相关数据。
-          </p>
+          <h2>{{ t('privacy.h8') }}</h2>
+          <p>{{ t('privacy.p8') }}</p>
 
-          <h2>九、政策变更</h2>
-          <p>
-            本隐私政策可能会不时更新，更新后的政策将在应用内或本页面公布。
-            重大变更会通过应用内通知的方式告知你。
-          </p>
-
-          
+          <h2>{{ t('privacy.h9') }}</h2>
+          <p>{{ t('privacy.p9') }}</p>
         </div>
       </div>
     </section>
@@ -97,6 +62,15 @@
 </template>
 
 <script setup lang="ts">
+import { computed } from 'vue'
+import { useI18n } from 'vue-i18n'
+
+const { t, tm } = useI18n({ useScope: 'global' })
+const privacyData = computed(() => tm('privacy.dataList') as unknown as any[])
+const privacyProcess = computed(() => tm('privacy.processList') as unknown as any[])
+const privacyNet = computed(() => tm('privacy.netList') as unknown as any[])
+const privacyComp = computed(() => tm('privacy.compList') as unknown as any[])
+const privacyRights = computed(() => tm('privacy.rightsList') as unknown as any[])
 </script>
 
 <style scoped>

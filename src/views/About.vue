@@ -3,8 +3,8 @@
     <!-- Page Hero -->
     <section class="page-hero">
       <div class="container">
-        <h1>关于SeekPhoto</h1>
-        <p>一款本地 AI 图片搜索工具</p>
+        <h1>{{ t('about.heroTitle') }}</h1>
+        <p>{{ t('about.heroDesc') }}</p>
       </div>
     </section>
 
@@ -12,13 +12,10 @@
     <section class="story">
       <div class="container">
         <div class="story-content">
-          <span class="section-label">项目故事</span>
-          <h2 class="section-title">从需求出发，做一款懂照片的工具</h2>
+          <span class="section-label">{{ t('about.storyLabel') }}</span>
+          <h2 class="section-title">{{ t('about.storyTitle') }}</h2>
           <div class="story-text">
-            <p>SeekPhoto诞生于一个简单的需求：在海量照片中快速找到想要的那一张。</p>
-            <p>我们希望有一款工具能真正理解照片内容，而不是只靠文件名和日期。</p>
-            <p>于是SeekPhoto诞生了——一款完全本地运行、隐私优先的 AI 图片搜索工具。</p>
-            <p>SeekPhoto免费提供给同样热爱摄影与图片管理的朋友使用，希望它能让你的照片管理更轻松。</p>
+            <p v-for="(para, i) in story" :key="i">{{ para }}</p>
           </div>
         </div>
       </div>
@@ -28,9 +25,9 @@
     <section class="principles">
       <div class="container">
         <div class="section-header">
-          <span class="section-label">设计理念</span>
-          <h2 class="section-title">三个原则，贯穿始终</h2>
-          <p class="section-desc">隐私、智能、易用，是SeekPhoto始终坚守的设计准则</p>
+          <span class="section-label">{{ t('about.principlesLabel') }}</span>
+          <h2 class="section-title">{{ t('about.principlesTitle') }}</h2>
+          <p class="section-desc">{{ t('about.principlesDesc') }}</p>
         </div>
         <div class="principle-grid">
           <div class="principle-card" v-for="item in principles" :key="item.title">
@@ -46,9 +43,9 @@
     <section class="tech-stack">
       <div class="container">
         <div class="section-header">
-          <span class="section-label">技术支撑</span>
-          <h2 class="section-title">它靠什么做到这些</h2>
-          <p class="section-desc">SeekPhoto用一套本地 AI 与轻量技术，把复杂的搜索变成你随手可用的能力</p>
+          <span class="section-label">{{ t('about.techLabel') }}</span>
+          <h2 class="section-title">{{ t('about.techTitle') }}</h2>
+          <p class="section-desc">{{ t('about.techDesc') }}</p>
         </div>
         <div class="tech-list">
           <div class="tech-row" v-for="tech in techs" :key="tech.label">
@@ -71,12 +68,12 @@
     <section class="cta">
       <div class="container">
         <div class="cta-card">
-          <h2>开始使用SeekPhoto</h2>
-          <p>免费下载，即刻体验 AI 图片搜索</p>
-          <router-link to="/download" class="btn btn-primary btn-large">
-            下载 Windows 版
+          <h2>{{ t('about.ctaTitle') }}</h2>
+          <p>{{ t('about.ctaDesc') }}</p>
+          <router-link :to="loc('/download')" class="btn btn-primary btn-large">
+            {{ t('common.downloadWindows') }}
           </router-link>
-          <span class="cta-note">支持 Windows 10/11 · 约 60MB</span>
+          <span class="cta-note">{{ t('common.supportWin') }}</span>
         </div>
       </div>
     </section>
@@ -84,56 +81,37 @@
 </template>
 
 <script setup lang="ts">
-const principles: { title: string; desc: string; icon: string }[] = [
-  {
-    title: '隐私优先',
-    desc: '所有数据本地存储，不上传任何服务器',
-    icon: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>'
-  },
-  {
-    title: 'AI 驱动',
-    desc: '用人工智能理解照片内容，让搜索更智能',
-    icon: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>'
-  },
-  {
-    title: '简单易用',
-    desc: '无需复杂配置，打开就能用',
-    icon: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>'
-  }
-]
+import { computed } from 'vue'
+import { useRoute } from 'vue-router'
+import { useI18n } from 'vue-i18n'
+import { localeFromPath, localizedPath } from '../i18n'
 
-const techs: { label: string; desc: string; tags: string[]; icon: string }[] = [
-  {
-    label: 'AI 看懂照片内容',
-    desc: '用 AI 理解每张照片的画面，所以你可以用一句话描述来搜图，而不是靠文件名或日期。',
-    tags: ['Chinese-CLIP 语义模型'],
-    icon: '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 1v6m0 10v6M4.22 4.22l4.24 4.24m7.07 7.07l4.24 4.24M1 12h6m10 0h6M4.22 19.78l4.24-4.24m7.07-7.07l4.24-4.24"/></svg>'
-  },
-  {
-    label: '图片里的文字也能搜',
-    desc: '自动识别照片中的文字（招牌、文档、截图），让带文字的图片也变得可搜索。',
-    tags: ['PP-OCRv4 文字识别'],
-    icon: '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="8" y1="13" x2="16" y2="13"/><line x1="8" y1="17" x2="14" y2="17"/></svg>'
-  },
-  {
-    label: '几十万张也能秒出',
-    desc: '把照片转成向量存储，相似度检索毫秒级返回，照片再多也不卡。',
-    tags: ['LanceDB 向量数据库'],
-    icon: '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg>'
-  },
-  {
-    label: '轻量不占内存',
-    desc: '用 Rust 与 Tauri 打造，比传统 Electron 应用更省资源、启动更快。',
-    tags: ['Rust', 'Tauri'],
-    icon: '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>'
-  },
-  {
-    label: '数据不出本机',
-    desc: 'AI 模型在你的电脑上运行，照片永不离开本机，无需联网也能用。',
-    tags: ['ONNX Runtime', '离线推理'],
-    icon: '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>'
-  }
-]
+const { t, tm } = useI18n({ useScope: 'global' })
+const route = useRoute()
+const currentLocale = localeFromPath(route.path)
+const loc = (b: string) => localizedPath(b, currentLocale)
+
+// 图标按 key 映射（语言无关）
+const principleIcons: Record<string, string> = {
+  privacy: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>',
+  ai: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>',
+  easy: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>',
+}
+const techIcons: Record<string, string> = {
+  clip: '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 1v6m0 10v6M4.22 4.22l4.24 4.24m7.07 7.07l4.24 4.24M1 12h6m10 0h6M4.22 19.78l4.24-4.24m7.07-7.07l4.24-4.24"/></svg>',
+  ocr: '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="8" y1="13" x2="16" y2="13"/><line x1="8" y1="17" x2="14" y2="17"/></svg>',
+  lancedb: '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg>',
+  rust: '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>',
+  local: '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>',
+}
+
+const principles = computed(() =>
+  (tm('about.principles') as unknown as any[]).map((p) => ({ ...p, icon: principleIcons[p.key] }))
+)
+const techs = computed(() =>
+  (tm('about.techs') as unknown as any[]).map((tc) => ({ ...tc, icon: techIcons[tc.key] }))
+)
+const story = computed(() => tm('about.story') as unknown as string[])
 </script>
 
 <style scoped>

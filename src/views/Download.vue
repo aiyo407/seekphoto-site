@@ -2,8 +2,8 @@
   <div class="download-page">
     <section class="page-hero">
       <div class="container">
-        <h1>下载SeekPhoto</h1>
-        <p>免费下载，即刻开始智能图片管理</p>
+        <h1>{{ t('download.heroTitle') }}</h1>
+        <p>{{ t('download.heroDesc') }}</p>
       </div>
     </section>
 
@@ -17,26 +17,24 @@
               <line x1="12" y1="15" x2="12" y2="3"/>
             </svg>
           </div>
-          <h2>SeekPhoto Windows 版</h2>
-          <p class="version-info">当前版本 {{ APP_VERSION_DISPLAY }} · Windows 10/11 64-bit · 约 60MB</p>
+          <h2>{{ t('download.cardTitle') }}</h2>
+          <p class="version-info">{{ t('download.versionInfo', { v: APP_VERSION_DISPLAY }) }}</p>
           <a :href="DOWNLOAD_URL" class="btn btn-primary btn-large" @click="trackDownload">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
               <polyline points="7 10 12 15 17 10"/>
               <line x1="12" y1="15" x2="12" y2="3"/>
             </svg>
-            立即下载
+            {{ t('common.download') }}
           </a>
-          <p class="download-note">
-            下载 .exe 安装包，双击运行即可安装
-          </p>
+          <p class="download-note">{{ t('download.downloadNote') }}</p>
         </div>
 
         <!-- 系统要求 -->
         <div class="requirements">
           <div class="section-header">
-            <span class="section-label">系统要求</span>
-            <h2 class="section-title">确认你的电脑可以运行</h2>
+            <span class="section-label">{{ t('download.reqLabel') }}</span>
+            <h2 class="section-title">{{ t('download.reqTitle') }}</h2>
           </div>
           <div class="req-grid">
             <div class="req-card">
@@ -47,8 +45,8 @@
                   <line x1="12" y1="17" x2="12" y2="21"/>
                 </svg>
               </div>
-              <h3>操作系统</h3>
-              <p>Windows 10/11 64-bit</p>
+              <h3>{{ t('download.reqOs') }}</h3>
+              <p>{{ t('download.reqOsDesc') }}</p>
             </div>
             <div class="req-card">
               <div class="req-icon">
@@ -65,8 +63,8 @@
                   <line x1="1" y1="14" x2="4" y2="14"/>
                 </svg>
               </div>
-              <h3>处理器</h3>
-              <p>Intel/AMD 双核以上（推荐 4 核以上）</p>
+              <h3>{{ t('download.reqCpu') }}</h3>
+              <p>{{ t('download.reqCpuDesc') }}</p>
             </div>
             <div class="req-card">
               <div class="req-icon">
@@ -74,8 +72,8 @@
                   <path d="M22 12h-4l-3 9L9 3l-3 9H2"/>
                 </svg>
               </div>
-              <h3>内存</h3>
-              <p>8GB 以上（推荐 16GB）</p>
+              <h3>{{ t('download.reqMem') }}</h3>
+              <p>{{ t('download.reqMemDesc') }}</p>
             </div>
             <div class="req-card">
               <div class="req-icon">
@@ -83,8 +81,8 @@
                   <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
                 </svg>
               </div>
-              <h3>存储空间</h3>
-              <p>2GB 以上，另按图库规模预留索引与缓存（约每 1 万张照片 250MB）</p>
+              <h3>{{ t('download.reqDisk') }}</h3>
+              <p>{{ t('download.reqDiskDesc') }}</p>
             </div>
           </div>
         </div>
@@ -92,8 +90,8 @@
         <!-- 安装指南 -->
         <div class="install-guide">
           <div class="section-header">
-            <span class="section-label">安装指南</span>
-            <h2 class="section-title">四步开始使用</h2>
+            <span class="section-label">{{ t('download.guideLabel') }}</span>
+            <h2 class="section-title">{{ t('download.guideTitle') }}</h2>
           </div>
           <div class="steps">
             <div class="step" v-for="(step, index) in steps" :key="index">
@@ -109,8 +107,8 @@
         <!-- FAQ -->
         <div class="faq">
           <div class="section-header">
-            <span class="section-label">常见问题</span>
-            <h2 class="section-title">你可能想知道</h2>
+            <span class="section-label">{{ t('download.faqLabel') }}</span>
+            <h2 class="section-title">{{ t('download.faqTitle') }}</h2>
           </div>
           <div class="faq-list">
             <div class="faq-item" v-for="(item, index) in faqs" :key="index">
@@ -125,28 +123,20 @@
 </template>
 
 <script setup lang="ts">
+import { computed } from 'vue'
+import { useI18n } from 'vue-i18n'
 import { trackEvent } from '../utils/analytics'
 import { DOWNLOAD_URL, APP_VERSION_DISPLAY } from '../config/version'
+
+const { t, tm } = useI18n({ useScope: 'global' })
 
 // 百度统计：追踪下载点击事件
 function trackDownload() {
   trackEvent('download', 'click', 'windows_setup')
 }
 
-const steps = [
-  { title: '下载安装包', desc: '点击上方按钮，从下载页面获取最新的 .exe 安装文件' },
-  { title: '运行安装程序', desc: '双击下载的 .exe 文件，按照向导完成安装' },
-  { title: '配置图片目录', desc: '首次启动后，在设置中添加你的图片文件夹路径' },
-  { title: '开始使用', desc: '等待照片整理完成后，即可用文字找图、按时间线浏览你的照片' },
-]
-
-const faqs = [
-  { q: '安装时提示"Windows 已保护你的电脑"？', a: '这是因为应用尚未获得 Microsoft 签名。点击"更多信息" → "仍要运行"即可继续安装。' },
-  { q: '需要联网才能使用吗？', a: '不需要。SeekPhoto完全本地运行，所有数据处理都在本地完成，无需联网。首次下载 AI 功能需要网络，之后可离线使用。' },
-  { q: '支持哪些图片格式？', a: '目前支持 JPG、JPEG、PNG、BMP、WebP 格式。后续版本将增加更多格式支持。' },
-  { q: '数据安全吗？', a: '非常安全。所有数据（包括照片信息、索引数据）都存储在你的本地电脑上，不会上传到任何服务器。' },
-  { q: '如何获取最新版本？', a: '应用启动时会静默检查更新；你也可以随时到官网下载页获取最新安装包，覆盖安装即可完成升级。' }
-]
+const steps = computed(() => tm('download.steps') as unknown as any[])
+const faqs = computed(() => tm('download.faqs') as unknown as any[])
 </script>
 
 <style scoped>
