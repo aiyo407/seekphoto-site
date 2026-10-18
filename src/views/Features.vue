@@ -122,41 +122,6 @@
       </div>
     </section>
 
-    <!-- 详细功能演示：照片地图 -->
-    <section class="feature-section">
-      <div class="container">
-        <div class="feature-row">
-          <div class="feature-text">
-            <span class="feature-tag">{{ t('features.tagCore') }}</span>
-            <h2>{{ t('features.detailMapTitle') }}</h2>
-            <p class="feature-desc">{{ t('features.detailMapDesc') }}</p>
-            <ul class="feature-list">
-              <li v-for="pt in tm('features.detailMapList')" :key="pt">{{ pt }}</li>
-            </ul>
-          </div>
-          <div class="feature-visual">
-            <div class="visual-card visual-map">
-              <div class="map-placeholder">
-                <svg width="200" height="160" viewBox="0 0 200 160" fill="none">
-                  <rect width="200" height="160" fill="var(--bg)"/>
-                  <path d="M0 80 Q50 60 100 80 T200 80" stroke="var(--border)" stroke-width="2" fill="none"/>
-                  <path d="M0 120 Q50 100 100 120 T200 120" stroke="var(--border)" stroke-width="2" fill="none"/>
-                  <circle cx="40" cy="50" r="6" fill="var(--primary)"/>
-                  <circle cx="90" cy="70" r="6" fill="var(--primary)"/>
-                  <circle cx="140" cy="45" r="6" fill="var(--primary)"/>
-                  <circle cx="170" cy="100" r="6" fill="var(--primary)"/>
-                  <circle cx="60" cy="120" r="6" fill="var(--primary)"/>
-                </svg>
-                <div class="map-info">
-                  <span>{{ t('features.demoMapInfo') }}</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
     <!-- 特性优势 -->
     <section class="tech-section">
       <div class="container">
@@ -698,32 +663,6 @@ const getFaceGradient = (i: number) => {
 
 .person-count {
   font-size: 12px;
-  color: var(--text-secondary);
-}
-
-/* 地图演示 */
-.visual-map {
-  padding: 0;
-  overflow: hidden;
-}
-
-.map-placeholder {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 40px;
-  background: var(--bg);
-  min-height: 280px;
-}
-
-.map-info {
-  margin-top: 16px;
-  padding: 8px 16px;
-  background: var(--bg-elevated);
-  border: 1px solid var(--border);
-  border-radius: 999px;
-  font-size: 13px;
   color: var(--text-secondary);
 }
 
