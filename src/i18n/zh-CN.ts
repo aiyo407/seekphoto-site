@@ -5,7 +5,7 @@ export default {
     download: '立即下载',
     viewFeatures: '查看功能',
     freeDownload: '免费下载',
-    supportWin: '支持 Windows 10/11 · 约 60MB',
+    supportWin: '支持 Windows 10/11',
     freeLocal: '免费 · 本地运行',
   },
   nav: {
@@ -57,7 +57,7 @@ export default {
     faqDesc: '本地 AI 搜图，简单、安全地管理你的照片',
     ctaTitle: '开始使用SeekPhoto',
     ctaDesc: '免费下载，即刻体验 AI 图片搜索',
-    ctaNote: '支持 Windows 10/11 · 约 60MB',
+    ctaNote: '支持 Windows 10/11',
     // 数据数组
     features: [
       { key: 'textSearch', title: '文字找图', desc: '两层搜索：文件名即时匹配，输入即出结果；语义搜索懂画面，没写标题的照片也能搜到。支持中文。' },
@@ -119,7 +119,7 @@ export default {
     techDesc: '无需复杂设置，打开就能用',
     ctaTitle: '开始使用SeekPhoto',
     ctaDesc: '免费下载，即刻体验 AI 图片搜索',
-    ctaNote: '支持 Windows 10/11 · 约 60MB',
+    ctaNote: '支持 Windows 10/11',
     demoSimilar: '相似照片',
     demoCount: '8 张',
     features: [
@@ -146,7 +146,7 @@ export default {
     heroTitle: '下载SeekPhoto',
     heroDesc: '免费下载，即刻开始智能图片管理',
     cardTitle: 'SeekPhoto Windows 版',
-    versionInfo: '当前版本 {v} · Windows 10/11 64-bit · 约 60MB',
+    versionInfo: '当前版本 {v} · Windows 10/11 64-bit',
     downloadNote: '下载 .exe 安装包，双击运行即可安装',
     reqLabel: '系统要求',
     reqTitle: '确认你的电脑可以运行',
@@ -245,7 +245,7 @@ export default {
     techDesc: 'SeekPhoto用一套本地 AI 与轻量技术，把复杂的搜索变成你随手可用的能力',
     ctaTitle: '开始使用SeekPhoto',
     ctaDesc: '免费下载，即刻体验 AI 图片搜索',
-    ctaNote: '支持 Windows 10/11 · 约 60MB',
+    ctaNote: '支持 Windows 10/11',
     principles: [
       { key: 'privacy', title: '隐私优先', desc: '所有数据本地存储，不上传任何服务器' },
       { key: 'ai', title: 'AI 驱动', desc: '用人工智能理解照片内容，让搜索更智能' },
@@ -264,7 +264,7 @@ export default {
     heroDesc: '持续优化，让觅影更好用',
     ctaTitle: '更新到最新版本',
     ctaDesc: '体验 {v} 带来的全新功能与优化',
-    ctaNote: '支持 Windows 10/11 · 约 60MB',
+    ctaNote: '支持 Windows 10/11',
     tagLatest: '功能更新',
     tagFeature: '新功能',
     tagInitial: '首个公开版本',
