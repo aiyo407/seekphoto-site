@@ -9,6 +9,7 @@ const pages: { path: string; file: string; pageKey: string }[] = [
   { path: '/download', file: 'Download', pageKey: 'download' },
   { path: '/about', file: 'About', pageKey: 'about' },
   { path: '/changelog', file: 'Changelog', pageKey: 'changelog' },
+  { path: '/support', file: 'Support', pageKey: 'support' },
   { path: '/privacy', file: 'Privacy', pageKey: 'privacy' },
   { path: '/terms', file: 'Terms', pageKey: 'terms' },
 ]

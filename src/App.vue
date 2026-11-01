@@ -13,7 +13,6 @@ import Header from './components/common/Header.vue'
 import Footer from './components/common/Footer.vue'
 import { useRoute } from 'vue-router'
 import { useHead } from '@unhead/vue'
-import { useI18n } from 'vue-i18n'
 import { APP_VERSION } from './config/version'
 import {
   i18n,
@@ -26,8 +25,24 @@ import {
 } from './i18n'
 
 const route = useRoute()
-const { t, tm } = useI18n({ useScope: 'global' })
 const SITE = 'https://www.seekphoto.cn'
+
+/**
+ * 按「路由语言」直接取文案。
+ *
+ * 不能用 t()：SSG 会依次渲染全部路由，而 i18n.global.locale 是全局共享的，
+ * head 的响应式 getter 在所有页面渲染完成后才求值，届时全局语言已被最后一页覆盖，
+ * 导致每个页面的 title/description 都变成最后一种语言（实测简体页拿到繁体文案）。
+ */
+function msgRaw(locale: AppLocale, key: string): unknown {
+  const messages = i18n.global.getLocaleMessage(locale) as Record<string, unknown>
+  return key.split('.').reduce<unknown>((acc, k) => (acc as Record<string, unknown>)?.[k], messages)
+}
+
+function msg(locale: AppLocale, key: string): string {
+  const value = msgRaw(locale, key)
+  return typeof value === 'string' ? value : ''
+}
 
 // SSG 渲染期 / 首屏：依据路由前缀同步语言，确保子组件 t() 渲染前已就位
 const currentLocale: AppLocale = localeFromPath(route.path)
@@ -38,8 +53,8 @@ i18n.global.locale.value = currentLocale
 useHead(() => {
   const locale = localeFromPath(route.path)
   const pageKey = (route.meta.pageKey as string) || 'home'
-  const title = t(`meta.${pageKey}.title`) as string
-  const description = t(`meta.${pageKey}.description`) as string
+  const title = msg(locale, `meta.${pageKey}.title`)
+  const description = msg(locale, `meta.${pageKey}.description`)
   const base = stripLocale(route.path)
   const url = SITE + localizedPath(base, locale)
 
@@ -55,7 +70,7 @@ useHead(() => {
       '@type': 'WebSite',
       url: SITE,
       name: 'SeekPhoto',
-      description: t('meta.home.description'),
+      description: msg(locale, 'meta.home.description'),
       inLanguage: locale,
     },
     {
@@ -65,7 +80,7 @@ useHead(() => {
       applicationCategory: 'MultimediaApplication',
       operatingSystem: 'Windows 10, Windows 11',
       softwareVersion: APP_VERSION,
-      description: t('meta.download.description'),
+      description: msg(locale, 'meta.download.description'),
       offers: { '@type': 'Offer', price: '0', priceCurrency: 'CNY' },
       publisher: { '@type': 'Organization', name: 'SeekPhoto' },
     },
@@ -73,7 +88,7 @@ useHead(() => {
 
   // FAQ 结构化数据仅首页（与首页文案一致，直接喂 AI 问答）
   if (pageKey === 'home') {
-    const faqs = tm('home.faqs') as unknown as { q: string; a: string }[]
+    const faqs = (msgRaw(locale, 'home.faqs') as { q: string; a: string }[]) ?? []
     graph.push({
       '@type': 'FAQPage',
       mainEntity: faqs.map((f) => ({

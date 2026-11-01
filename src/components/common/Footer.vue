@@ -18,6 +18,7 @@
             <router-link :to="loc('/guide')">{{ t('nav.guide') }}</router-link>
             <router-link :to="loc('/download')">{{ t('nav.download') }}</router-link>
             <router-link :to="loc('/changelog')">{{ t('nav.changelog') }}</router-link>
+            <router-link :to="loc('/support')">{{ t('nav.support') }}</router-link>
           </div>
           <div class="footer-col">
             <h4>{{ t('footer.aboutTitle') }}</h4>

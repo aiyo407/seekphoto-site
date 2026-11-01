@@ -110,6 +110,7 @@ const navItems = [
 const mobileExtra = [
   { base: '/about', key: 'nav.about' },
   { base: '/changelog', key: 'nav.changelog' },
+  { base: '/support', key: 'nav.support' },
 ]
 
 const isScrolled = ref(false)
