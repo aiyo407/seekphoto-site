@@ -43,7 +43,7 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 import { useRoute } from 'vue-router'
-import { localeFromPath } from '../../i18n'
+import { localeFromPath } from '../../locales'
 import { getPrivacyDoc, getTermsDoc } from '../../content'
 import type { NormalizedDoc } from '../../content/types'
 

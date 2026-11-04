@@ -15,14 +15,14 @@ import { useRoute } from 'vue-router'
 import { useHead } from '@unhead/vue'
 import { APP_VERSION } from './config/version'
 import {
-  i18n,
   localeFromPath,
   stripLocale,
   localizedPath,
   LOCALE_HREFLANG,
-  SUPPORTED_LOCALES,
-  type AppLocale,
-} from './i18n'
+  SITE_LOCALES,
+  type SiteLocale,
+} from './locales'
+import { getSiteContent } from './content/site'
 
 const route = useRoute()
 const SITE = 'https://www.seekphoto.cn'
@@ -30,31 +30,21 @@ const SITE = 'https://www.seekphoto.cn'
 /**
  * 按「路由语言」直接取文案。
  *
- * 不能用 t()：SSG 会依次渲染全部路由，而 i18n.global.locale 是全局共享的，
- * head 的响应式 getter 在所有页面渲染完成后才求值，届时全局语言已被最后一页覆盖，
- * 导致每个页面的 title/description 都变成最后一种语言（实测简体页拿到繁体文案）。
+ * 官网不使用 vue-i18n：每种语言是一份独立的 TS 文案模块（src/content/site/<语言>.ts），
+ * 路由 meta.locale 决定用哪一份。这里按路由语言取，避免 head 的响应式 getter
+ * 在所有页面渲染完成后才求值时取到别的语言。
  */
-function msgRaw(locale: AppLocale, key: string): unknown {
-  const messages = i18n.global.getLocaleMessage(locale) as Record<string, unknown>
-  return key.split('.').reduce<unknown>((acc, k) => (acc as Record<string, unknown>)?.[k], messages)
+function metaOf(locale: SiteLocale, pageKey: string): { title: string; description: string } {
+  const meta = getSiteContent(locale).meta as Record<string, { title: string; description: string }>
+  return meta[pageKey] ?? meta.home
 }
-
-function msg(locale: AppLocale, key: string): string {
-  const value = msgRaw(locale, key)
-  return typeof value === 'string' ? value : ''
-}
-
-// SSG 渲染期 / 首屏：依据路由前缀同步语言，确保子组件 t() 渲染前已就位
-const currentLocale: AppLocale = localeFromPath(route.path)
-i18n.global.locale.value = currentLocale
 
 // 按路由注入完整 head（title/description/OG/Twitter/canonical/hreflang）+ 结构化数据。
 // 构建期由 vite-ssg 渲染进每页静态 HTML，爬虫无需执行 JS 即可读到。
 useHead(() => {
-  const locale = localeFromPath(route.path)
+  const locale = (route.meta.locale as SiteLocale) ?? localeFromPath(route.path)
   const pageKey = (route.meta.pageKey as string) || 'home'
-  const title = msg(locale, `meta.${pageKey}.title`)
-  const description = msg(locale, `meta.${pageKey}.description`)
+  const { title, description } = metaOf(locale, pageKey)
   const base = stripLocale(route.path)
   const url = SITE + localizedPath(base, locale)
 
@@ -70,7 +60,7 @@ useHead(() => {
       '@type': 'WebSite',
       url: SITE,
       name: 'SeekPhoto',
-      description: msg(locale, 'meta.home.description'),
+      description: metaOf(locale, 'home').description,
       inLanguage: locale,
     },
     {
@@ -80,7 +70,7 @@ useHead(() => {
       applicationCategory: 'MultimediaApplication',
       operatingSystem: 'Windows 10, Windows 11',
       softwareVersion: APP_VERSION,
-      description: msg(locale, 'meta.download.description'),
+      description: metaOf(locale, 'download').description,
       offers: { '@type': 'Offer', price: '0', priceCurrency: 'CNY' },
       publisher: { '@type': 'Organization', name: 'SeekPhoto' },
     },
@@ -88,7 +78,7 @@ useHead(() => {
 
   // FAQ 结构化数据仅首页（与首页文案一致，直接喂 AI 问答）
   if (pageKey === 'home') {
-    const faqs = (msgRaw(locale, 'home.faqs') as { q: string; a: string }[]) ?? []
+    const faqs = getSiteContent(locale).home.faqs
     graph.push({
       '@type': 'FAQPage',
       mainEntity: faqs.map((f) => ({
@@ -100,7 +90,7 @@ useHead(() => {
   }
 
   // hreflang 备用链接：每种语言一份 + x-default（回退到简体）
-  const alternates = SUPPORTED_LOCALES.map((loc) => ({
+  const alternates = SITE_LOCALES.map((loc) => ({
     rel: 'alternate',
     hreflang: LOCALE_HREFLANG[loc],
     href: SITE + localizedPath(base, loc),

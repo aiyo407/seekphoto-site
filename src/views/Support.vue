@@ -3,8 +3,8 @@
     <!-- Page Hero -->
     <section class="page-hero">
       <div class="container">
-        <h1>{{ t('support.heroTitle') }}</h1>
-        <p>{{ t('support.heroDesc') }}</p>
+        <h1>{{ c.support.heroTitle }}</h1>
+        <p>{{ c.support.heroDesc }}</p>
       </div>
     </section>
 
@@ -12,9 +12,9 @@
     <section class="channels">
       <div class="container">
         <div class="section-header">
-          <span class="section-label">{{ t('support.channelsLabel') }}</span>
-          <h2 class="section-title">{{ t('support.channelsTitle') }}</h2>
-          <p class="section-desc">{{ t('support.channelsDesc') }}</p>
+          <span class="section-label">{{ c.support.channelsLabel }}</span>
+          <h2 class="section-title">{{ c.support.channelsTitle }}</h2>
+          <p class="section-desc">{{ c.support.channelsDesc }}</p>
         </div>
         <div class="channel-grid">
           <div class="channel-card" v-for="ch in channels" :key="ch.key">
@@ -44,9 +44,9 @@
     <section class="scenarios">
       <div class="container">
         <div class="section-header">
-          <span class="section-label">{{ t('support.scenariosLabel') }}</span>
-          <h2 class="section-title">{{ t('support.scenariosTitle') }}</h2>
-          <p class="section-desc">{{ t('support.scenariosDesc') }}</p>
+          <span class="section-label">{{ c.support.scenariosLabel }}</span>
+          <h2 class="section-title">{{ c.support.scenariosTitle }}</h2>
+          <p class="section-desc">{{ c.support.scenariosDesc }}</p>
         </div>
         <div class="scenario-list">
           <div class="scenario-row" v-for="s in scenarios" :key="s.title">
@@ -65,8 +65,8 @@
       <div class="container">
         <div class="tips-inner">
           <div class="tips-head">
-            <h2 class="section-title">{{ t('support.tipsTitle') }}</h2>
-            <p class="section-desc">{{ t('support.tipsDesc') }}</p>
+            <h2 class="section-title">{{ c.support.tipsTitle }}</h2>
+            <p class="section-desc">{{ c.support.tipsDesc }}</p>
           </div>
           <ul class="tips-list">
             <li v-for="(tip, i) in tips" :key="i">{{ tip }}</li>
@@ -79,10 +79,10 @@
 
 <script setup lang="ts">
 import { computed } from 'vue'
-import { useI18n } from 'vue-i18n'
 import { SUPPORT_EMAIL, SUPPORT_QQ_GROUP } from '../content/support'
+import { useSiteContent } from '../composables/useSiteContent'
 
-const { t, tm } = useI18n({ useScope: 'global' })
+const c = useSiteContent()
 
 interface ChannelRaw {
   key: string
@@ -106,37 +106,37 @@ const channelIcons: Record<string, string> = {
 
 // 渠道的「行动入口」：邮件与群号来自常量（不放进 i18n，vue-i18n 无法编译含 @ 的消息）
 const channels = computed<Channel[]>(() =>
-  (tm('support.channels') as unknown as ChannelRaw[]).map((c) => {
-    if (c.key === 'mail') {
+  (c.value.support.channels as unknown as ChannelRaw[]).map((ch) => {
+    if (ch.key === 'mail') {
       return {
-        ...c,
+        ...ch,
         icon: channelIcons.mail,
         action: SUPPORT_EMAIL,
         href: `mailto:${SUPPORT_EMAIL}`,
         external: false,
       }
     }
-    if (c.key === 'group') {
+    if (ch.key === 'group') {
       return {
-        ...c,
+        ...ch,
         icon: channelIcons.group,
-        action: `${t('support.channelsAction.group')} ${SUPPORT_QQ_GROUP.number}`,
+        action: `${c.value.support.channelsAction.group} ${SUPPORT_QQ_GROUP.number}`,
         href: SUPPORT_QQ_GROUP.joinUrl,
         external: true,
       }
     }
     return {
-      ...c,
+      ...ch,
       icon: channelIcons.feedback,
-      action: t('support.channelsAction.feedback'),
+      action: c.value.support.channelsAction.feedback,
       href: '',
       external: false,
     }
   }),
 )
 
-const scenarios = computed(() => tm('support.scenarios') as unknown as { title: string; desc: string }[])
-const tips = computed(() => tm('support.tips') as unknown as string[])
+const scenarios = computed(() => c.value.support.scenarios as unknown as { title: string; desc: string }[])
+const tips = computed(() => c.value.support.tips as unknown as string[])
 </script>
 
 <style scoped>

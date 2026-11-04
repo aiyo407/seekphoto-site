@@ -1,5 +1,5 @@
 import { RouteRecordRaw } from 'vue-router'
-import { LOCALE_PREFIX, SUPPORTED_LOCALES, type AppLocale } from './i18n'
+import { LOCALE_PREFIX, SITE_LOCALES, type SiteLocale } from './locales'
 
 // 页面清单：基础路径（语言无关）+ 对应视图 + meta 用 pageKey
 const pages: { path: string; file: string; pageKey: string }[] = [
@@ -7,6 +7,7 @@ const pages: { path: string; file: string; pageKey: string }[] = [
   { path: '/features', file: 'Features', pageKey: 'features' },
   { path: '/guide', file: 'Guide', pageKey: 'guide' },
   { path: '/download', file: 'Download', pageKey: 'download' },
+  { path: '/pricing', file: 'Pricing', pageKey: 'pricing' },
   { path: '/about', file: 'About', pageKey: 'about' },
   { path: '/changelog', file: 'Changelog', pageKey: 'changelog' },
   { path: '/support', file: 'Support', pageKey: 'support' },
@@ -18,8 +19,9 @@ const pages: { path: string; file: string; pageKey: string }[] = [
 const viewModules = import.meta.glob('./views/*.vue')
 
 // 为每种语言生成一套路由，共享同一视图组件，仅前缀与 meta.locale 不同。
+// 每种语言各自预渲染为独立 HTML：/、/zh-tw/、/en/。
 export const routes: RouteRecordRaw[] = []
-for (const locale of SUPPORTED_LOCALES) {
+for (const locale of SITE_LOCALES) {
   const prefix = LOCALE_PREFIX[locale]
   for (const p of pages) {
     const fullPath = p.path === '/' ? (prefix || '/') : `${prefix}${p.path}`
@@ -27,7 +29,7 @@ for (const locale of SUPPORTED_LOCALES) {
     routes.push({
       path: fullPath,
       component: loader,
-      meta: { locale: locale as AppLocale, pageKey: p.pageKey },
+      meta: { locale: locale as SiteLocale, pageKey: p.pageKey },
     })
   }
 }

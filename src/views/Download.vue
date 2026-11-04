@@ -2,8 +2,8 @@
   <div class="download-page">
     <section class="page-hero">
       <div class="container">
-        <h1>{{ t('download.heroTitle') }}</h1>
-        <p>{{ t('download.heroDesc') }}</p>
+        <h1>{{ c.download.heroTitle }}</h1>
+        <p>{{ c.download.heroDesc }}</p>
       </div>
     </section>
 
@@ -17,24 +17,24 @@
               <line x1="12" y1="15" x2="12" y2="3"/>
             </svg>
           </div>
-          <h2>{{ t('download.cardTitle') }}</h2>
-          <p class="version-info">{{ t('download.versionInfo', { v: APP_VERSION_DISPLAY }) }}</p>
+          <h2>{{ c.download.cardTitle }}</h2>
+          <p class="version-info">{{ c.download.versionInfo.replace('{v}', APP_VERSION_DISPLAY) }}</p>
           <a :href="DOWNLOAD_URL" class="btn btn-primary btn-large" @click="trackDownload">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
               <polyline points="7 10 12 15 17 10"/>
               <line x1="12" y1="15" x2="12" y2="3"/>
             </svg>
-            {{ t('common.download') }}
+            {{ c.common.download }}
           </a>
-          <p class="download-note">{{ t('download.downloadNote') }}</p>
+          <p class="download-note">{{ c.download.downloadNote }}</p>
         </div>
 
         <!-- 系统要求 -->
         <div class="requirements">
           <div class="section-header">
-            <span class="section-label">{{ t('download.reqLabel') }}</span>
-            <h2 class="section-title">{{ t('download.reqTitle') }}</h2>
+            <span class="section-label">{{ c.download.reqLabel }}</span>
+            <h2 class="section-title">{{ c.download.reqTitle }}</h2>
           </div>
           <div class="req-grid">
             <div class="req-card">
@@ -45,8 +45,8 @@
                   <line x1="12" y1="17" x2="12" y2="21"/>
                 </svg>
               </div>
-              <h3>{{ t('download.reqOs') }}</h3>
-              <p>{{ t('download.reqOsDesc') }}</p>
+              <h3>{{ c.download.reqOs }}</h3>
+              <p>{{ c.download.reqOsDesc }}</p>
             </div>
             <div class="req-card">
               <div class="req-icon">
@@ -63,8 +63,8 @@
                   <line x1="1" y1="14" x2="4" y2="14"/>
                 </svg>
               </div>
-              <h3>{{ t('download.reqCpu') }}</h3>
-              <p>{{ t('download.reqCpuDesc') }}</p>
+              <h3>{{ c.download.reqCpu }}</h3>
+              <p>{{ c.download.reqCpuDesc }}</p>
             </div>
             <div class="req-card">
               <div class="req-icon">
@@ -72,8 +72,8 @@
                   <path d="M22 12h-4l-3 9L9 3l-3 9H2"/>
                 </svg>
               </div>
-              <h3>{{ t('download.reqMem') }}</h3>
-              <p>{{ t('download.reqMemDesc') }}</p>
+              <h3>{{ c.download.reqMem }}</h3>
+              <p>{{ c.download.reqMemDesc }}</p>
             </div>
             <div class="req-card">
               <div class="req-icon">
@@ -81,8 +81,8 @@
                   <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
                 </svg>
               </div>
-              <h3>{{ t('download.reqDisk') }}</h3>
-              <p>{{ t('download.reqDiskDesc') }}</p>
+              <h3>{{ c.download.reqDisk }}</h3>
+              <p>{{ c.download.reqDiskDesc }}</p>
             </div>
           </div>
         </div>
@@ -90,8 +90,8 @@
         <!-- 安装指南 -->
         <div class="install-guide">
           <div class="section-header">
-            <span class="section-label">{{ t('download.guideLabel') }}</span>
-            <h2 class="section-title">{{ t('download.guideTitle') }}</h2>
+            <span class="section-label">{{ c.download.guideLabel }}</span>
+            <h2 class="section-title">{{ c.download.guideTitle }}</h2>
           </div>
           <div class="steps">
             <div class="step" v-for="(step, index) in steps" :key="index">
@@ -107,8 +107,8 @@
         <!-- FAQ -->
         <div class="faq">
           <div class="section-header">
-            <span class="section-label">{{ t('download.faqLabel') }}</span>
-            <h2 class="section-title">{{ t('download.faqTitle') }}</h2>
+            <span class="section-label">{{ c.download.faqLabel }}</span>
+            <h2 class="section-title">{{ c.download.faqTitle }}</h2>
           </div>
           <div class="faq-list">
             <div class="faq-item" v-for="(item, index) in faqs" :key="index">
@@ -124,19 +124,19 @@
 
 <script setup lang="ts">
 import { computed } from 'vue'
-import { useI18n } from 'vue-i18n'
 import { trackEvent } from '../utils/analytics'
 import { DOWNLOAD_URL, APP_VERSION_DISPLAY } from '../config/version'
+import { useSiteContent } from '../composables/useSiteContent'
 
-const { t, tm } = useI18n({ useScope: 'global' })
+const c = useSiteContent()
 
 // 百度统计：追踪下载点击事件
 function trackDownload() {
   trackEvent('download', 'click', 'windows_setup')
 }
 
-const steps = computed(() => tm('download.steps') as unknown as any[])
-const faqs = computed(() => tm('download.faqs') as unknown as any[])
+const steps = computed(() => c.value.download.steps as unknown as any[])
+const faqs = computed(() => c.value.download.faqs as unknown as any[])
 </script>
 
 <style scoped>

@@ -3,9 +3,9 @@
     <!-- Page Hero -->
     <section class="page-hero">
       <div class="container">
-        <span class="badge">{{ t('guide.badge') }}</span>
-        <h1>{{ t('guide.heroTitle') }}</h1>
-        <p>{{ t('guide.heroDesc') }}</p>
+        <span class="badge">{{ c.guide.badge }}</span>
+        <h1>{{ c.guide.heroTitle }}</h1>
+        <p>{{ c.guide.heroDesc }}</p>
       </div>
     </section>
 
@@ -13,9 +13,9 @@
     <section class="quick-start">
       <div class="container">
         <div class="section-header">
-          <span class="section-label">{{ t('guide.quickLabel') }}</span>
-          <h2 class="section-title">{{ t('guide.quickTitle') }}</h2>
-          <p class="section-desc">{{ t('guide.quickDesc') }}</p>
+          <span class="section-label">{{ c.guide.quickLabel }}</span>
+          <h2 class="section-title">{{ c.guide.quickTitle }}</h2>
+          <p class="section-desc">{{ c.guide.quickDesc }}</p>
         </div>
 
         <div class="steps-grid">
@@ -33,9 +33,9 @@
     <section class="tips">
       <div class="container">
         <div class="section-header">
-          <span class="section-label">{{ t('guide.tipsLabel') }}</span>
-          <h2 class="section-title">{{ t('guide.tipsTitle') }}</h2>
-          <p class="section-desc">{{ t('guide.tipsDesc') }}</p>
+          <span class="section-label">{{ c.guide.tipsLabel }}</span>
+          <h2 class="section-title">{{ c.guide.tipsTitle }}</h2>
+          <p class="section-desc">{{ c.guide.tipsDesc }}</p>
         </div>
 
         <div class="tips-grid">
@@ -52,9 +52,9 @@
     <section class="search-examples">
       <div class="container">
         <div class="section-header">
-          <span class="section-label">{{ t('guide.examplesLabel') }}</span>
-          <h2 class="section-title">{{ t('guide.examplesTitle') }}</h2>
-          <p class="section-desc">{{ t('guide.examplesDesc') }}</p>
+          <span class="section-label">{{ c.guide.examplesLabel }}</span>
+          <h2 class="section-title">{{ c.guide.examplesTitle }}</h2>
+          <p class="section-desc">{{ c.guide.examplesDesc }}</p>
         </div>
 
         <div class="examples-grid">
@@ -75,9 +75,9 @@
     <section class="faq">
       <div class="container">
         <div class="section-header">
-          <span class="section-label">{{ t('guide.faqLabel') }}</span>
-          <h2 class="section-title">{{ t('guide.faqTitle') }}</h2>
-          <p class="section-desc">{{ t('guide.faqDesc') }}</p>
+          <span class="section-label">{{ c.guide.faqLabel }}</span>
+          <h2 class="section-title">{{ c.guide.faqTitle }}</h2>
+          <p class="section-desc">{{ c.guide.faqDesc }}</p>
         </div>
 
         <div class="faq-list">
@@ -93,17 +93,17 @@
     <section class="cta">
       <div class="container">
         <div class="cta-card">
-          <h2>{{ t('guide.ctaTitle') }}</h2>
-          <p>{{ t('guide.ctaDesc') }}</p>
+          <h2>{{ c.guide.ctaTitle }}</h2>
+          <p>{{ c.guide.ctaDesc }}</p>
           <router-link :to="loc('/download')" class="btn btn-primary btn-large">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
               <polyline points="7 10 12 15 17 10"/>
               <line x1="12" y1="15" x2="12" y2="3"/>
             </svg>
-            {{ t('common.download') }}
+            {{ c.common.download }}
           </router-link>
-          <span class="cta-note">{{ t('guide.ctaNote') }}</span>
+          <span class="cta-note">{{ c.guide.ctaNote }}</span>
         </div>
       </div>
     </section>
@@ -113,13 +113,14 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 import { useRoute } from 'vue-router'
-import { useI18n } from 'vue-i18n'
-import { localeFromPath, localizedPath } from '../i18n'
+import { localeFromPath, localizedPath } from '../locales'
+import { useSiteContent } from '../composables/useSiteContent'
 
-const { t, tm } = useI18n({ useScope: 'global' })
+const c = useSiteContent()
 const route = useRoute()
-const currentLocale = localeFromPath(route.path)
-const loc = (b: string) => localizedPath(b, currentLocale)
+// computed：组件创建早于路由首次解析，一次性求值会把语言冻结在 '/'（=简体）→ 链接丢前缀
+const currentLocale = computed(() => localeFromPath(route.path))
+const loc = (b: string) => localizedPath(b, currentLocale.value)
 
 // 图标按 key 映射（语言无关）
 const stepIcons: Record<string, string> = {
@@ -146,18 +147,18 @@ const exampleIcons: Record<string, string> = {
 }
 
 const steps = computed(() =>
-  (tm('guide.steps') as unknown as any[]).map((s) => ({ ...s, icon: stepIcons[s.key] }))
+  (c.value.guide.steps as unknown as any[]).map((s) => ({ ...s, icon: stepIcons[s.key] }))
 )
 
 const tips = computed(() =>
-  (tm('guide.tips') as unknown as any[]).map((s) => ({ ...s, icon: tipIcons[s.key] }))
+  (c.value.guide.tips as unknown as any[]).map((s) => ({ ...s, icon: tipIcons[s.key] }))
 )
 
 const searchExamples = computed(() =>
-  (tm('guide.searchExamples') as unknown as any[]).map((s) => ({ ...s, icon: exampleIcons[s.key] }))
+  (c.value.guide.searchExamples as unknown as any[]).map((s) => ({ ...s, icon: exampleIcons[s.key] }))
 )
 
-const faqs = computed(() => tm('guide.faqs') as unknown as any[])
+const faqs = computed(() => c.value.guide.faqs as unknown as any[])
 </script>
 
 <style scoped>

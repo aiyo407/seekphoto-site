@@ -3,8 +3,8 @@
     <!-- Page Hero -->
     <section class="page-hero">
       <div class="container">
-        <h1>{{ t('about.heroTitle') }}</h1>
-        <p>{{ t('about.heroDesc') }}</p>
+        <h1>{{ c.about.heroTitle }}</h1>
+        <p>{{ c.about.heroDesc }}</p>
       </div>
     </section>
 
@@ -12,8 +12,8 @@
     <section class="story">
       <div class="container">
         <div class="story-content">
-          <span class="section-label">{{ t('about.storyLabel') }}</span>
-          <h2 class="section-title">{{ t('about.storyTitle') }}</h2>
+          <span class="section-label">{{ c.about.storyLabel }}</span>
+          <h2 class="section-title">{{ c.about.storyTitle }}</h2>
           <div class="story-text">
             <p v-for="(para, i) in story" :key="i">{{ para }}</p>
           </div>
@@ -25,9 +25,9 @@
     <section class="principles">
       <div class="container">
         <div class="section-header">
-          <span class="section-label">{{ t('about.principlesLabel') }}</span>
-          <h2 class="section-title">{{ t('about.principlesTitle') }}</h2>
-          <p class="section-desc">{{ t('about.principlesDesc') }}</p>
+          <span class="section-label">{{ c.about.principlesLabel }}</span>
+          <h2 class="section-title">{{ c.about.principlesTitle }}</h2>
+          <p class="section-desc">{{ c.about.principlesDesc }}</p>
         </div>
         <div class="principle-grid">
           <div class="principle-card" v-for="item in principles" :key="item.title">
@@ -43,9 +43,9 @@
     <section class="tech-stack">
       <div class="container">
         <div class="section-header">
-          <span class="section-label">{{ t('about.techLabel') }}</span>
-          <h2 class="section-title">{{ t('about.techTitle') }}</h2>
-          <p class="section-desc">{{ t('about.techDesc') }}</p>
+          <span class="section-label">{{ c.about.techLabel }}</span>
+          <h2 class="section-title">{{ c.about.techTitle }}</h2>
+          <p class="section-desc">{{ c.about.techDesc }}</p>
         </div>
         <div class="tech-list">
           <div class="tech-row" v-for="tech in techs" :key="tech.label">
@@ -68,12 +68,12 @@
     <section class="cta">
       <div class="container">
         <div class="cta-card">
-          <h2>{{ t('about.ctaTitle') }}</h2>
-          <p>{{ t('about.ctaDesc') }}</p>
+          <h2>{{ c.about.ctaTitle }}</h2>
+          <p>{{ c.about.ctaDesc }}</p>
           <router-link :to="loc('/download')" class="btn btn-primary btn-large">
-            {{ t('common.downloadWindows') }}
+            {{ c.common.downloadWindows }}
           </router-link>
-          <span class="cta-note">{{ t('common.supportWin') }}</span>
+          <span class="cta-note">{{ c.common.supportWin }}</span>
         </div>
       </div>
     </section>
@@ -83,13 +83,14 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 import { useRoute } from 'vue-router'
-import { useI18n } from 'vue-i18n'
-import { localeFromPath, localizedPath } from '../i18n'
+import { localeFromPath, localizedPath } from '../locales'
+import { useSiteContent } from '../composables/useSiteContent'
 
-const { t, tm } = useI18n({ useScope: 'global' })
+const c = useSiteContent()
 const route = useRoute()
-const currentLocale = localeFromPath(route.path)
-const loc = (b: string) => localizedPath(b, currentLocale)
+// computed：组件创建早于路由首次解析，一次性求值会把语言冻结在 '/'（=简体）→ 链接丢前缀
+const currentLocale = computed(() => localeFromPath(route.path))
+const loc = (b: string) => localizedPath(b, currentLocale.value)
 
 // 图标按 key 映射（语言无关）
 const principleIcons: Record<string, string> = {
@@ -106,12 +107,12 @@ const techIcons: Record<string, string> = {
 }
 
 const principles = computed(() =>
-  (tm('about.principles') as unknown as any[]).map((p) => ({ ...p, icon: principleIcons[p.key] }))
+  (c.value.about.principles as unknown as any[]).map((p) => ({ ...p, icon: principleIcons[p.key] }))
 )
 const techs = computed(() =>
-  (tm('about.techs') as unknown as any[]).map((tc) => ({ ...tc, icon: techIcons[tc.key] }))
+  (c.value.about.techs as unknown as any[]).map((tc) => ({ ...tc, icon: techIcons[tc.key] }))
 )
-const story = computed(() => tm('about.story') as unknown as string[])
+const story = computed(() => c.value.about.story as unknown as string[])
 </script>
 
 <style scoped>

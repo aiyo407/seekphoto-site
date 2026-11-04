@@ -2,8 +2,8 @@
   <div class="features-page">
     <section class="page-hero">
       <div class="container">
-        <h1>{{ t('features.heroTitle') }}</h1>
-        <p>{{ t('features.heroDesc') }}</p>
+        <h1>{{ c.features.heroTitle }}</h1>
+        <p>{{ c.features.heroDesc }}</p>
       </div>
     </section>
 
@@ -17,7 +17,7 @@
             :class="['nav-tab', { active: activeCategory === cat.key }]"
             @click="activeCategory = cat.key"
           >
-            {{ t(cat.labelKey) }}
+            {{ cat.label }}
             <span class="tab-count">{{ getFeaturesByCategory(cat.key).length }}</span>
           </button>
         </div>
@@ -35,7 +35,7 @@
           >
             <div class="feature-item-icon" v-html="feature.icon"></div>
             <div class="feature-item-content">
-              <span class="feature-item-tag" :class="feature.category">{{ t(feature.tag) }}</span>
+              <span class="feature-item-tag" :class="feature.category">{{ tagLabels[feature.tag as 'core' | 'advanced' | 'tool'] }}</span>
               <h3>{{ feature.title }}</h3>
               <p>{{ feature.desc }}</p>
               <ul class="feature-item-list">
@@ -52,11 +52,11 @@
       <div class="container">
         <div class="feature-row">
           <div class="feature-text">
-            <span class="feature-tag">{{ t('features.tagCore') }}</span>
-            <h2>{{ t('features.detailTextTitle') }}</h2>
-            <p class="feature-desc">{{ t('features.detailTextDesc') }}</p>
+            <span class="feature-tag">{{ c.features.tagCore }}</span>
+            <h2>{{ c.features.detailTextTitle }}</h2>
+            <p class="feature-desc">{{ c.features.detailTextDesc }}</p>
             <ul class="feature-list">
-              <li v-for="pt in tm('features.detailTextList')" :key="pt">{{ pt }}</li>
+              <li v-for="pt in c.features.detailTextList" :key="pt">{{ pt }}</li>
             </ul>
           </div>
           <div class="feature-visual">
@@ -90,18 +90,18 @@
       <div class="container">
         <div class="feature-row reverse">
           <div class="feature-text">
-            <span class="feature-tag">{{ t('features.tagCore') }}</span>
-            <h2>{{ t('features.detailImageTitle') }}</h2>
-            <p class="feature-desc">{{ t('features.detailImageDesc') }}</p>
+            <span class="feature-tag">{{ c.features.tagCore }}</span>
+            <h2>{{ c.features.detailImageTitle }}</h2>
+            <p class="feature-desc">{{ c.features.detailImageDesc }}</p>
             <ul class="feature-list">
-              <li v-for="pt in tm('features.detailImageList')" :key="pt">{{ pt }}</li>
+              <li v-for="pt in c.features.detailImageList" :key="pt">{{ pt }}</li>
             </ul>
           </div>
           <div class="feature-visual">
             <div class="visual-card visual-sidebar">
               <div class="visual-sidebar-header">
-                <span>{{ t('features.demoSimilar') }}</span>
-                <span class="visual-count">{{ t('features.demoCount') }}</span>
+                <span>{{ c.features.demoSimilar }}</span>
+                <span class="visual-count">{{ c.features.demoCount }}</span>
               </div>
               <div class="person-list">
                 <div class="person-item" v-for="i in 5" :key="i" :class="{ selected: i === 1 }">
@@ -126,9 +126,9 @@
     <section class="tech-section">
       <div class="container">
         <div class="section-header">
-          <span class="section-label">{{ t('features.techLabel') }}</span>
-          <h2 class="section-title">{{ t('features.techTitle') }}</h2>
-          <p class="section-desc">{{ t('features.techDesc') }}</p>
+          <span class="section-label">{{ c.features.techLabel }}</span>
+          <h2 class="section-title">{{ c.features.techTitle }}</h2>
+          <p class="section-desc">{{ c.features.techDesc }}</p>
         </div>
         <div class="tech-grid">
           <div class="tech-card" v-for="tech in techs" :key="tech.name">
@@ -145,12 +145,12 @@
     <section class="cta">
       <div class="container">
         <div class="cta-card">
-          <h2>{{ t('features.ctaTitle') }}</h2>
-          <p>{{ t('features.ctaDesc') }}</p>
+          <h2>{{ c.features.ctaTitle }}</h2>
+          <p>{{ c.features.ctaDesc }}</p>
           <router-link :to="loc('/download')" class="btn btn-primary btn-large">
-            {{ t('common.downloadWindows') }}
+            {{ c.common.downloadWindows }}
           </router-link>
-          <span class="cta-note">{{ t('features.ctaNote') }}</span>
+          <span class="cta-note">{{ c.features.ctaNote }}</span>
         </div>
       </div>
     </section>
@@ -160,43 +160,51 @@
 <script setup lang="ts">
 import { ref, computed } from 'vue'
 import { useRoute } from 'vue-router'
-import { useI18n } from 'vue-i18n'
-import { localeFromPath, localizedPath } from '../i18n'
+import { localeFromPath, localizedPath } from '../locales'
+import { useSiteContent } from '../composables/useSiteContent'
 
 type Category = 'core' | 'advanced' | 'tool'
 
-const { t, tm } = useI18n({ useScope: 'global' })
+const c = useSiteContent()
 const route = useRoute()
-const currentLocale = localeFromPath(route.path)
-const loc = (b: string) => localizedPath(b, currentLocale)
+// computed：组件创建早于路由首次解析，一次性求值会把语言冻结在 '/'（=简体）→ 链接丢前缀
+const currentLocale = computed(() => localeFromPath(route.path))
+const loc = (b: string) => localizedPath(b, currentLocale.value)
 
 // 分类标签（文案走 i18n）
-const categories = [
-  { key: 'all' as const, labelKey: 'features.catAll' },
-  { key: 'core' as const, labelKey: 'features.catCore' },
-  { key: 'advanced' as const, labelKey: 'features.catAdvanced' },
-  { key: 'tool' as const, labelKey: 'features.catTool' },
-]
+const categories = computed(() => [
+  { key: 'all' as const, label: c.value.features.catAll },
+  { key: 'core' as const, label: c.value.features.catCore },
+  { key: 'advanced' as const, label: c.value.features.catAdvanced },
+  { key: 'tool' as const, label: c.value.features.catTool },
+])
 
 const activeCategory = ref<'all' | Category>('all')
 
+// 分类标签文案（三种语言各一份，按当前路由语言取值）
+const tagLabels = computed<Record<'core' | 'advanced' | 'tool', string>>(() => ({
+  core: c.value.features.tagCore,
+  advanced: c.value.features.tagAdvanced,
+  tool: c.value.features.tagTool,
+}))
+
 // 每个功能的「分类 / 标签 / 图标」是语言无关的，留在组件内
-const featureMeta: Record<string, { category: Category; tagKey: string; icon: string }> = {
-  textSearch: { category: 'core', tagKey: 'features.tagCore', icon: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>' },
-  ocr: { category: 'advanced', tagKey: 'features.tagAdvanced', icon: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="8" y1="13" x2="16" y2="13"/><line x1="8" y1="17" x2="14" y2="17"/></svg>' },
-  timeline: { category: 'core', tagKey: 'features.tagCore', icon: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>' },
-  tags: { category: 'core', tagKey: 'features.tagCore', icon: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>' },
-  albums: { category: 'core', tagKey: 'features.tagCore', icon: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>' },
-  imageSearch: { category: 'advanced', tagKey: 'features.tagAdvanced', icon: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>' },
-  dedup: { category: 'advanced', tagKey: 'features.tagAdvanced', icon: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="13" height="13"/><rect x="8" y="8" width="13" height="13"/></svg>' },
-  export: { category: 'tool', tagKey: 'features.tagTool', icon: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>' },
-  history: { category: 'tool', tagKey: 'features.tagTool', icon: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3v5h5"/><path d="M3.05 13A9 9 0 1 0 6 5.3L3 8"/><path d="M12 7v5l4 2"/></svg>' },
+const featureMeta: Record<string, { category: Category; tag: 'core' | 'advanced' | 'tool'; icon: string }> = {
+  textSearch: { category: 'core', tag: 'core', icon: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>' },
+  ocr: { category: 'advanced', tag: 'advanced', icon: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="8" y1="13" x2="16" y2="13"/><line x1="8" y1="17" x2="14" y2="17"/></svg>' },
+  timeline: { category: 'core', tag: 'core', icon: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>' },
+  tags: { category: 'core', tag: 'core', icon: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>' },
+  albums: { category: 'core', tag: 'core', icon: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>' },
+  imageSearch: { category: 'advanced', tag: 'advanced', icon: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>' },
+  dedup: { category: 'advanced', tag: 'advanced', icon: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="13" height="13"/><rect x="8" y="8" width="13" height="13"/></svg>' },
+  export: { category: 'tool', tag: 'tool', icon: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>' },
+  history: { category: 'tool', tag: 'tool', icon: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3v5h5"/><path d="M3.05 13A9 9 0 1 0 6 5.3L3 8"/><path d="M12 7v5l4 2"/></svg>' },
 }
 
 const features = computed(() =>
-  (tm('features.features') as unknown as any[]).map((f) => {
+  (c.value.features.features as unknown as any[]).map((f) => {
     const m = featureMeta[f.key]
-    return { ...f, category: m.category, tag: m.tagKey, icon: m.icon }
+    return { ...f, category: m.category, tag: m.tag, icon: m.icon }
   })
 )
 
@@ -220,7 +228,7 @@ const techIcons: Record<string, string> = {
   update: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>',
 }
 const techs = computed(() =>
-  (tm('features.techs') as unknown as any[]).map((tc) => ({ ...tc, icon: techIcons[tc.key] }))
+  (c.value.features.techs as unknown as any[]).map((tc) => ({ ...tc, icon: techIcons[tc.key] }))
 )
 
 const base = import.meta.env.BASE_URL

@@ -7,37 +7,38 @@
             <img :src="logo" alt="SeekPhoto" class="logo-img" />
             <span class="logo-text">SeekPhoto</span>
           </router-link>
-          <p>{{ t('footer.tagline') }}</p>
+          <p>{{ c.footer.tagline }}</p>
         </div>
 
         <div class="footer-links">
           <div class="footer-col">
-            <h4>{{ t('footer.navTitle') }}</h4>
-            <router-link :to="loc('/')">{{ t('nav.home') }}</router-link>
-            <router-link :to="loc('/features')">{{ t('nav.features') }}</router-link>
-            <router-link :to="loc('/guide')">{{ t('nav.guide') }}</router-link>
-            <router-link :to="loc('/download')">{{ t('nav.download') }}</router-link>
-            <router-link :to="loc('/changelog')">{{ t('nav.changelog') }}</router-link>
-            <router-link :to="loc('/support')">{{ t('nav.support') }}</router-link>
+            <h4>{{ c.footer.navTitle }}</h4>
+            <router-link :to="loc('/')">{{ c.nav.home }}</router-link>
+            <router-link :to="loc('/features')">{{ c.nav.features }}</router-link>
+            <router-link :to="loc('/guide')">{{ c.nav.guide }}</router-link>
+            <router-link :to="loc('/download')">{{ c.nav.download }}</router-link>
+            <router-link :to="loc('/pricing')">{{ c.nav.pricing }}</router-link>
+            <router-link :to="loc('/changelog')">{{ c.nav.changelog }}</router-link>
+            <router-link :to="loc('/support')">{{ c.nav.support }}</router-link>
           </div>
           <div class="footer-col">
-            <h4>{{ t('footer.aboutTitle') }}</h4>
-            <router-link :to="loc('/about')">{{ t('nav.about') }}</router-link>
+            <h4>{{ c.footer.aboutTitle }}</h4>
+            <router-link :to="loc('/about')">{{ c.nav.about }}</router-link>
           </div>
           <div class="footer-col">
-            <h4>{{ t('footer.legalTitle') }}</h4>
-            <router-link :to="loc('/privacy')">{{ t('nav.privacy') }}</router-link>
-            <router-link :to="loc('/terms')">{{ t('nav.terms') }}</router-link>
+            <h4>{{ c.footer.legalTitle }}</h4>
+            <router-link :to="loc('/privacy')">{{ c.nav.privacy }}</router-link>
+            <router-link :to="loc('/terms')">{{ c.nav.terms }}</router-link>
           </div>
           <div class="footer-col">
-            <h4>{{ t('footer.communityTitle') }}</h4>
-            <a href="https://qm.qq.com/q/VLdutsMlmU" target="_blank" rel="noopener noreferrer">{{ t('footer.community') }}</a>
+            <h4>{{ c.footer.communityTitle }}</h4>
+            <a href="https://qm.qq.com/q/VLdutsMlmU" target="_blank" rel="noopener noreferrer">{{ c.footer.community }}</a>
           </div>
         </div>
       </div>
 
       <div class="footer-bottom">
-        <p>{{ t('footer.copyright') }}</p>
+        <p>{{ c.footer.copyright }}</p>
         <p class="icp">
           <a href="https://beian.miit.gov.cn/" target="_blank" rel="noopener noreferrer">粤ICP备2026111543号-1</a>
           <a class="mps-beian" href="https://beian.mps.gov.cn/#/query/webSearch?code=44011802001527" target="_blank" rel="noopener noreferrer">
@@ -51,16 +52,18 @@
 </template>
 
 <script setup lang="ts">
+import { computed } from 'vue'
 import { useRoute } from 'vue-router'
-import { useI18n } from 'vue-i18n'
 import logo from '../../assets/logo.png'
 import beianIcon from '../../assets/备案图标.png'
-import { localeFromPath, localizedPath, type AppLocale } from '../../i18n'
+import { localeFromPath, localizedPath, type SiteLocale } from '../../locales'
+import { useSiteContent } from '../../composables/useSiteContent'
 
-const { t } = useI18n({ useScope: 'global' })
+const c = useSiteContent()
 const route = useRoute()
-const currentLocale = localeFromPath(route.path)
-const loc = (base: string) => localizedPath(base, currentLocale as AppLocale)
+// computed：组件创建早于路由首次解析，一次性求值会把语言冻结在 '/'（=简体）→ 链接丢前缀
+const currentLocale = computed<SiteLocale>(() => localeFromPath(route.path))
+const loc = (base: string) => localizedPath(base, currentLocale.value)
 </script>
 
 <style scoped>

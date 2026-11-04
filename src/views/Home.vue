@@ -4,9 +4,9 @@
     <section class="hero">
       <div class="container">
         <div class="hero-content">
-      <span class="badge">{{ t('home.badge') }}</span>
-      <h1 class="hero-title">{{ t('home.heroTitle') }}</h1>
-      <p class="hero-subtitle" v-html="t('home.heroSubtitle')"></p>
+      <span class="badge">{{ c.home.badge }}</span>
+      <h1 class="hero-title">{{ c.home.heroTitle }}</h1>
+      <p class="hero-subtitle" v-html="c.home.heroSubtitle"></p>
           <div class="hero-actions">
             <router-link :to="loc('/download')" class="btn btn-primary btn-large">
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -14,26 +14,26 @@
                 <polyline points="7 10 12 15 17 10"/>
                 <line x1="12" y1="15" x2="12" y2="3"/>
               </svg>
-              {{ t('common.freeDownload') }}
+              {{ c.common.freeDownload }}
             </router-link>
             <router-link :to="loc('/features')" class="btn btn-secondary btn-large">
-              {{ t('common.viewFeatures') }}
+              {{ c.common.viewFeatures }}
             </router-link>
           </div>
           <div class="hero-stats">
             <div class="stat">
-              <span class="stat-num">{{ t('home.statsInstant') }}</span>
-              <span class="stat-label">{{ t('home.statsInstantLabel') }}</span>
+              <span class="stat-num">{{ c.home.statsInstant }}</span>
+              <span class="stat-label">{{ c.home.statsInstantLabel }}</span>
             </div>
             <div class="stat-divider"></div>
             <div class="stat">
-              <span class="stat-num">{{ t('home.statsLocal') }}</span>
-              <span class="stat-label">{{ t('home.statsLocalLabel') }}</span>
+              <span class="stat-num">{{ c.home.statsLocal }}</span>
+              <span class="stat-label">{{ c.home.statsLocalLabel }}</span>
             </div>
             <div class="stat-divider"></div>
             <div class="stat">
-              <span class="stat-num">{{ t('home.statsZero') }}</span>
-              <span class="stat-label">{{ t('home.statsZeroLabel') }}</span>
+              <span class="stat-num">{{ c.home.statsZero }}</span>
+              <span class="stat-label">{{ c.home.statsZeroLabel }}</span>
             </div>
           </div>
         </div>
@@ -44,9 +44,9 @@
     <section class="features">
       <div class="container">
         <div class="section-header">
-          <span class="section-label">{{ t('home.featuresLabel') }}</span>
-          <h2 class="section-title">{{ t('home.featuresTitle') }}</h2>
-          <p class="section-desc">{{ t('home.featuresDesc') }}</p>
+          <span class="section-label">{{ c.home.featuresLabel }}</span>
+          <h2 class="section-title">{{ c.home.featuresTitle }}</h2>
+          <p class="section-desc">{{ c.home.featuresDesc }}</p>
         </div>
 
         <div class="feature-grid">
@@ -63,9 +63,9 @@
     <section class="demo">
       <div class="container">
         <div class="section-header">
-          <span class="section-label">{{ t('home.demoLabel') }}</span>
-          <h2 class="section-title">{{ t('home.demoTitle') }}</h2>
-          <p class="section-desc">{{ t('home.demoDesc') }}</p>
+          <span class="section-label">{{ c.home.demoLabel }}</span>
+          <h2 class="section-title">{{ c.home.demoTitle }}</h2>
+          <p class="section-desc">{{ c.home.demoDesc }}</p>
         </div>
 
         <div class="demo-app">
@@ -79,7 +79,7 @@
             <button class="demo-search-btn">搜索</button>
           </div>
           <div class="demo-tags">
-            <span class="demo-tags-label">{{ t('home.tryLabel') }}</span>
+            <span class="demo-tags-label">{{ c.home.tryLabel }}</span>
             <span class="demo-tag" v-for="kw in keywords" :key="kw">{{ kw }}</span>
           </div>
           <div class="demo-results">
@@ -102,9 +102,9 @@
     <section class="scenarios">
       <div class="container">
         <div class="section-header">
-          <span class="section-label">{{ t('home.scenariosLabel') }}</span>
-          <h2 class="section-title">{{ t('home.scenariosTitle') }}</h2>
-          <p class="section-desc">{{ t('home.scenariosDesc') }}</p>
+          <span class="section-label">{{ c.home.scenariosLabel }}</span>
+          <h2 class="section-title">{{ c.home.scenariosTitle }}</h2>
+          <p class="section-desc">{{ c.home.scenariosDesc }}</p>
         </div>
 
         <div class="scenario-grid">
@@ -121,17 +121,17 @@
     <section class="compare">
       <div class="container">
         <div class="section-header">
-          <span class="section-label">{{ t('home.compareLabel') }}</span>
-          <h2 class="section-title">{{ t('home.compareTitle') }}</h2>
-          <p class="section-desc">{{ t('home.compareDesc') }}</p>
+          <span class="section-label">{{ c.home.compareLabel }}</span>
+          <h2 class="section-title">{{ c.home.compareTitle }}</h2>
+          <p class="section-desc">{{ c.home.compareDesc }}</p>
         </div>
 
         <div class="compare-table">
           <div class="compare-row compare-header">
-            <div class="compare-cell compare-feature">{{ t('home.compareFeature') }}</div>
-            <div class="compare-cell">{{ t('home.compareFolder') }}</div>
-            <div class="compare-cell">{{ t('home.compareCloud') }}</div>
-            <div class="compare-cell compare-highlight">{{ t('home.compareSeek') }}</div>
+            <div class="compare-cell compare-feature">{{ c.home.compareFeature }}</div>
+            <div class="compare-cell">{{ c.home.compareFolder }}</div>
+            <div class="compare-cell">{{ c.home.compareCloud }}</div>
+            <div class="compare-cell compare-highlight">{{ c.home.compareSeek }}</div>
           </div>
           <div class="compare-row" v-for="item in compareData" :key="item.feature">
             <div class="compare-cell compare-feature">{{ item.feature }}</div>
@@ -166,8 +166,8 @@
                 <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
               </svg>
             </div>
-            <h3>{{ t('home.privacyItems.0.title') }}</h3>
-            <p>{{ t('home.privacyItems.0.desc') }}</p>
+            <h3>{{ c.home.privacyItems[0].title }}</h3>
+            <p>{{ c.home.privacyItems[0].desc }}</p>
           </div>
           <div class="privacy-item">
             <div class="privacy-icon">
@@ -176,8 +176,8 @@
                 <circle cx="12" cy="12" r="3"/>
               </svg>
             </div>
-            <h3>{{ t('home.privacyItems.1.title') }}</h3>
-            <p>{{ t('home.privacyItems.1.desc') }}</p>
+            <h3>{{ c.home.privacyItems[1].title }}</h3>
+            <p>{{ c.home.privacyItems[1].desc }}</p>
           </div>
           <div class="privacy-item">
             <div class="privacy-icon">
@@ -188,8 +188,8 @@
                 <line x1="16" y1="17" x2="8" y2="17"/>
               </svg>
             </div>
-            <h3>{{ t('home.privacyItems.2.title') }}</h3>
-            <p>{{ t('home.privacyItems.2.desc') }}</p>
+            <h3>{{ c.home.privacyItems[2].title }}</h3>
+            <p>{{ c.home.privacyItems[2].desc }}</p>
           </div>
         </div>
       </div>
@@ -199,9 +199,9 @@
     <section class="faq">
       <div class="container">
         <div class="section-header">
-          <span class="section-label">{{ t('home.faqLabel') }}</span>
-          <h2 class="section-title">{{ t('home.faqTitle') }}</h2>
-          <p class="section-desc">{{ t('home.faqDesc') }}</p>
+          <span class="section-label">{{ c.home.faqLabel }}</span>
+          <h2 class="section-title">{{ c.home.faqTitle }}</h2>
+          <p class="section-desc">{{ c.home.faqDesc }}</p>
         </div>
         <div class="faq-list">
           <div class="faq-item" v-for="item in faqs" :key="item.q">
@@ -216,12 +216,12 @@
     <section class="cta">
       <div class="container">
         <div class="cta-card">
-          <h2>{{ t('home.ctaTitle') }}</h2>
-          <p>{{ t('home.ctaDesc') }}</p>
+          <h2>{{ c.home.ctaTitle }}</h2>
+          <p>{{ c.home.ctaDesc }}</p>
           <router-link :to="loc('/download')" class="btn btn-primary btn-large">
-            {{ t('common.downloadWindows') }}
+            {{ c.common.downloadWindows }}
           </router-link>
-          <span class="cta-note">{{ t('home.ctaNote') }}</span>
+          <span class="cta-note">{{ c.home.ctaNote }}</span>
         </div>
       </div>
     </section>
@@ -231,14 +231,15 @@
 <script setup lang="ts">
 import { ref, computed, onMounted, onUnmounted } from 'vue'
 import { useRoute } from 'vue-router'
-import { useI18n } from 'vue-i18n'
-import { localeFromPath, localizedPath } from '../i18n'
+import { localeFromPath, localizedPath } from '../locales'
+import { useSiteContent } from '../composables/useSiteContent'
 
-const { t, tm } = useI18n({ useScope: 'global' })
+const c = useSiteContent()
 const route = useRoute()
-const currentLocale = localeFromPath(route.path)
+// computed：组件创建早于路由首次解析，一次性求值会把语言冻结在 '/'（=简体）→ 链接丢前缀
+const currentLocale = computed(() => localeFromPath(route.path))
 // 站内链接保持当前语言
-const loc = (b: string) => localizedPath(b, currentLocale)
+const loc = (b: string) => localizedPath(b, currentLocale.value)
 
 // 图标按 key 映射（语言无关，留在组件内）
 const featureIcons: Record<string, string> = {
@@ -258,14 +259,14 @@ const scenarioIcons: Record<string, string> = {
 
 // 文案全部来自 i18n；图标按 key 补回
 const features = computed(() =>
-  (tm('home.features') as unknown as any[]).map((f) => ({ ...f, icon: featureIcons[f.key] }))
+  (c.value.home.features as unknown as any[]).map((f) => ({ ...f, icon: featureIcons[f.key] }))
 )
 const scenarios = computed(() =>
-  (tm('home.scenarios') as unknown as any[]).map((s) => ({ ...s, icon: scenarioIcons[s.key] }))
+  (c.value.home.scenarios as unknown as any[]).map((s) => ({ ...s, icon: scenarioIcons[s.key] }))
 )
-const compareData = computed(() => tm('home.compareData') as unknown as any[])
-const faqs = computed(() => tm('home.faqs') as unknown as any[])
-const keywords = computed(() => tm('home.keywords') as unknown as string[])
+const compareData = computed(() => c.value.home.compareData as unknown as any[])
+const faqs = computed(() => c.value.home.faqs as unknown as any[])
+const keywords = computed(() => c.value.home.keywords as unknown as string[])
 
 const currentKeyword = ref('')
 let keywordIndex = 0

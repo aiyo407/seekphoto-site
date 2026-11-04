@@ -9,13 +9,13 @@
 
         <nav class="nav">
           <router-link v-for="item in navItems" :key="item.base" :to="loc(item.base)">
-            {{ t(item.key) }}
+            {{ item.label }}
           </router-link>
         </nav>
 
         <div class="header-actions">
           <!-- 语言切换 -->
-          <div class="lang-switch" role="group" :aria-label="t('nav.lang')">
+          <div class="lang-switch" role="group" :aria-label="c.nav.lang">
             <router-link
               v-for="opt in localeOptions"
               :key="opt.value"
@@ -32,7 +32,7 @@
             class="menu-toggle"
             :class="{ active: isMenuOpen }"
             :aria-expanded="isMenuOpen"
-            :aria-label="t('nav.menu')"
+            :aria-label="c.nav.menu"
             @click="toggleMenu"
           >
             <span></span>
@@ -47,10 +47,10 @@
     <transition name="drawer">
       <nav v-if="isMenuOpen" class="mobile-nav">
         <router-link v-for="item in navItems" :key="item.base" :to="loc(item.base)" @click="closeMenu">
-          {{ t(item.key) }}
+          {{ item.label }}
         </router-link>
         <router-link v-for="item in mobileExtra" :key="item.base" :to="loc(item.base)" @click="closeMenu">
-          {{ t(item.key) }}
+          {{ item.label }}
         </router-link>
         <div class="mobile-lang">
           <router-link
@@ -77,41 +77,50 @@
 <script setup lang="ts">
 import { ref, computed, onMounted, onUnmounted, watch } from 'vue'
 import { useRoute } from 'vue-router'
-import { useI18n } from 'vue-i18n'
 import logo from '../../assets/logo.png'
 import {
   localeFromPath,
   stripLocale,
   localizedPath,
-  type AppLocale,
-} from '../../i18n'
+  SITE_LOCALES,
+  LOCALE_SHORT_LABEL,
+  LOCALE_FULL_LABEL,
+  type SiteLocale,
+} from '../../locales'
+import { useSiteContent } from '../../composables/useSiteContent'
 
-const { t } = useI18n({ useScope: 'global' })
+const c = useSiteContent()
 const route = useRoute()
-const currentLocale = computed<AppLocale>(() => localeFromPath(route.path))
+const currentLocale = computed<SiteLocale>(() => localeFromPath(route.path))
 const basePath = computed(() => stripLocale(route.path))
 
 // 当前语言的页面链接（带前缀）
 const loc = (base: string) => localizedPath(base, currentLocale.value)
-// 切换到目标语言时，停留在同一页面
-const switchLocale = (target: AppLocale) => localizedPath(basePath.value, target)
+// 切换到目标语言时，停留在同一页面。
+// 注意：这里必须保持「纯函数」——模板里 :to="switchLocale(opt.value)" 会在每次渲染时
+// 对每个语言选项各调一次，若在此写 localStorage，一次渲染就写入三次（最后一个选项获胜）。
+// 语言偏好的写入统一交给路由守卫（main.ts），那里能拿到真实的目标路径。
+const switchLocale = (target: SiteLocale) => localizedPath(basePath.value, target)
 
-const localeOptions: { value: AppLocale; label: string }[] = [
-  { value: 'zh-CN', label: '简' },
-  { value: 'zh-TW', label: '繁' },
-]
+// 语言切换：三种语言各一份独立静态页，切换即换前缀
+const localeOptions = SITE_LOCALES.map((value) => ({
+  value,
+  label: LOCALE_SHORT_LABEL[value],
+  title: LOCALE_FULL_LABEL[value],
+}))
 
-const navItems = [
-  { base: '/', key: 'nav.home' },
-  { base: '/features', key: 'nav.features' },
-  { base: '/guide', key: 'nav.guide' },
-  { base: '/download', key: 'nav.download' },
-]
-const mobileExtra = [
-  { base: '/about', key: 'nav.about' },
-  { base: '/changelog', key: 'nav.changelog' },
-  { base: '/support', key: 'nav.support' },
-]
+const navItems = computed(() => [
+  { base: '/', label: c.value.nav.home },
+  { base: '/features', label: c.value.nav.features },
+  { base: '/guide', label: c.value.nav.guide },
+  { base: '/download', label: c.value.nav.download },
+  { base: '/pricing', label: c.value.nav.pricing },
+])
+const mobileExtra = computed(() => [
+  { base: '/about', label: c.value.nav.about },
+  { base: '/changelog', label: c.value.nav.changelog },
+  { base: '/support', label: c.value.nav.support },
+])
 
 const isScrolled = ref(false)
 const isMenuOpen = ref(false)
