@@ -1,5 +1,5 @@
 /** 应用版本（更新日志页与下载链接的唯一来源，与客户端 Cargo.toml 保持一致） */
-export const APP_VERSION = '0.14.1'
+export const APP_VERSION = '0.14.2'
 
 /** 显示用版本号（带 v 前缀，如 "v0.9.0"） */
 export const APP_VERSION_DISPLAY = `v${APP_VERSION}`

@@ -3,8 +3,8 @@
     <!-- Page Hero -->
     <section class="page-hero">
       <div class="container">
-        <h1>{{ t('changelog.heroTitle') }}</h1>
-        <p>{{ t('changelog.heroDesc') }}</p>
+        <h1>{{ c.changelog.heroTitle }}</h1>
+        <p>{{ c.changelog.heroDesc }}</p>
       </div>
     </section>
 
@@ -35,12 +35,12 @@
     <section class="cta">
       <div class="container">
         <div class="cta-card">
-          <h2>{{ t('changelog.ctaTitle') }}</h2>
-          <p>{{ t('changelog.ctaDesc', { v: APP_VERSION_DISPLAY }) }}</p>
+          <h2>{{ c.changelog.ctaTitle }}</h2>
+          <p>{{ c.changelog.ctaDesc.replace('{v}', APP_VERSION_DISPLAY) }}</p>
           <router-link :to="loc('/download')" class="btn btn-primary btn-large">
-            {{ t('common.download') }}
+            {{ c.common.download }}
           </router-link>
-          <span class="cta-note">{{ t('common.supportWin') }}</span>
+          <span class="cta-note">{{ c.common.supportWin }}</span>
         </div>
       </div>
     </section>
@@ -50,15 +50,16 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 import { useRoute } from 'vue-router'
-import { useI18n } from 'vue-i18n'
 import { APP_VERSION_DISPLAY } from '../config/version'
-import { localeFromPath, localizedPath } from '../i18n'
+import { localeFromPath, localizedPath } from '../locales'
+import { useSiteContent } from '../composables/useSiteContent'
 
-const { t, tm } = useI18n({ useScope: 'global' })
+const c = useSiteContent()
 const route = useRoute()
-const currentLocale = localeFromPath(route.path)
-const loc = (b: string) => localizedPath(b, currentLocale)
-const tagLabels = computed(() => tm('changelog.tags') as unknown as Record<string, string>)
+// computed：组件创建早于路由首次解析，一次性求值会把语言冻结在 '/'（=简体）→ 链接丢前缀
+const currentLocale = computed(() => localeFromPath(route.path))
+const loc = (b: string) => localizedPath(b, currentLocale.value)
+const tagLabels = computed(() => c.value.changelog.tags as unknown as Record<string, string>)
 
 interface Version {
   version: string
@@ -70,10 +71,22 @@ interface Version {
 
 const versions: Version[] = [
   {
+    version: 'v0.14.2',
+    date: '2026-11-04',
+    tag: '功能更新',
+    tagType: 'latest',
+    changes: [
+      '全库重复照片检测大幅提速：数万张照片下不再卡死，列表随滚动加载，智能选择瞬间完成',
+      '升级与购买入口统一跳转官网，套餐与定价信息以官网为准',
+      '隐私政策、用户协议、更新日志与联系支持集中在官网提供，内容更新无需升级应用',
+      '官网新增英文版本，简 / 繁 / 英三种语言可切换并记住选择',
+    ],
+  },
+  {
     version: 'v0.14.1',
     date: '2026-11-02',
     tag: '关键修复',
-    tagType: 'latest',
+    tagType: 'feature',
     changes: [
       '修复启动后相机与地点筛选项加载不出来的问题，失败时会明确提示并可重试',
       '修复首次使用暂不安装模型时浏览功能受限，现在未安装模型也能正常使用',
